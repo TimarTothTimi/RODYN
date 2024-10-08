@@ -1,37 +1,38 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from "./app.routing.module";
 import { AppComponent } from "./app.component";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getAuth, provideAuth } from "@angular/fire/auth";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
-import { ArticlesComponent } from "./components/articles/articles.component";
-import { Artcicle1Component } from "./components/articles/article1/artcicle1.component";
-import { Artcicle2Component } from "./components/articles/article2/artcicle2.component";
-import { Artcicle3Component } from "./components/articles/article3/artcicle3.component";
-import { Artcicle4Component } from "./components/articles/article4/artcicle4.component";
-import { Artcicle5Component } from "./components/articles/article5/artcicle5.component";
-import { Artcicle6Component } from "./components/articles/article6/artcicle6.component";
-import { Artcicle7Component } from "./components/articles/article7/artcicle7.component";
-import { Artcicle8Component } from "./components/articles/article8/artcicle8.component";
-import { Artcicle9Component } from "./components/articles/article9/artcicle9.component";
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from "./components/header/header.component";
+import { HomeComponent } from "./components/home/home.component";
+import { NavComponent } from "./components/nav/nav.component";
+import { Article1Component } from "./components/articles/article1/article1.component";
+import { Article2Component } from "./components/articles/article2/article2.component";
+import { Article3Component } from "./components/articles/article3/article3.component";
+import { Article4Component } from "./components/articles/article4/article4.component";
+import { Article5Component } from "./components/articles/article5/article5.component";
+import { Article6Component } from "./components/articles/article6/article6.component";
+import { Article7Component } from "./components/articles/article7/article7.component";
+import { Article8Component } from "./components/articles/article8/article8.component";
+import { Article9Component } from "./components/articles/article9/article9.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArticlesComponent,
-    Artcicle1Component,
-    Artcicle2Component,
-    Artcicle3Component,
-    Artcicle4Component,
-    Artcicle5Component,
-    Artcicle6Component,
-    Artcicle7Component,
-    Artcicle8Component,
-    Artcicle9Component,
     HeaderComponent,
+    HomeComponent,
+    NavComponent,
+    Article1Component,
+    Article2Component,
+    Article3Component,
+    Article4Component,
+    Article5Component,
+    Article6Component,
+    Article7Component,
+    Article8Component,
+    Article9Component,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [
