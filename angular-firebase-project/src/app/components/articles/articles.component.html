@@ -1,69 +1,33 @@
-<section class="container-fluid bg-secondary-subtle p-1">
+<!-- irodai-trendek.component.html -->
+<section class="container-fluid bg-secondary-subtle p-1 d-block">
   <div class="p-4">
     <h3>Irodai trendek 2024-ben</h3>
+
+    <!-- Carousel for Small Screens -->
     <div
       id="carouselExampleDark-small"
       class="carousel slide carousel-dark d-lg-none"
     >
       <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div
+          *ngFor="let article of articles; let i = index"
+          [ngClass]="{ active: i === 0 }"
+          class="carousel-item"
+        >
           <div class="row justify-content-center">
             <div class="col-10 mt-3">
               <div class="card text-center">
                 <div class="card-body">
                   <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    [src]="article.imgUrl"
                     class="card-img-top"
                     alt="office desk"
                   />
-                  <h5 class="card-title mt-3">Article 1</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row justify-content-center">
-            <div class="col-10 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 2</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row justify-content-center">
-            <div class="col-10 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 3</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
+                  <h5 class="card-title mt-3">{{ article.title }}</h5>
+                  <p class="card-text">{{ article.description }}</p>
+                  <a [routerLink]="article.link" class="btn btn-dark"
+                    >Tovább...</a
+                  >
                 </div>
               </div>
             </div>
@@ -89,171 +53,35 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+
+    <!-- Carousel for Large Screens -->
     <div
       id="carouselExampleDark-large"
       class="carousel slide carousel-dark d-none d-lg-block"
     >
       <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div
+          *ngFor="let group of groupedArticles; let i = index"
+          [ngClass]="{ active: i === 0 }"
+          class="carousel-item"
+        >
           <div class="row justify-content-center">
-            <div class="col-10 col-md-6 col-lg-3 mt-3">
+            <div
+              class="col-10 col-md-6 col-lg-3 mt-3"
+              *ngFor="let article of group"
+            >
               <div class="card text-center">
                 <div class="card-body">
                   <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    [src]="article.imgUrl"
                     class="card-img-top"
                     alt="office desk"
                   />
-                  <h5 class="card-title mt-3">Article 1</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-6 col-lg-3 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 2</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-6 col-lg-3 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 3</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row justify-content-center">
-            <div class="col-10 col-md-6 col-lg-3 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 4</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-6 col-lg-3 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 5</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-6 col-lg-3 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 6</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row justify-content-center">
-            <div class="col-10 col-md-6 col-lg-3 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 7</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-6 col-lg-3 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 8</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-6 col-lg-3 mt-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <img
-                    src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
-                  <h5 class="card-title mt-3">Article 9</h5>
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" class="btn btn-dark">Tovább...</a>
+                  <h5 class="card-title mt-3">{{ article.title }}</h5>
+                  <p class="card-text">{{ article.description }}</p>
+                  <a [routerLink]="article.link" class="btn btn-dark"
+                    >Tovább...</a
+                  >
                 </div>
               </div>
             </div>
