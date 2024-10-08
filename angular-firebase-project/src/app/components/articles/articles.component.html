@@ -18,11 +18,20 @@
             <div class="col-10 mt-3">
               <div class="card text-center">
                 <div class="card-body">
-                  <img
-                    [src]="article.imgUrl"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
+                  <div class="ratio ratio-4x3">
+                    <img
+                      *ngIf="!article.isVideo"
+                      [src]="article.mediaUrl"
+                      class="card-img-top"
+                      alt="office desk"
+                    />
+                    <video
+                      *ngIf="article.isVideo"
+                      class="object-fit-cover"
+                      [src]="article.mediaUrl"
+                      controls
+                    ></video>
+                  </div>
                   <h5 class="card-title mt-3">{{ article.title }}</h5>
                   <p class="card-text">{{ article.description }}</p>
                   <a [routerLink]="article.link" class="btn btn-dark"
@@ -72,11 +81,20 @@
             >
               <div class="card text-center">
                 <div class="card-body">
-                  <img
-                    [src]="article.imgUrl"
-                    class="card-img-top"
-                    alt="office desk"
-                  />
+                  <div class="ratio ratio-4x3">
+                    <img
+                      *ngIf="!article.isVideo"
+                      [src]="article.mediaUrl"
+                      class="card-img-top ratio ratio-4x3"
+                      alt="office desk"
+                    />
+                    <video
+                      *ngIf="article.isVideo"
+                      class="object-fit-cover"
+                      [src]="article.mediaUrl"
+                      controls
+                    ></video>
+                  </div>
                   <h5 class="card-title mt-3">{{ article.title }}</h5>
                   <p class="card-text">{{ article.description }}</p>
                   <a [routerLink]="article.link" class="btn btn-dark"

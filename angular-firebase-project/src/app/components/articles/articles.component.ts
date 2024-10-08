@@ -8,15 +8,16 @@ import { Component } from "@angular/core";
 export class ArticlesComponent {
   articles = [
     {
-      imgUrl:
-        "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      isVideo: true,
+      mediaUrl: "/videos/navBg.mp4",
       title: "Article 1",
       description:
         "1With supporting text below as a natural lead-in to additional content.",
       link: "/article1",
     },
     {
-      imgUrl:
+      isVideo: false,
+      mediaUrl:
         "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Article 2",
       description:
@@ -24,7 +25,9 @@ export class ArticlesComponent {
       link: "/article2",
     },
     {
-      imgUrl:
+      isVideo: false,
+
+      mediaUrl:
         "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Article 3",
       description:
@@ -32,7 +35,9 @@ export class ArticlesComponent {
       link: "/article3",
     },
     {
-      imgUrl:
+      isVideo: false,
+
+      mediaUrl:
         "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Article 4",
       description:
@@ -40,7 +45,9 @@ export class ArticlesComponent {
       link: "/article4",
     },
     {
-      imgUrl:
+      isVideo: false,
+
+      mediaUrl:
         "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Article 5",
       description:
@@ -48,7 +55,9 @@ export class ArticlesComponent {
       link: "/article5",
     },
     {
-      imgUrl:
+      isVideo: false,
+
+      mediaUrl:
         "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Article 6",
       description:
@@ -56,7 +65,9 @@ export class ArticlesComponent {
       link: "/article6",
     },
     {
-      imgUrl:
+      isVideo: false,
+
+      mediaUrl:
         "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Article 7",
       description:
@@ -64,7 +75,9 @@ export class ArticlesComponent {
       link: "/article7",
     },
     {
-      imgUrl:
+      isVideo: false,
+
+      mediaUrl:
         "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Article 8",
       description:
@@ -72,8 +85,8 @@ export class ArticlesComponent {
       link: "/article8",
     },
     {
-      imgUrl:
-        "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      isVideo: true,
+      mediaUrl: "/videos/navBg.mp4",
       title: "Article 9",
       description:
         "9With supporting text below as a natural lead-in to additional content.",
