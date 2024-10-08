@@ -5,6 +5,7 @@ import { AppComponent } from "./app.component";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getAuth, provideAuth } from "@angular/fire/auth";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
+import { ArticlesComponent } from "./components/articles/articles.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
 import { NavComponent } from "./components/nav/nav.component";
@@ -24,6 +25,7 @@ import { Article9Component } from "./components/articles/article9/article9.compo
     HeaderComponent,
     HomeComponent,
     NavComponent,
+    ArticlesComponent,
     Article1Component,
     Article2Component,
     Article3Component,
