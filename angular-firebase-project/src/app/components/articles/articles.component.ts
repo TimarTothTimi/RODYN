@@ -9,7 +9,7 @@ export class ArticlesComponent {
   articles = [
     {
       isVideo: true,
-      mediaUrl: "/videos/navBg.mp4",
+      mediaUrl: "/videos/irodaiszek.mp4",
       title: "Irodai szék deréktámasz",
       description: "Miért jó a deréktámasz az irodai székeknél? Miért előnyös?",
       link: "/article1",
