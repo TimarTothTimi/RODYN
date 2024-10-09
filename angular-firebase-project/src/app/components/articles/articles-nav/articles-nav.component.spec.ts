@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Artcicle9Component } from './artcicle9.component';
+import { ArticlesNavComponent } from './articles-nav.component';
 
-describe('Artcicle9Component', () => {
-  let component: Artcicle9Component;
-  let fixture: ComponentFixture<Artcicle9Component>;
+describe('ArticlesNavComponent', () => {
+  let component: ArticlesNavComponent;
+  let fixture: ComponentFixture<ArticlesNavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [Artcicle9Component]
+      declarations: [ArticlesNavComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Artcicle9Component);
+    fixture = TestBed.createComponent(ArticlesNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
