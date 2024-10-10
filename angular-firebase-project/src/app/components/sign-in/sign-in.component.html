@@ -1,0 +1,113 @@
+<app-articles-nav></app-articles-nav>
+<main class="container w-75 marginTopNav">
+  <div class="row">
+    <h4 class="text-start pt-3 pb-2">Belépés</h4>
+    <div class="col-12 col-md-6">
+      <form [formGroup]="loginForm">
+        <h6 class="p-1">Email</h6>
+        <div *ngIf="email" class="form-floating">
+          <input
+            formControlName="email"
+            class="form-control"
+            id="email"
+            type="email"
+            placeholder="Enter your email..."
+          />
+          <label for="email">Email cím</label>
+          <div *ngIf="email.invalid && email.touched" class="small text-danger">
+            <span *ngIf="email.touched">Kötelező email címet megadni.</span>
+            <span *ngIf="email.invalid">Email nem érvényes.</span>
+          </div>
+        </div>
+        <h6 class="pt-5 pb-1 ps-1">Jelszó</h6>
+        <div *ngIf="password" class="form-floating">
+          <input
+            formControlName="password"
+            class="form-control"
+            type="password"
+            id="password"
+            placeholder="Enter your password..."
+          />
+          <label for="password">Jelszó</label>
+          <div
+            *ngIf="password.invalid && password.touched"
+            class="small text-danger"
+          >
+            Kötelező jelszót megadni.
+          </div>
+        </div>
+
+        <!-- Submit Button-->
+        <button
+          [disabled]="loginForm.invalid"
+          (click)="login()"
+          class="btn btn-secondary mt-4 mb-3 w-100"
+          id="loginButton"
+          type="submit"
+        >
+          Bejelentkezés
+        </button>
+
+        <p class="text-center mt-4 fst-italic">
+          Jelentkezz be Google fiókoddal!
+        </p>
+        <button class="btn btn-dark w-100 mb-4" (click)="loginWithGoogle()">
+          Google
+        </button>
+
+        <p class="text-center">
+          <a
+            class="text-black text-decoration-none fw-semibold"
+            routerLink="/registration"
+            >Még nincs FormLab fiókod? Hozz létre egy fiókot!</a
+          >
+        </p>
+      </form>
+    </div>
+    <div class="col-12 col-md-6 text-center mb-3 align-content-center">
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="https://images.unsplash.com/photo-1595846265893-f433f6cca81d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="d-block w-100"
+              alt="office room"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.unsplash.com/photo-1594235046983-73a3f117a37c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="d-block w-100"
+              alt="rest area"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.unsplash.com/photo-1595846723416-99a641e1231a?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="d-block w-100"
+              alt="office room"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

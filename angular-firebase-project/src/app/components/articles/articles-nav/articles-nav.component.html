@@ -32,6 +32,7 @@
       tabindex="-1"
       id="offcanvasNavbar"
       aria-labelledby="offcanvasNavbarLabel"
+      data-bs-scroll="true"
     >
       <div class="offcanvas-header bg-secondary-subtle formlab">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
@@ -49,6 +50,15 @@
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Főoldal</a>
+          </li>
+          <li class="nav-item" *ngIf="!(loggedInStatus$ | async)">
+            <a class="nav-link" routerLink="/sign-in">Bejelentkezés</a>
+          </li>
+          <li class="nav-item" *ngIf="loggedInStatus$ | async">
+            <a class="nav-link" (click)="logout()">Kijelentkezés</a>
+          </li>
+          <li *ngIf="userEmail$ | async" class="nav-item">
+            <a class="nav-link">Szia {{ userEmail$ | async }}!</a>
           </li>
 
           <li class="nav-item dropdown">

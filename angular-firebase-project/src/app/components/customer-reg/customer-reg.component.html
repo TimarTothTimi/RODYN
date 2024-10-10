@@ -1,0 +1,164 @@
+<app-articles-nav></app-articles-nav>
+<main class="marginTopNav">
+  <div class="container w-75 pt-3">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6">
+        <h4 class="text-center">Fiók létrehozása</h4>
+        <div class="my-5">
+          <form
+            [formGroup]="customerRegForm"
+            (ngSubmit)="submitRegForm()"
+            novalidate
+          >
+            <h6 class="p-1">Keresztnév</h6>
+            <div *ngIf="firstName" class="form-floating mb-4">
+              <input
+                class="form-control"
+                id="firstName"
+                type="text"
+                formControlName="firstName"
+                placeholder="Add meg a keresztneved..."
+              />
+              <div
+                *ngIf="firstName.invalid && firstName.touched"
+                class="small text-danger"
+              >
+                Keresztnév megadása kötelező.
+              </div>
+            </div>
+            <h6 class="p-1">Vezetéknév</h6>
+            <div *ngIf="lastName" class="form-floating mb-4">
+              <input
+                class="form-control"
+                id="lastName"
+                type="text"
+                formControlName="lastName"
+                placeholder="Add meg a vezetékneved..."
+              />
+              <div
+                *ngIf="lastName.invalid && lastName.touched"
+                class="small text-danger"
+              >
+                Vezetéknév megadása kötelező.
+              </div>
+            </div>
+            <h6 class="p-1">Utca, házszám</h6>
+            <div *ngIf="address" class="form-floating mb-4">
+              <input
+                class="form-control"
+                id="address"
+                type="text"
+                formControlName="address"
+                placeholder="Add meg az utcát és házszámot..."
+              />
+              <div
+                *ngIf="address.invalid && address.touched"
+                class="small text-danger"
+              >
+                Utca és házszám megadása kötelező.
+              </div>
+            </div>
+            <h6 class="p-1">Város</h6>
+            <div *ngIf="city" class="form-floating mb-4">
+              <input
+                class="form-control"
+                id="city"
+                type="text"
+                formControlName="city"
+                placeholder="Add meg a várost..."
+              />
+              <div
+                *ngIf="city.invalid && city.touched"
+                class="small text-danger"
+              >
+                Város megadása kötelező.
+              </div>
+            </div>
+            <h6 class="p-1">Ország</h6>
+            <div *ngIf="country" class="form-floating mb-4">
+              <input
+                class="form-control"
+                id="country"
+                type="text"
+                formControlName="country"
+                placeholder="Add meg az országot..."
+              />
+              <div
+                *ngIf="country.invalid && country.touched"
+                class="small text-danger"
+              >
+                Ország megadása kötelező.
+              </div>
+            </div>
+            <h6 class="ps-1 pt-1">
+              Telefonszám
+              <p class="p-0 fw-light d-inline">(Opcionális)</p>
+            </h6>
+
+            <div *ngIf="mobile" class="form-floating mb-4">
+              <input
+                class="form-control"
+                type="text"
+                id="mobile"
+                formControlName="mobile"
+                placeholder="Add meg az telefonszámot..."
+              />
+            </div>
+            <h6 class="p-1">Email</h6>
+            <div *ngIf="email" class="form-floating mb-4">
+              <input
+                class="form-control"
+                type="text"
+                id="email"
+                formControlName="email"
+                placeholder="Add meg az email címet..."
+              />
+              <div
+                *ngIf="email.invalid && email.touched"
+                class="small text-danger"
+              >
+                Email megadása kötelező.
+              </div>
+            </div>
+            <h6 class="p-1">Jelszó</h6>
+            <div *ngIf="password" class="form-floating mb-4">
+              <input
+                class="form-control"
+                type="password"
+                id="password"
+                formControlName="password"
+                placeholder="Add meg a jelszót..."
+              />
+              <div
+                *ngIf="password.invalid && password.touched"
+                class="small text-danger"
+              >
+                Jelszó megadása kötelező.
+              </div>
+            </div>
+
+            <!-- Submit Button-->
+            <button
+              class="btn btn-secondary mt-4 w-100"
+              id="submitButton"
+              type="submit"
+              [disabled]="!customerRegForm.valid"
+            >
+              Regisztráció
+            </button>
+
+            <!-- <button
+              [disabled]="loginForm.invalid"
+              (click)="registration()"
+              class="btn btn-secondary mt-4 w-100"
+              id="regButton"
+              type="submit"
+            >
+              Regisztráció
+            </button> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

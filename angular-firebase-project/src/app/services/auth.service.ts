@@ -1,0 +1,121 @@
+import { Injectable } from "@angular/core";
+import {
+  Auth,
+  getAuth,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  UserCredential,
+} from "@angular/fire/auth";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { BehaviorSubject, catchError, from, Observable, tap } from "rxjs";
+
+interface userAuthData {
+  email: string;
+  password: string;
+}
+
+@Injectable({
+  providedIn: "root",
+})
+export class AuthService {
+  private googleAuthProvider = new GoogleAuthProvider();
+
+  constructor(
+    private router: Router,
+    private auth: Auth,
+    private toastr: ToastrService
+  ) {}
+
+  private loggedInStatus: BehaviorSubject<boolean | null> = new BehaviorSubject<
+    boolean | null
+  >(null);
+
+  private userEmail: BehaviorSubject<string | null> = new BehaviorSubject<
+    string | null
+  >(null);
+
+  public get userEmail$(): Observable<string | null> {
+    return this.userEmail.asObservable();
+  }
+
+  public get loggedInStatus$(): Observable<boolean | null> {
+    return this.loggedInStatus.asObservable();
+  }
+
+  get loggedInstatusValue(): boolean | null {
+    return this.loggedInStatus.value;
+  }
+
+  checkLoggedInStatus(): boolean {
+    if (!this.loggedInstatusValue) {
+      this.router.navigate(["sign-in"]);
+    }
+    return true;
+  }
+
+  registration(regData: userAuthData): Observable<UserCredential> {
+    return from(
+      createUserWithEmailAndPassword(getAuth(), regData.email, regData.password)
+    ).pipe(
+      tap((userCredential) => {
+        console.log("user adatok: ", userCredential);
+        this.loggedInStatus.next(true);
+        this.toastr.success("Registration sucessfully");
+        this.router.navigate([""]);
+      }),
+      catchError((error) => {
+        this.toastr.error(error.message);
+        return error;
+      })
+    ) as Observable<UserCredential>;
+  }
+
+  login(loginData: userAuthData): Observable<UserCredential> {
+    return from(
+      signInWithEmailAndPassword(this.auth, loginData.email, loginData.password)
+    ).pipe(
+      tap((userCredential) => {
+        console.log("user adatok: ", userCredential);
+        this.loggedInStatus.next(true);
+        this.toastr.success("Login sucessfully");
+        this.router.navigate([""]);
+      }),
+      catchError((error) => {
+        this.toastr.error(error.message);
+        return error;
+      })
+    ) as Observable<UserCredential>;
+  }
+
+  async logout(): Promise<void> {
+    await this.auth.signOut();
+    this.loggedInStatus.next(false);
+    this.userEmail.next(null);
+  }
+
+  checkAuthState(): void {
+    this.auth.onAuthStateChanged({
+      next: (user) => {
+        if (user) {
+          console.log("Van user initkor: ", user);
+          this.loggedInStatus.next(true);
+          this.userEmail.next(user.email);
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {},
+    });
+  }
+
+  async loginWithGoogle(): Promise<void> {
+    const user = await signInWithPopup(this.auth, this.googleAuthProvider);
+    this.toastr.success("You logged in successfully");
+    console.log(user);
+    this.router.navigate([""]);
+  }
+}

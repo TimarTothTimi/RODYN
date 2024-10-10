@@ -19,6 +19,11 @@ import { Article7Component } from "./components/articles/article7/article7.compo
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
 import { ArticlesNavComponent } from "./components/articles/articles-nav/articles-nav.component";
+import { ToastrModule } from "ngx-toastr";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SignInComponent } from "./components/sign-in/sign-in.component";
+import { CustomerRegComponent } from "./components/customer-reg/customer-reg.component";
 
 @NgModule({
   declarations: [
@@ -37,8 +42,17 @@ import { ArticlesNavComponent } from "./components/articles/articles-nav/article
     Article8Component,
     Article9Component,
     ArticlesNavComponent,
+    SignInComponent,
+    CustomerRegComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+  ],
   providers: [
     provideFirebaseApp(() =>
       initializeApp({
