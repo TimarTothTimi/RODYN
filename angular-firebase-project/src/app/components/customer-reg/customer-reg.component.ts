@@ -13,14 +13,35 @@ import { UserCredential } from "@angular/fire/auth";
 })
 export class CustomerRegComponent {
   customerRegForm: FormGroup = new FormGroup({
-    firstName: new FormControl("", [Validators.required]),
-    lastName: new FormControl("", [Validators.required]),
+    firstName: new FormControl("", [
+      Validators.required,
+      Validators.pattern(
+        "^[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+( [A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+){0,2}$"
+      ),
+    ]),
+    lastName: new FormControl("", [
+      Validators.required,
+      Validators.pattern(
+        "^[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+( [A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+){0,2}$"
+      ),
+    ]),
     address: new FormControl("", [Validators.required]),
-    city: new FormControl("", [Validators.required]),
-    country: new FormControl("", [Validators.required]),
+    city: new FormControl("", [
+      Validators.required,
+      Validators.pattern("^[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+$"),
+      Validators.minLength(2),
+    ]),
+    country: new FormControl("", [
+      Validators.required,
+      Validators.pattern("^[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+$"),
+      Validators.minLength(2),
+    ]),
     mobile: new FormControl(""),
-    email: new FormControl("", [Validators.required]),
-    password: new FormControl("", [Validators.required]),
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
 
   get firstName() {

@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
-import { AuthService } from "../../services/auth.service";
 import { Observable } from "rxjs";
+import { AuthService } from "../../../services/auth.service";
 
 @Component({
-  selector: "app-nav",
-  templateUrl: "./nav.component.html",
-  styleUrls: ["./nav.component.scss"],
+  selector: "app-components-nav",
+  templateUrl: "./components-nav.component.html",
+  styleUrl: "./components-nav.component.scss",
 })
-export class NavComponent {
+export class ArticlesNavComponent {
   public loggedInStatus$?: Observable<boolean | null>;
   public userEmail$?: Observable<string | null>;
 

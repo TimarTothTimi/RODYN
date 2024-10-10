@@ -8,7 +8,7 @@ import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { ArticlesComponent } from "./components/articles/articles.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
-import { NavComponent } from "./components/nav/nav.component";
+import { NavComponent } from "./components/nav/navMain.component";
 import { Article1Component } from "./components/articles/article1/article1.component";
 import { Article2Component } from "./components/articles/article2/article2.component";
 import { Article3Component } from "./components/articles/article3/article3.component";
@@ -18,7 +18,7 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
-import { ArticlesNavComponent } from "./components/articles/articles-nav/articles-nav.component";
+import { ArticlesNavComponent } from "./components/nav/components-nav/components-nav.component";
 import { ToastrModule } from "ngx-toastr";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
