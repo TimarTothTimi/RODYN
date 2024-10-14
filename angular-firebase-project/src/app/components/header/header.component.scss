@@ -12,20 +12,20 @@ h1 {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
+  grid-gap: 10px;
   max-width: 1300px;
   margin: 0 auto;
 }
 
 .product-card {
-  width: 400px;
+  width: 350px;
   height: 300px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 20px;
+  padding: 10px;
   cursor: pointer;
   position: relative;
 
@@ -38,7 +38,7 @@ h1 {
     width: 100%;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
   }
 
   button {
