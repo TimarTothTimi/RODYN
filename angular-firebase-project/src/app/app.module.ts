@@ -18,6 +18,8 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
+import { ProductsComponent } from "./products/products.component";
+import { SzekekComponent } from "./szekek/szekek.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { Article9Component } from "./components/articles/article9/article9.compo
     Article7Component,
     Article8Component,
     Article9Component,
-    ArticlesComponent
+    ArticlesComponent,
+    ProductsComponent,
+    SzekekComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [

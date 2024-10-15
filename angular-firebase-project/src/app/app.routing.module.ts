@@ -10,6 +10,13 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
+import { ProductsComponent } from "./products/products.component";
+import { SzekekComponent } from "./szekek/szekek.component";
+import { FotelekComponent } from "./fotelek/fotelek.component";
+import { RecepcioComponent } from "./recepcio/recepcio.component";
+import { BarszekekComponent } from "./barszekek/barszekek.component";
+import { AsztalokComponent } from "./asztalok/asztalok.component";
+import { TaroloComponent } from "./tarolo/tarolo.component";
 
 const routes: Routes = [
   { path: "article1", component: Article1Component },
@@ -22,6 +29,14 @@ const routes: Routes = [
   { path: "article8", component: Article8Component },
   { path: "article9", component: Article9Component },
   { path: "", component: HomeComponent },
+
+  { path: "products", component: ProductsComponent },
+  { path: "szekek", component: SzekekComponent },
+  { path: "fotelek", component: FotelekComponent },
+  { path: "recepcio", component: RecepcioComponent },
+  { path: "barszekek", component: BarszekekComponent },
+  { path: "asztalok", component: AsztalokComponent },
+  { path: "tarolo", component: TaroloComponent },
 ];
 
 @NgModule({
