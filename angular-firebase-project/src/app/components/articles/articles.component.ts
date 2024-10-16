@@ -27,10 +27,10 @@ export class ArticlesComponent {
       isVideo: false,
 
       mediaUrl:
-        "https://plus.unsplash.com/premium_photo-1675798693124-7f505e44ba2d?q=80&w=1902&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1644671253203-90cab345211c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Bőr és műbőr ápolása és tisztítása",
       description:
-        "A rendszeres tisztítás és ápolás meghosszabbítja a kárpitok élettartamát.",
+        "A rendszeres tisztítás meghosszabbítja a kárpitok élettartamát.",
       link: "/article3",
     },
     {
@@ -38,9 +38,9 @@ export class ArticlesComponent {
 
       mediaUrl:
         "https://plus.unsplash.com/premium_photo-1681487178876-a1156952ec60?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "Irodai asztalok",
+      title: "Irodai asztalok szerepe",
       description:
-        "Az irodai asztalok a munkahelyi környezet meghatározó bútordarabjai.",
+        "Az asztal választása komoly hatással van a munkavállalók kényelmére.",
       link: "/article4",
     },
     {
@@ -48,9 +48,9 @@ export class ArticlesComponent {
 
       mediaUrl:
         "https://images.unsplash.com/photo-1543325042-c67825847491?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fHJlY2VwdGlvbiUyMGRlc2t8ZW58MHx8MHx8fDA%3D",
-      title: "Recepciós asztalok",
+      title: "Recepciós asztalok fontossága",
       description:
-        "Ezek az asztalok nemcsak a munkavégzés hatékonyságát segítik elő",
+        "A recepciós asztalok az első benyomás formálói is egy vállalatnál.",
       link: "/article5",
     },
     {
@@ -69,8 +69,7 @@ export class ArticlesComponent {
       mediaUrl:
         "https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "A jó munkakörnyezet",
-      description:
-        "A jó munkakörnyezet kialakítása alapvetően befolyásolja a dolgozók teljesítményét.",
+      description: "Befolyásolja a dolgozók teljesítményét és elégedettségét.",
       link: "/article7",
     },
     {
@@ -86,8 +85,8 @@ export class ArticlesComponent {
       isVideo: false,
       mediaUrl:
         "https://images.unsplash.com/photo-1571624436279-b272aff752b5?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "A tárgyalóasztalok",
-      description: "A tárgyalóasztalok alapvető szerepet játszanak...",
+      title: "A tárgyalóasztalok szerepe",
+      description: "Alapvető szerepet játszanak a hatékony kommunikációban.",
       link: "/article9",
     },
   ];

@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { CustomerRegComponent } from "./components/customer-reg/customer-reg.component";
+import { CatalogComponent } from "./components/catalog/catalog.component";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CustomerRegComponent } from "./components/customer-reg/customer-reg.com
     ArticlesNavComponent,
     SignInComponent,
     CustomerRegComponent,
+    CatalogComponent,
   ],
   imports: [
     BrowserModule,

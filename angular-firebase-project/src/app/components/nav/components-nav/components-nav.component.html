@@ -59,9 +59,12 @@
           <li class="nav-item" *ngIf="loggedInStatus$ | async">
             <a class="nav-link" (click)="logout()">Kijelentkezés</a>
           </li>
-          <li *ngIf="userEmail$ | async" class="nav-item">
-            <a class="nav-link">Szia {{ userEmail$ | async }}!</a>
+          <li class="nav-item" *ngIf="loggedInStatus$ | async">
+            <a class="nav-link" routerLink="/catalog">Katalógusok</a>
           </li>
+          <!-- <li *ngIf="userEmail$ | async" class="nav-item">
+            <a class="nav-link">Szia {{ userEmail$ | async }}!</a>
+          </li> -->
 
           <li class="nav-item dropdown">
             <a

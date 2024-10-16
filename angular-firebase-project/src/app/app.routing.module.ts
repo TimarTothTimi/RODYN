@@ -12,10 +12,12 @@ import { Article8Component } from "./components/articles/article8/article8.compo
 import { Article9Component } from "./components/articles/article9/article9.component";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { CustomerRegComponent } from "./components/customer-reg/customer-reg.component";
+import { CatalogComponent } from "./components/catalog/catalog.component";
 
 const routes: Routes = [
   { path: "registration", component: CustomerRegComponent },
   { path: "sign-in", component: SignInComponent },
+  { path: "catalog", component: CatalogComponent },
   { path: "article1", component: Article1Component },
   { path: "article2", component: Article2Component },
   { path: "article3", component: Article3Component },
