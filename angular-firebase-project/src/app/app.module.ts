@@ -18,8 +18,8 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
-import { ProductsComponent } from "./products/products.component";
-import { SzekekComponent } from "./szekek/szekek.component";
+import { ProductsComponent } from "./components/products/products.component";
+import { SzekekComponent } from "./components/szekek/szekek.component";
 import { ArticlesNavComponent } from "./components/nav/components-nav/components-nav.component";
 import { ToastrModule } from "ngx-toastr";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -27,6 +27,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { CustomerRegComponent } from "./components/customer-reg/customer-reg.component";
 import { CatalogComponent } from "./components/catalog/catalog.component";
+import { FotelekComponent } from "./components/fotelek/fotelek.component";
+import { AsztalokComponent } from "./components/asztalok/asztalok.component";
+import { BarszekekComponent } from "./components/barszekek/barszekek.component";
+import { RecepcioComponent } from "./components/recepcio/recepcio.component";
+import { TaroloComponent } from "./components/tarolo/tarolo.component";
 
 @NgModule({
   declarations: [
@@ -44,7 +49,6 @@ import { CatalogComponent } from "./components/catalog/catalog.component";
     Article7Component,
     Article8Component,
     Article9Component,
-
     ArticlesComponent,
     ProductsComponent,
     SzekekComponent,
@@ -52,6 +56,13 @@ import { CatalogComponent } from "./components/catalog/catalog.component";
     SignInComponent,
     CustomerRegComponent,
     CatalogComponent,
+    FotelekComponent,
+    AsztalokComponent,
+    BarszekekComponent,
+    ProductsComponent,
+    RecepcioComponent,
+    SzekekComponent,
+    TaroloComponent,
   ],
   imports: [
     BrowserModule,
