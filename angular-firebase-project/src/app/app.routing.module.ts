@@ -17,8 +17,8 @@ import { ProductsComponent } from "./components/products/products.component";
 import { SzekekComponent } from "./components/szekek/szekek.component";
 import { FotelekComponent } from "./components/fotelek/fotelek.component";
 import { RecepcioComponent } from "./components/recepcio/recepcio.component";
-import { BarszekekComponent } from "./barszekek/barszekek.component";
-import { AsztalokComponent } from "./asztalok/asztalok.component";
+import { BarszekekComponent } from "./components/barszekek/barszekek.component";
+import { AsztalokComponent } from "./components/asztalok/asztalok.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
 
 const routes: Routes = [
