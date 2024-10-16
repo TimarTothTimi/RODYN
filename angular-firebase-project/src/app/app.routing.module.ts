@@ -10,6 +10,9 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
+import { SignInComponent } from "./components/sign-in/sign-in.component";
+import { CustomerRegComponent } from "./components/customer-reg/customer-reg.component";
+import { CatalogComponent } from "./components/catalog/catalog.component";
 import { ProductsComponent } from "./products/products.component";
 import { SzekekComponent } from "./szekek/szekek.component";
 import { FotelekComponent } from "./fotelek/fotelek.component";
@@ -19,6 +22,9 @@ import { AsztalokComponent } from "./asztalok/asztalok.component";
 import { TaroloComponent } from "./tarolo/tarolo.component";
 
 const routes: Routes = [
+  { path: "registration", component: CustomerRegComponent },
+  { path: "sign-in", component: SignInComponent },
+  { path: "catalog", component: CatalogComponent },
   { path: "article1", component: Article1Component },
   { path: "article2", component: Article2Component },
   { path: "article3", component: Article3Component },
@@ -40,7 +46,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "top" })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
