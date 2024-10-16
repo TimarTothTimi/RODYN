@@ -18,8 +18,8 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
-import { ProductsComponent } from "./products/products.component";
-import { SzekekComponent } from "./szekek/szekek.component";
+import { ProductsComponent } from "./components/products/products.component";
+import { SzekekComponent } from "./components/szekek/szekek.component";
 import { ArticlesNavComponent } from "./components/nav/components-nav/components-nav.component";
 import { ToastrModule } from "ngx-toastr";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";

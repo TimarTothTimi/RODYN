@@ -13,13 +13,13 @@ import { Article9Component } from "./components/articles/article9/article9.compo
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { CustomerRegComponent } from "./components/customer-reg/customer-reg.component";
 import { CatalogComponent } from "./components/catalog/catalog.component";
-import { ProductsComponent } from "./products/products.component";
-import { SzekekComponent } from "./szekek/szekek.component";
-import { FotelekComponent } from "./fotelek/fotelek.component";
-import { RecepcioComponent } from "./recepcio/recepcio.component";
+import { ProductsComponent } from "./components/products/products.component";
+import { SzekekComponent } from "./components/szekek/szekek.component";
+import { FotelekComponent } from "./components/fotelek/fotelek.component";
+import { RecepcioComponent } from "./components/recepcio/recepcio.component";
 import { BarszekekComponent } from "./barszekek/barszekek.component";
 import { AsztalokComponent } from "./asztalok/asztalok.component";
-import { TaroloComponent } from "./tarolo/tarolo.component";
+import { TaroloComponent } from "./components/tarolo/tarolo.component";
 
 const routes: Routes = [
   { path: "registration", component: CustomerRegComponent },
