@@ -1,0 +1,11 @@
+.static-background {
+  background-color: #f1f1f1;
+  padding: 100px; /* Adjust as necessary */
+}
+
+.scroll-background {
+  background-image: url("your-background-image.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
