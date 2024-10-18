@@ -32,6 +32,7 @@ import { AsztalokComponent } from "./components/asztalok/asztalok.component";
 import { BarszekekComponent } from "./components/barszekek/barszekek.component";
 import { RecepcioComponent } from "./components/recepcio/recepcio.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
+import { ImageGridComponent } from "./components/image-grid/image-grid.component";
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { TaroloComponent } from "./components/tarolo/tarolo.component";
     RecepcioComponent,
     SzekekComponent,
     TaroloComponent,
+    ImageGridComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+<div class="grid">
+  <div class="grid-item" *ngFor="let button of buttons">
+    <button class="image-button" (click)="onButtonClick(button.id)">
+      <img [src]="button.image" alt="Button Image" />
+    </button>
+    <div class="slider">
+      <div
+        class="slider-container"
+        [ngStyle]="{ transform: 'translateX(' + translateX[button.id] + 'px)' }"
+      >
+        <div class="slide" *ngFor="let image of button.images">
+          <img [src]="image" alt="Slider Image" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
