@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImageGridComponent } from './image-grid.component';
+import { CarouselComponent } from './carousel.component';
 
-describe('ImageGridComponent', () => {
-  let component: ImageGridComponent;
-  let fixture: ComponentFixture<ImageGridComponent>;
+describe('CarouselComponent', () => {
+  let component: CarouselComponent;
+  let fixture: ComponentFixture<CarouselComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ImageGridComponent]
+      declarations: [CarouselComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ImageGridComponent);
+    fixture = TestBed.createComponent(CarouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
