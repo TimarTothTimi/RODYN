@@ -13,7 +13,6 @@ import { Article9Component } from "./components/articles/article9/article9.compo
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { CustomerRegComponent } from "./components/customer-reg/customer-reg.component";
 import { CatalogComponent } from "./components/catalog/catalog.component";
-import { ProductsComponent } from "./components/products/products.component";
 import { SzekekComponent } from "./components/szekek/szekek.component";
 import { FotelekComponent } from "./components/fotelek/fotelek.component";
 import { RecepcioComponent } from "./components/recepcio/recepcio.component";
@@ -36,7 +35,6 @@ const routes: Routes = [
   { path: "article9", component: Article9Component },
   { path: "", component: HomeComponent },
 
-  { path: "products", component: ProductsComponent },
   { path: "szekek", component: SzekekComponent },
   { path: "fotelek", component: FotelekComponent },
   { path: "recepcio", component: RecepcioComponent },
