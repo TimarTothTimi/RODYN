@@ -73,9 +73,9 @@ export class ImageSliderComponent implements OnInit {
     {
       title: "tároló bútorok",
       images: [
-        "assets/images/tarolo/header/image1.jpg",
-        "assets/images/tarolo/header/image2.jpg",
-        "assets/images/tarolo/header/image3.jpg",
+        "assets/images/tarolo/header/1.jpg",
+        "assets/images/tarolo/header/2.jpg",
+        "assets/images/tarolo/header/3.jpg",
       ],
       link: "/subpage6",
     },

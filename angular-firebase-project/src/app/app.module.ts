@@ -33,6 +33,7 @@ import { RecepcioComponent } from "./components/recepcio/recepcio.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
 import { producerNotifyConsumers } from "@angular/core/primitives/signals";
 import { ImageSliderComponent } from "./components/image-slider/image-slider.component";
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ImageSliderComponent } from "./components/image-slider/image-slider.com
     SzekekComponent,
     TaroloComponent,
     ImageSliderComponent,
+    ProductCardComponent,
   ],
 
   imports: [

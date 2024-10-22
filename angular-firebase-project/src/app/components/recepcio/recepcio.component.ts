@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-recepcio',
-  templateUrl: './recepcio.component.html',
-  styleUrl: './recepcio.component.scss'
+  selector: "app-szekek",
+  templateUrl: "./recepcio.component.html",
+  styleUrl: "./recepcio.component.scss",
 })
-export class RecepcioComponent {
-
-}
+export class RecepcioComponent {}
