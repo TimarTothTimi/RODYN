@@ -36,6 +36,7 @@ import { AdminComponent } from "./components/admin/admin.component";
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { environment } from "./enviroment";
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule, // Ha használod az Auth modult
+    HttpClientModule,
   ],
   providers: [
     provideFirebaseApp(() =>
