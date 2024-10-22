@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { CustomerService } from "../../services/customer.service";
-import { CustomerModel } from "../../models/customer.model";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { UserCredential } from "@angular/fire/auth";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-customer-reg",

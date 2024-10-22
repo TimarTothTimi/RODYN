@@ -8,9 +8,12 @@ import {
   signInWithPopup,
   UserCredential,
 } from "@angular/fire/auth";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { Router } from "@angular/router";
+import { JwtHelperService } from "@auth0/angular-jwt";
 import { ToastrService } from "ngx-toastr";
-import { BehaviorSubject, catchError, from, Observable, tap } from "rxjs";
+import { BehaviorSubject, catchError, from, map, Observable, tap } from "rxjs";
 
 interface userAuthData {
   email: string;
@@ -23,11 +26,19 @@ interface userAuthData {
 export class AuthService {
   private googleAuthProvider = new GoogleAuthProvider();
 
+  jwtHelper = new JwtHelperService();
+
   constructor(
     private router: Router,
     private auth: Auth,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private afAuth: AngularFireAuth,
+    private firestore: AngularFirestore
   ) {}
+
+  getAuthState(): Observable<any> {
+    return this.afAuth.authState;
+  }
 
   private loggedInStatus: BehaviorSubject<boolean | null> = new BehaviorSubject<
     boolean | null
@@ -117,5 +128,52 @@ export class AuthService {
     this.toastr.success("You logged in successfully");
     console.log(user);
     this.router.navigate([""]);
+  }
+
+  // Check if user is authenticated (i.e., has a valid token)
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem("token");
+    return token != null && !this.jwtHelper.isTokenExpired(token); // Ensure token exists and is not expired
+  }
+
+  // A token dekódolása
+  getDecodedToken(token: string) {
+    return this.jwtHelper.decodeToken(token);
+  }
+
+  // Token érvényességének ellenőrzése
+  isTokenExpired(token: string): boolean {
+    return this.jwtHelper.isTokenExpired(token);
+  }
+
+  // Jelenlegi felhasználó lekérése (például a tokenből)
+  getCurrentUser() {
+    const token = localStorage.getItem("token"); // Token tárolva localStorage-ban
+    if (token) {
+      const decodedToken = this.getDecodedToken(token); // Token dekódolása
+      return {
+        username: decodedToken.username,
+        role: decodedToken.role,
+      };
+    }
+    return null;
+  }
+
+  // getCurrentUserRole(uid: string) {
+  //   return this.firestore
+  //     .collection("users")
+  //     .doc(uid)
+  //     .valueChanges()
+  //     .pipe(map((user: any) => user?.role));
+  // }
+
+  getCurrentUserRole(uid: string): Observable<string> {
+    return this.firestore
+      .collection("users")
+      .doc(uid)
+      .valueChanges()
+      .pipe(
+        map((user: any) => user?.role || "user") // Alapértelmezett szerepkör: 'user'
+      );
   }
 }

@@ -28,9 +28,9 @@ export class ArticlesComponent {
 
       mediaUrl:
         "https://images.unsplash.com/photo-1644671253203-90cab345211c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "Bőr és műbőr ápolása és tisztítása",
+      title: "Bőr és műbőr ápolása, tisztítása",
       description:
-        "A rendszeres tisztítás meghosszabbítja a kárpitok élettartamát.",
+        "A bőr és a műbőr hasonlítanak egymásra, de különböző anyagok.",
       link: "/article3",
     },
     {
@@ -38,9 +38,9 @@ export class ArticlesComponent {
 
       mediaUrl:
         "https://plus.unsplash.com/premium_photo-1681487178876-a1156952ec60?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "Irodai asztalok szerepe",
+      title: "Irodai asztalok",
       description:
-        "Az asztal választása komoly hatással van a munkavállalók kényelmére.",
+        "A választása komoly hatással van a munkavállalók kényelmére.",
       link: "/article4",
     },
     {
@@ -77,8 +77,9 @@ export class ArticlesComponent {
 
       mediaUrl:
         "https://plus.unsplash.com/premium_photo-1683120864014-0dda85e3e52c?q=80&w=1978&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "A kényelem és stílus ikonikus bútordarabjai",
-      description: "A mindennapi kényelem egyik alappillére is.",
+      title: "A kényelem és stílus bútordarabjai",
+      description:
+        "A mindennapi kényelem alappillére. Irodák meghatározó elemei is.",
       link: "/article8",
     },
     {

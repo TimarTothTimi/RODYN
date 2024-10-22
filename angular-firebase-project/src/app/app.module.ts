@@ -33,7 +33,12 @@ import { RecepcioComponent } from "./components/recepcio/recepcio.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
 import { producerNotifyConsumers } from "@angular/core/primitives/signals";
 import { ImageSliderComponent } from "./components/image-slider/image-slider.component";
-import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductCardComponent } from "./product-card/product-card.component";
+import { AdminComponent } from "./components/admin/admin.component";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { environment } from "./enviroment";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -65,6 +70,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     TaroloComponent,
     ImageSliderComponent,
     ProductCardComponent,
+    AdminComponent,
   ],
 
   imports: [
@@ -74,6 +80,9 @@ import { ProductCardComponent } from './product-card/product-card.component';
     FormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule, // Ha használod az Auth modult
+    HttpClientModule,
   ],
   providers: [
     provideFirebaseApp(() =>
