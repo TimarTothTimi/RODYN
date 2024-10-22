@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
 })
 export class NavComponent {
   public loggedInStatus$?: Observable<boolean | null>;
+  public isAdmin$?: Observable<boolean | null>;
   public userEmail$?: Observable<string | null>;
 
   constructor(private authService: AuthService) {

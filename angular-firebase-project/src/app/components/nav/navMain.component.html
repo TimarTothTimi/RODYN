@@ -72,6 +72,9 @@
             <!-- <li *ngIf="userEmail$ | async" class="nav-item">
           <a class="nav-link">Szia {{ userEmail$ | async }}!</a>
         </li> -->
+        <li class="nav-item" *ngIf="isAdmin$ | async">
+          <a class="nav-link" routerLink="/admin">Termék feltöltés</a>
+        </li>
 
             <li class="nav-item dropdown">
               <a

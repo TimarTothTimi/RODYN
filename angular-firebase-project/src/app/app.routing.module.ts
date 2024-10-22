@@ -20,11 +20,14 @@ import { RecepcioComponent } from "./components/recepcio/recepcio.component";
 import { BarszekekComponent } from "./components/barszekek/barszekek.component";
 import { AsztalokComponent } from "./components/asztalok/asztalok.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
+import { AdminComponent } from "./components/admin/admin.component";
+import { AdminGuard } from "./guard/admin.guard";
 
 const routes: Routes = [
   { path: "registration", component: CustomerRegComponent },
   { path: "sign-in", component: SignInComponent },
   { path: "catalog", component: CatalogComponent },
+  { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: "article1", component: Article1Component },
   { path: "article2", component: Article2Component },
   { path: "article3", component: Article3Component },
