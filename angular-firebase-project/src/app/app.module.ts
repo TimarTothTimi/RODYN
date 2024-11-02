@@ -1,4 +1,6 @@
 import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { CenterSectionComponent } from "./components/center-section/center-section.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app.routing.module";
 import { AppComponent } from "./app.component";
@@ -8,7 +10,7 @@ import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
 import { NavComponent } from "./components/nav/nav.component";
-import { Article1Component } from "./components/articles/article1/article1.component";
+import * as article1Component from "./components/articles/article1/article1.component";
 import { Article2Component } from "./components/articles/article2/article2.component";
 import { Article3Component } from "./components/articles/article3/article3.component";
 import { Article4Component } from "./components/articles/article4/article4.component";
@@ -24,7 +26,7 @@ import { Article9Component } from "./components/articles/article9/article9.compo
     HeaderComponent,
     HomeComponent,
     NavComponent,
-    Article1Component,
+    article1Component.Article1Component,
     Article2Component,
     Article3Component,
     Article4Component,
@@ -33,8 +35,9 @@ import { Article9Component } from "./components/articles/article9/article9.compo
     Article7Component,
     Article8Component,
     Article9Component,
+    CenterSectionComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, CommonModule],
   providers: [
     provideFirebaseApp(() =>
       initializeApp({
