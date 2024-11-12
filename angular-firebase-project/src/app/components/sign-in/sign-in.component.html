@@ -11,11 +11,9 @@
             class="form-control"
             id="email"
             type="email"
-            placeholder="Enter your email..."
           />
-          <div *ngIf="email.invalid && email.touched" class="small text-danger">
-            <span *ngIf="email.touched">Kötelező email címet megadni.</span>
-            <span *ngIf="email.invalid">Email nem érvényes.</span>
+          <div *ngIf="email.invalid && email.dirty" class="small text-danger">
+            <span>Kötelező érvényes email címet megadni. </span>
           </div>
         </div>
         <h6 class="pt-5 pb-1 ps-1">Jelszó</h6>
@@ -25,7 +23,6 @@
             class="form-control"
             type="password"
             id="password"
-            placeholder="Enter your password..."
           />
           <div
             *ngIf="password.invalid && password.touched"

@@ -31,10 +31,7 @@ import { CustomerModel } from "../models/customer.model";
   providedIn: "root",
 })
 export class CustomerService {
-  private readonly customerCollestionRef = collection(
-    this.firestore,
-    "customers"
-  );
+  private readonly customerCollestionRef = collection(this.firestore, "users");
 
   private timeSub = new BehaviorSubject<string>("");
 
@@ -79,13 +76,13 @@ export class CustomerService {
   //*READ ONE
   // folyamatos kapcsolatot terem - sok olvasás
   getCustomer(id: string): Observable<CustomerModel> {
-    const customerDoc = doc(this.firestore, `customers/${id}`);
+    const customerDoc = doc(this.firestore, `users/${id}`);
     return docData(customerDoc, { idField: "id" }) as Observable<CustomerModel>;
   }
 
   // nem teremt folyamatos kapcsolatot - egyszeri olvasás
   getCustomerWithGetDoc(id: string) {
-    const customerDoc = doc(this.firestore, `customers/${id}`);
+    const customerDoc = doc(this.firestore, `users/${id}`);
     return from(getDoc(customerDoc)).pipe(
       map((doc) => {
         const customerData: CustomerModel = doc.data() as CustomerModel;
@@ -98,13 +95,13 @@ export class CustomerService {
   //törlés, DELETE
 
   deleteCustomer(customerId: string): Observable<void> {
-    const customerDoc = doc(this.firestore, `customers/${customerId}`);
+    const customerDoc = doc(this.firestore, `users/${customerId}`);
     return from(deleteDoc(customerDoc));
   }
 
   //UPDATE
   updateCustomer(customer: CustomerModel): Observable<void> {
-    const customerDoc = doc(this.firestore, `customers/${customer.id}`);
+    const customerDoc = doc(this.firestore, `users/${customer.id}`);
     return from(setDoc(customerDoc, customer));
   }
 

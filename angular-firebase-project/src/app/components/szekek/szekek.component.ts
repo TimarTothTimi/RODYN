@@ -11,6 +11,7 @@ import { Product } from "../../models/product";
 export class SzekekComponent implements OnInit {
   constructor(private productService: ProductService) {}
   szekek$?: Observable<Product[]>;
+
   ngOnInit(): void {
     this.szekek$ = this.productService.getProdut();
   }

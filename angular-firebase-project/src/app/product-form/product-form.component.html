@@ -1,0 +1,32 @@
+<app-components-nav></app-components-nav>
+<section class="container w-75 marginTopNav">
+  <h3 class="text-center pb-2 pt-3">Új termék létrehozása</h3>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="productName" />
+    <label for="productName">Termék neve</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="number" class="form-control" id="productPrice" />
+    <label for="productPrice">Termék ára (forint)</label>
+  </div>
+  <div class="form-floating mb-3">
+    <select class="form-select" id="floatingSelectDisabled">
+      <option selected>Válassz kategóriát...</option>
+      <option value="szekek">Székek</option>
+      <option value="fotelek">Fotelek</option>
+      <option value="recepciosAsztalok">Recepciós asztalok</option>
+      <option value="barszekek">Bárszékek</option>
+      <option value="asztalok">Aztalok</option>
+      <option value="taroloButorok">Tároló bútorok</option>
+    </select>
+    <label for="floatingSelectDisabled">Termékkategória</label>
+  </div>
+  <div class="form-floating mb-3">
+    <textarea class="form-control" id="productDescription"></textarea>
+    <label for="productDescription">Termék leírása</label>
+  </div>
+  <div class="mb-3">
+    <label for="formFileMultiple" class="form-label">Képek feltöltése</label>
+    <input class="form-control" type="file" id="formFileMultiple" multiple />
+  </div>
+</section>

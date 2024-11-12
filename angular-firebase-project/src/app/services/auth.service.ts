@@ -25,6 +25,7 @@ interface userAuthData {
 })
 export class AuthService {
   private googleAuthProvider = new GoogleAuthProvider();
+  currentUserRole = new BehaviorSubject<string | null>(null);
 
   jwtHelper = new JwtHelperService();
 
@@ -34,7 +35,17 @@ export class AuthService {
     private toastr: ToastrService,
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore
-  ) {}
+  ) {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.getCurrentUserRole(user.uid).subscribe((role) => {
+          this.currentUserRole.next(role);
+        });
+      } else {
+        this.currentUserRole.next(null);
+      }
+    });
+  }
 
   getAuthState(): Observable<any> {
     return this.afAuth.authState;
@@ -124,10 +135,24 @@ export class AuthService {
   }
 
   async loginWithGoogle(): Promise<void> {
-    const user = await signInWithPopup(this.auth, this.googleAuthProvider);
-    this.toastr.success("You logged in successfully");
-    console.log(user);
-    this.router.navigate([""]);
+    try {
+      const userCredential = await signInWithPopup(
+        this.auth,
+        this.googleAuthProvider
+      );
+      const user = userCredential.user;
+      this.toastr.success("Sikeres bejelentkezés Google-fiókkal!");
+
+      // Frissítsd a felhasználói állapotot
+      this.loggedInStatus.next(true);
+      this.userEmail.next(user.email);
+
+      // Navigálj a kívánt oldalra
+      this.router.navigate([""]);
+    } catch (error) {
+      this.toastr.error("Hiba történt a Google-bejelentkezés során.");
+      console.error("Google login error:", error);
+    }
   }
 
   // Check if user is authenticated (i.e., has a valid token)
