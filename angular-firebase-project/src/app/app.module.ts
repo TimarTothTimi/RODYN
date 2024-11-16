@@ -19,8 +19,9 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
-import { FloatingSectionComponent } from "./components/floating-section/floating-section.component";
-
+import { FloatingSectionComponent } from "./components/floating-section/floating-section";
+import { ArticlesComponent } from "./components/articles/articles.component";
+import { FooterComponent } from "./components/footer/footer.components";
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,9 @@ import { FloatingSectionComponent } from "./components/floating-section/floating
     Article8Component,
     Article9Component,
     CenterSectionComponent,
+    FloatingSectionComponent,
+    ArticlesComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, CommonModule],
   providers: [
