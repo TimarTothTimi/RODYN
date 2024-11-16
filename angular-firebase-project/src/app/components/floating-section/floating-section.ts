@@ -1,11 +1,11 @@
 import { Component, HostListener } from "@angular/core";
 
 @Component({
-  selector: "app-center-section",
-  templateUrl: "./floating.section.html",
-  styleUrls: ["./floating.section.scss"],
+  selector: "app-floating-section",
+  templateUrl: "./floating-section.html",
+  styleUrls: ["./floating-section.scss"],
 })
-export class CenterSectionComponent {
+export class FloatingSectionComponent {
   scrollPosition = 0;
 
   @HostListener("window:scroll", [])
