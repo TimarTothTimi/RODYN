@@ -92,38 +92,38 @@ export class ProductService {
 
   getSzekek(): Observable<Product[]> {
     return from(getDocs(this.szekekCollestionRef)).pipe(
-      map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const productData: Product = doc.data() as Product;
-          productData.id = doc.id;
-          return productData;
-        });
-        return resultList;
-      })
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
     );
   }
   getFotelek(): Observable<Product[]> {
     return from(getDocs(this.fotelekCollestionRef)).pipe(
-      map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const productData: Product = doc.data() as Product;
-          productData.id = doc.id;
-          return productData;
-        });
-        return resultList;
-      })
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
     );
   }
   getRecepciosAsztalok(): Observable<Product[]> {
     return from(getDocs(this.recepciosAsztalokCollestionRef)).pipe(
-      map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const productData: Product = doc.data() as Product;
-          productData.id = doc.id;
-          return productData;
-        });
-        return resultList;
-      })
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
     );
   }
   getBarszekek(): Observable<Product[]> {
@@ -140,26 +140,26 @@ export class ProductService {
   }
   getAsztalok(): Observable<Product[]> {
     return from(getDocs(this.asztalokCollestionRef)).pipe(
-      map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const productData: Product = doc.data() as Product;
-          productData.id = doc.id;
-          return productData;
-        });
-        return resultList;
-      })
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
     );
   }
   getTaroloButorok(): Observable<Product[]> {
     return from(getDocs(this.taroloButorokCollestionRef)).pipe(
-      map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const productData: Product = doc.data() as Product;
-          productData.id = doc.id;
-          return productData;
-        });
-        return resultList;
-      })
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
     );
   }
 
