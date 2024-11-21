@@ -18,7 +18,6 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
-import { SzekekComponent } from "./components/szekek/szekek.component";
 import { ArticlesNavComponent } from "./components/nav/components-nav/components-nav.component";
 import { ToastrModule } from "ngx-toastr";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -38,6 +37,8 @@ import { AdminComponent } from "./components/admin/admin.component";
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
+import { SzekekComponent } from "./components/szekek/szekek.component";
+import { CardComponent } from "./components/card/card.component";
 import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
@@ -57,7 +58,6 @@ import { HttpClientModule } from "@angular/common/http";
     Article8Component,
     Article9Component,
     ArticlesComponent,
-    SzekekComponent,
     ArticlesNavComponent,
     SignInComponent,
     CustomerRegComponent,
@@ -66,11 +66,12 @@ import { HttpClientModule } from "@angular/common/http";
     AsztalokComponent,
     BarszekekComponent,
     RecepcioComponent,
-    SzekekComponent,
     TaroloComponent,
     ImageSliderComponent,
     ProductCardComponent,
     AdminComponent,
+    SzekekComponent,
+    CardComponent,
   ],
 
   imports: [
@@ -78,11 +79,11 @@ import { HttpClientModule } from "@angular/common/http";
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule, // Ha használod az Auth modult
-    HttpClientModule,
   ],
   providers: [
     provideFirebaseApp(() =>

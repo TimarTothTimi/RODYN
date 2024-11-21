@@ -12,6 +12,7 @@ export class AppComponent {
   title = "angular-firebase-project";
   tests$: Observable<TestModel[]>;
   private readonly testCollectionRef = collection(this.firestore, "test");
+  products: any[] = [];
 
   constructor(private firestore: Firestore) {
     this.tests$ = this.getTests();

@@ -1,1 +1,10 @@
-<router-outlet></router-outlet>
+<div class="product-list">
+  <app-card
+    *ngFor="let product of products"
+    [title]="product.title"
+    [imageUrl]="product.imageUrl"
+    [description]="product.description"
+    [price]="product.price"
+  >
+  </app-card>
+</div>

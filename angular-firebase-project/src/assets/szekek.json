@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Modern szék",
+    "price": 12000
+  },
+  {
+    "id": 2,
+    "name": "Fa szék",
+    "price": 8000
+  },
+  {
+    "id": 3,
+    "name": "Kényelmes szék",
+    "price": 15000
+  }
+]

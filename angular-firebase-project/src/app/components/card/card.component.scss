@@ -1,0 +1,28 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.card-description {
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+.card-price {
+  font-weight: bold;
+  color: #000;
+}

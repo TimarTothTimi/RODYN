@@ -1,17 +1,19 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductService } from "../../services/product.service";
-import { Observable } from "rxjs";
-import { Product } from "../../models/product";
-
+import { ProductService } from "../../product.service";
+import { Szekek } from "../../models/szekek.model";
 @Component({
   selector: "app-szekek",
   templateUrl: "./szekek.component.html",
-  styleUrl: "./szekek.component.scss",
+  styleUrls: ["./szekek.component.css"],
 })
 export class SzekekComponent implements OnInit {
+  szekek: Szekek[] = [];
+
   constructor(private productService: ProductService) {}
-  szekek$?: Observable<Product[]>;
+
   ngOnInit(): void {
-    this.szekek$ = this.productService.getProdut();
+    this.productService.getSzekek().subscribe((response: Szekek[]) => {
+      this.szekek = response;
+    });
   }
 }
