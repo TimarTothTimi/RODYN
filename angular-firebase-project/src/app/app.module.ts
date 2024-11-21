@@ -40,6 +40,8 @@ import { environment } from "./enviroment";
 import { SzekekComponent } from "./components/szekek/szekek.component";
 import { CardComponent } from "./components/card/card.component";
 import { provideHttpClient } from "@angular/common/http"; // Új import
+import { HttpClientModule } from "@angular/common/http";
+import { ProductFormComponent } from "./product-form/product-form.component";
 
 @NgModule({
   declarations: [
@@ -72,6 +74,7 @@ import { provideHttpClient } from "@angular/common/http"; // Új import
     AdminComponent,
     SzekekComponent,
     CardComponent,
+    ProductFormComponent,
   ],
 
   imports: [

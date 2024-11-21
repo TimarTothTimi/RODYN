@@ -1,1 +1,57 @@
-<p>barszekek works!</p>
+<app-components-nav></app-components-nav>
+
+<section class="wrapper">
+  <div class="container text-center">
+    <div class="row justify-content-end">
+      <div class="col-10 text-center mb-5">
+        <h1 class="display-4 font-weight-bolder">Bárszékek</h1>
+      </div>
+      <div class="col-1 text-end mb-5">
+        <button
+          class="btn btn-secondary"
+          routerLink="/product-form"
+          *ngIf="isAdmin"
+        >
+          Új termék feltöltése
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div
+        class="col-sm-12 col-md-6 col-lg-4 mb-4"
+        *ngFor="let product of products"
+      >
+        <div class="card text-dark mx-auto">
+          <div class="card-header d-flex justify-content-between">
+            <a *ngIf="isAdmin" class="badge-delete">
+              <i
+                class="fa-regular fa-circle-xmark fa-2xl"
+                style="color: #d92020"
+                (click)="deleteProduct(product.id!, product.category)"
+              ></i>
+            </a>
+            <a
+              *ngIf="isAdmin"
+              class="badge-update"
+              routerLink="/barszekek/{{ product.id }}"
+            >
+              <i class="fa-solid fa-pen fa-xl" style="color: #1a4566"></i>
+            </a>
+          </div>
+
+          <div class="card-body">
+            <h4 class="card-title mt-0">
+              <a class="text-dark" href="">{{ product.name }}</a>
+            </h4>
+            <img src="{{ product.images }}" alt="{{ product.name }}" />
+            <div class="card-footer text-center">
+              <p class="mb-0">{{ product.price }} Forint</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
