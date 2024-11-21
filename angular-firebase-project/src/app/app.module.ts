@@ -83,7 +83,7 @@ import { HttpClientModule } from "@angular/common/http";
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule, // Ha használod az Auth modult
+    AngularFireAuthModule,
   ],
   providers: [
     provideFirebaseApp(() =>
