@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ProductService } from "../services/product.service";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router, UrlSegment } from "@angular/router";
 import {
   AbstractControl,
   FormControl,
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { combineLatest, map, Subscription } from "rxjs";
+import { combineLatest, first, map, Subscription } from "rxjs";
 import { Product } from "../models/product";
 
 @Component({
@@ -16,18 +16,18 @@ import { Product } from "../models/product";
   styleUrl: "./product-form.component.scss",
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
-  public product?: Product;
+  productForm: FormGroup;
+  subSaveProduct?: Subscription;
+  subRoute?: Subscription;
+  subDeleteProduct?: Subscription;
+  id: string | null;
+
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {}
-
-  productForm!: FormGroup;
-  subSaveProduct?: Subscription;
-  subRoute?: Subscription;
-
-  ngOnInit(): void {
+  ) {
+    this.id = this.activatedRoute.snapshot.paramMap.get("id");
     this.productForm = new FormGroup({
       name: new FormControl("", [
         Validators.required,
@@ -44,60 +44,51 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       description: new FormControl("", [Validators.required]),
       images: new FormControl("", [Validators.required]),
     });
-    this.subRoute = this.activatedRoute.paramMap.subscribe({
-      next: (params: ParamMap) => {
-        let productId = params.get("id"); // Lekérjük az ID-t az URL-ből
-        const szekek$ = this.productService.getSzekek();
-        const fotelek$ = this.productService.getFotelek();
-        const recepciosAsztalok$ = this.productService.getRecepciosAsztalok();
-        const barszekek$ = this.productService.getBarszekek();
-        const asztalok$ = this.productService.getAsztalok();
-        const taroloButorok$ = this.productService.getTaroloButorok();
-        combineLatest([
-          szekek$,
-          fotelek$,
-          recepciosAsztalok$,
-          barszekek$,
-          asztalok$,
-          taroloButorok$,
-        ])
-          .pipe(
-            map(
-              ([
-                szekek,
-                fotelek,
-                recepciosAsztalok,
-                barszekek,
-                asztalok,
-                taroloButorok,
-              ]: [
-                Product[],
-                Product[],
-                Product[],
-                Product[],
-                Product[],
-                Product[]
-              ]) => [
-                ...szekek,
-                ...fotelek,
-                ...recepciosAsztalok,
-                ...barszekek,
-                ...asztalok,
-                ...taroloButorok,
-              ]
-            ),
-            map((products) =>
-              products.find((product) => product.id === productId)
-            )
-          )
-          .subscribe((product) => {
-            if (product != undefined) {
-              this.productForm.patchValue(product);
-              this.product = product;
-            }
-          });
-      },
-    });
+  }
+
+  ngOnInit(): void {
+    this.subRoute = combineLatest([
+      this.productService.getSzekek(),
+      this.productService.getFotelek(),
+      this.productService.getRecepciosAsztalok(),
+      this.productService.getBarszekek(),
+      this.productService.getAsztalok(),
+      this.productService.getTaroloButorok(),
+    ])
+      .pipe(
+        first(),
+        map(
+          ([
+            szekek,
+            fotelek,
+            recepciosAsztalok,
+            barszekek,
+            asztalok,
+            taroloButorok,
+          ]: [
+            Product[],
+            Product[],
+            Product[],
+            Product[],
+            Product[],
+            Product[]
+          ]) => {
+            return [
+              ...szekek,
+              ...fotelek,
+              ...recepciosAsztalok,
+              ...barszekek,
+              ...asztalok,
+              ...taroloButorok,
+            ].find((product) => product.id === this.id);
+          }
+        )
+      )
+      .subscribe((product) => {
+        if (product != undefined) {
+          this.productForm.patchValue(product);
+        }
+      });
   }
 
   get name(): AbstractControl | null {
@@ -122,8 +113,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   createOrUpdateProduct(): void {
     if (this.productForm.valid) {
       const product: Product = this.productForm.value;
-      if (this.product?.id) {
-        product.id = this.product?.id;
+      if (this.id !== null) {
+        product.id = this.id;
         this.subSaveProduct = this.productService
           .updateProduct(product)
           .subscribe({
@@ -134,7 +125,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
               console.log(err);
             },
             complete: () => {
-              this.router.navigate([""]);
+              this.router.navigate(["/", product.category]);
             },
           });
       } else {
@@ -148,17 +139,33 @@ export class ProductFormComponent implements OnInit, OnDestroy {
               console.log(err);
             },
             complete: () => {
-              // this.productForm.reset();
-              this.router.navigate([""]);
-              //nem kell a reset ha elnavigálok
+              console.log(product);
+              this.router.navigate(["/", product.category]);
             },
           });
       }
     }
   }
 
+  deleteProduct(id: string, category: string): void {
+    this.subDeleteProduct = this.productService
+      .deleteProduct(id, category)
+      .subscribe({
+        next: () => {
+          console.log("Product deleted!");
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          this.router.navigate(["/", category]);
+        },
+      });
+  }
+
   ngOnDestroy(): void {
     this.subSaveProduct?.unsubscribe();
     this.subRoute?.unsubscribe();
+    this.subDeleteProduct?.unsubscribe();
   }
 }

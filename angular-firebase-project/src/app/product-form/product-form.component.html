@@ -1,13 +1,9 @@
 <app-components-nav></app-components-nav>
 <section class="container w-75 marginTopNav">
   <h3 class="text-center pb-2 pt-3">
-    {{ product?.id ? "Termék frissítése" : "Új termék hozzáadása" }}
+    {{ id ? "Termék frissítése" : "Új termék hozzáadása" }}
   </h3>
-  <form
-    [formGroup]="productForm"
-    *ngIf="productForm"
-    (ngSubmit)="createOrUpdateProduct()"
-  >
+  <form [formGroup]="productForm" (ngSubmit)="createOrUpdateProduct()">
     <div class="form-floating mb-3">
       <input
         type="text"
@@ -77,23 +73,17 @@
     </div>
     <div class="mb-3">
       <label for="images" class="form-label">Képek feltöltése</label>
-      <input
-        class="form-control"
-        type="file"
-        id="images"
-        multiple
-        formControlName="images"
-      />
+      <input class="form-control" id="images" formControlName="images" />
       <small *ngIf="images?.invalid && images?.dirty" class="small text-danger"
         >Kötelező megadni!</small
       >
     </div>
+    <button
+      [disabled]="productForm.invalid"
+      type="submit"
+      class="btn btn-secondary text-center"
+    >
+      {{ id ? "Frissítés" : "Hozzáadás" }}
+    </button>
   </form>
-  <button
-    [disabled]="productForm.invalid"
-    type="submit"
-    class="btn btn-secondary text-center"
-  >
-    {{ product?.id ? "Frissítés" : "Hozzáadás" }}
-  </button>
 </section>

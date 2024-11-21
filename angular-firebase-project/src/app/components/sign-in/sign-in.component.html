@@ -5,7 +5,7 @@
     <div class="col-12 col-md-6">
       <form [formGroup]="loginForm">
         <h6 class="p-1">Email</h6>
-        <div *ngIf="email" class="form-floating">
+        <div *ngIf="email">
           <input
             formControlName="email"
             class="form-control"
@@ -17,7 +17,7 @@
           </div>
         </div>
         <h6 class="pt-5 pb-1 ps-1">Jelszó</h6>
-        <div *ngIf="password" class="form-floating">
+        <div *ngIf="password">
           <input
             formControlName="password"
             class="form-control"

@@ -128,14 +128,14 @@ export class ProductService {
   }
   getBarszekek(): Observable<Product[]> {
     return from(getDocs(this.barszekekCollestionRef)).pipe(
-      map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const productData: Product = doc.data() as Product;
-          productData.id = doc.id;
-          return productData;
-        });
-        return resultList;
-      })
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
     );
   }
   getAsztalok(): Observable<Product[]> {

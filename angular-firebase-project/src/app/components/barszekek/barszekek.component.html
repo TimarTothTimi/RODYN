@@ -23,36 +23,31 @@
         class="col-sm-12 col-md-6 col-lg-4 mb-4"
         *ngFor="let product of products"
       >
-        <div
-          class="card text-dark card-has-bg click-col mx-auto"
-          [style.background-image]="'url(' + product.images + ')'"
-        >
-          <a *ngIf="isAdmin" class="badge-delete">
-            <i
-              class="fa-regular fa-circle-xmark fa-2xl"
-              style="color: #d92020"
-            ></i>
-          </a>
-          <a
-            *ngIf="isAdmin"
-            class="badge-update"
-            (click)="updateProduct(product)"
-          >
-            <i class="fa-solid fa-pen fa-xl" style="color: #1a4566"></i>
-          </a>
-          <img
-            class="card-img d-none"
-            src="{{ product.images }}"
-            alt="Fotel 2"
-          />
-          <div class="card-img-overlay d-flex flex-column">
-            <div class="card-body">
-              <h4 class="card-title mt-0">
-                <a class="text-dark" href="">{{ product.name }}</a>
-              </h4>
-              <div class="card-footer text-center">
-                <p class="mb-0">{{ product.price }} Forint</p>
-              </div>
+        <div class="card text-dark mx-auto">
+          <div class="card-header d-flex justify-content-between">
+            <a *ngIf="isAdmin" class="badge-delete">
+              <i
+                class="fa-regular fa-circle-xmark fa-2xl"
+                style="color: #d92020"
+                (click)="deleteProduct(product.id!, product.category)"
+              ></i>
+            </a>
+            <a
+              *ngIf="isAdmin"
+              class="badge-update"
+              routerLink="/barszekek/{{ product.id }}"
+            >
+              <i class="fa-solid fa-pen fa-xl" style="color: #1a4566"></i>
+            </a>
+          </div>
+
+          <div class="card-body">
+            <h4 class="card-title mt-0">
+              <a class="text-dark" href="">{{ product.name }}</a>
+            </h4>
+            <img src="{{ product.images }}" alt="{{ product.name }}" />
+            <div class="card-footer text-center">
+              <p class="mb-0">{{ product.price }} Forint</p>
             </div>
           </div>
         </div>

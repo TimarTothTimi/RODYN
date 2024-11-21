@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Product } from "../../models/product";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 import { ProductService } from "../../services/product.service";
 import { Router } from "@angular/router";
@@ -10,9 +10,10 @@ import { Router } from "@angular/router";
   templateUrl: "./barszekek.component.html",
   styleUrl: "./barszekek.component.scss",
 })
-export class BarszekekComponent implements OnInit {
+export class BarszekekComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
   products: Product[] = [];
+  subDeleteProduct?: Subscription;
 
   public loggedInStatus$?: Observable<boolean | null>;
   public isAdmin$?: Observable<boolean | null>;
@@ -31,17 +32,36 @@ export class BarszekekComponent implements OnInit {
     this.authService.currentUserRole.subscribe((role) => {
       this.isAdmin = role === "admin";
     });
-    this.productService.getProducts("barszekek").subscribe((products) => {
+    this.refresh();
+  }
+
+  refresh(): void {
+    this.productService.getBarszekek().subscribe((products) => {
       this.products = products;
     });
   }
 
-  //UPDATE
-  updateProduct(product: Product): void {
-    this.router.navigate(["/barszekek", product.id]); // Navigáció a regisztrációs oldalra a telefon ID-jével
+  deleteProduct(id: string, category: string): void {
+    this.subDeleteProduct = this.productService
+      .deleteProduct(id, category)
+      .subscribe({
+        next: () => {
+          console.log("Product deleted!");
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          this.router.navigate(["/", category]);
+          this.refresh();
+        },
+      });
   }
 
   async logout(): Promise<void> {
     await this.authService.logout();
+  }
+  ngOnDestroy(): void {
+    this.subDeleteProduct?.unsubscribe();
   }
 }
