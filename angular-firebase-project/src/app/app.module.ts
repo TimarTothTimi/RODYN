@@ -39,7 +39,7 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
 import { SzekekComponent } from "./components/szekek/szekek.component";
 import { CardComponent } from "./components/card/card.component";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient } from "@angular/common/http"; // Új import
 
 @NgModule({
   declarations: [
@@ -79,12 +79,12 @@ import { HttpClientModule } from "@angular/common/http";
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
   ],
+
   providers: [
     provideFirebaseApp(() =>
       initializeApp({
@@ -98,6 +98,7 @@ import { HttpClientModule } from "@angular/common/http";
     ),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideHttpClient(), // Új HttpClient konfiguráció
   ],
 
   bootstrap: [AppComponent],

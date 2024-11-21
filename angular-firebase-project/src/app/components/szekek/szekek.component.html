@@ -2,6 +2,6 @@
 
 <ul>
   <li *ngFor="let szek of szekek">
-    <strong>{{ szek.name }}</strong> - {{ szek.price | currency : "HUF" }}
+    <strong>{{ szek.name }}</strong> - {{ szek.price | currency }}
   </li>
 </ul>

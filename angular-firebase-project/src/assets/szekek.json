@@ -1,17 +1,10 @@
 [
   {
-    "id": 1,
-    "name": "Modern szék",
-    "price": 12000
+    "name": "Chair 1",
+    "price": 100
   },
   {
-    "id": 2,
-    "name": "Fa szék",
-    "price": 8000
-  },
-  {
-    "id": 3,
-    "name": "Kényelmes szék",
-    "price": 15000
+    "name": "Chair 2",
+    "price": 150
   }
 ]

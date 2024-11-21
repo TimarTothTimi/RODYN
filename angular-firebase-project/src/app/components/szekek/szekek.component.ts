@@ -4,7 +4,7 @@ import { Szekek } from "../../models/szekek.model";
 @Component({
   selector: "app-szekek",
   templateUrl: "./szekek.component.html",
-  styleUrls: ["./szekek.component.css"],
+  styleUrls: ["./szekek.component.scss"],
 })
 export class SzekekComponent implements OnInit {
   szekek: Szekek[] = [];
