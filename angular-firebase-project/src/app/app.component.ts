@@ -22,11 +22,13 @@ export class AppComponent implements OnInit {
     this.testCollectionRef = collection(this.firestore, "test");
   }
 
-  ngOnInit(): void {
-    this.productService.getSzekek().subscribe((data) => {
-      this.products = data;
-    });
-  }
+  ngOnInit(): void {}
+
+  // ngOnInit(): void {
+  //   this.productService.getSzekek().subscribe((data) => {
+  //     this.products = data;
+  //   });
+  // }
 
   getTests(): Observable<TestModel[]> {
     return collectionData<TestModel>(this.testCollectionRef, { idField: "id" });

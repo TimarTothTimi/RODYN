@@ -10,9 +10,7 @@ import { AuthService } from "../../services/auth.service";
   styleUrls: ["./szekek.component.scss"],
 })
 export class SzekekComponent implements OnInit {
-  szekek: Szekek[] = [];
-
-  constructor(private productService: ProductService) {}
+  // szekek: Szekek[] = [];
 
   // constructor(private productService: ProductService) {}
   // szekek$?: Observable<Product[]>;
@@ -37,9 +35,9 @@ export class SzekekComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService.getSzekek().subscribe((response: Szekek[]) => {
-      this.szekek = response;
-    });
+    // this.productService.getSzekek().subscribe((response: Szekek[]) => {
+    //   this.szekek = response;
+    // });
     this.authService.currentUserRole.subscribe((role) => {
       this.isAdmin = role === "admin";
     });
