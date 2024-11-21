@@ -38,7 +38,6 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
 import { SzekekComponent } from "./components/szekek/szekek.component";
-import { CardComponent } from "./components/card/card.component";
 import { ProductFormComponent } from "./product-form/product-form.component";
 
 @NgModule({
@@ -71,7 +70,6 @@ import { ProductFormComponent } from "./product-form/product-form.component";
     ProductCardComponent,
     AdminComponent,
     SzekekComponent,
-    CardComponent,
     ProductFormComponent,
   ],
 

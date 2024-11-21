@@ -6,6 +6,9 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class ProductService {
+  deleteProduct(id: string, category: string) {
+    throw new Error("Method not implemented.");
+  }
   private dataUrl = "assets/szekek.json";
   getSzekek: any;
 

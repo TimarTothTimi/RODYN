@@ -1,28 +1,64 @@
+body {
+  background: #161616;
+}
+
+h1 {
+  color: #0c0101;
+}
+
+.wrapper {
+  margin: 10vh;
+}
+
 .card {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 1rem;
-  margin: 1rem 0;
-  text-align: center;
+  border: none;
+  transition: all 200ms ease-in-out;
+  overflow: hidden;
+  min-height: 400px;
+  box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  width: 80%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .card-title {
+    font-weight: 600;
+    text-align: center;
+  }
+  .card-footer {
+    color: rgba(0, 0, 0, 1);
+
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-img-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
 }
 
-.card-img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
+.badge-delete {
+  cursor: pointer;
 }
-
-.card-title {
-  font-size: 1.5rem;
-  margin: 0.5rem 0;
-}
-
-.card-description {
-  color: #555;
-  margin: 0.5rem 0;
-}
-
-.card-price {
-  font-weight: bold;
-  color: #000;
+.badge-update {
+  cursor: pointer;
 }
