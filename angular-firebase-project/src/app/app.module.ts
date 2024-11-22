@@ -39,6 +39,8 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
 import { SzekekComponent } from "./components/szekek/szekek.component";
 import { ProductFormComponent } from "./product-form/product-form.component";
+import { RouterModule } from "@angular/router";
+import { CardComponent } from "./components/card/card.component";
 
 @NgModule({
   declarations: [
