@@ -9,8 +9,8 @@ import { getAuth, provideAuth } from "@angular/fire/auth";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
-import { NavComponent } from "./components/nav/nav.component";
-import * as article1Component from "./components/articles/article1/article1.component";
+import { NavComponent } from "./components/nav/navMain.component";
+import { Article1Component } from "./components/articles/article1/article1.component";
 import { Article2Component } from "./components/articles/article2/article2.component";
 import { Article3Component } from "./components/articles/article3/article3.component";
 import { Article4Component } from "./components/articles/article4/article4.component";
@@ -19,6 +19,27 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
+import { SzekekComponent } from "./components/szekek/szekek.component";
+import { ArticlesNavComponent } from "./components/nav/components-nav/components-nav.component";
+import { ToastrModule } from "ngx-toastr";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SignInComponent } from "./components/sign-in/sign-in.component";
+import { CustomerRegComponent } from "./components/customer-reg/customer-reg.component";
+import { CatalogComponent } from "./components/catalog/catalog.component";
+import { FotelekComponent } from "./components/fotelek/fotelek.component";
+import { AsztalokComponent } from "./components/asztalok/asztalok.component";
+import { BarszekekComponent } from "./components/barszekek/barszekek.component";
+import { RecepcioComponent } from "./components/recepcio/recepcio.component";
+import { TaroloComponent } from "./components/tarolo/tarolo.component";
+import { producerNotifyConsumers } from "@angular/core/primitives/signals";
+import { ImageSliderComponent } from "./components/image-slider/image-slider.component";
+import { ProductCardComponent } from "./product-card/product-card.component";
+import { AdminComponent } from "./components/admin/admin.component";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { environment } from "./enviroment";
+import { HttpClientModule } from "@angular/common/http";
 import { FloatingSectionComponent } from "./components/floating-section/floating-section";
 import { ArticlesComponent } from "./components/articles/articles.component";
 import { FooterComponent } from "./components/footer/footer.components";
@@ -28,7 +49,8 @@ import { FooterComponent } from "./components/footer/footer.components";
     HeaderComponent,
     HomeComponent,
     NavComponent,
-    article1Component.Article1Component,
+    ArticlesComponent,
+    Article1Component,
     Article2Component,
     Article3Component,
     Article4Component,
@@ -37,12 +59,39 @@ import { FooterComponent } from "./components/footer/footer.components";
     Article7Component,
     Article8Component,
     Article9Component,
+    ArticlesComponent,
+    SzekekComponent,
+    ArticlesNavComponent,
+    SignInComponent,
+    CustomerRegComponent,
+    CatalogComponent,
+    FotelekComponent,
+    AsztalokComponent,
+    BarszekekComponent,
+    RecepcioComponent,
+    SzekekComponent,
+    TaroloComponent,
+    ImageSliderComponent,
+    ProductCardComponent,
+    AdminComponent,
     CenterSectionComponent,
     FloatingSectionComponent,
     ArticlesComponent,
     FooterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, CommonModule],
+
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule, // Ha használod az Auth modult
+    HttpClientModule,
+  ],
   providers: [
     provideFirebaseApp(() =>
       initializeApp({

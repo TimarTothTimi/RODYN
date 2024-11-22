@@ -1,0 +1,43 @@
+.image-slider {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: auto; /* Automatic rows */
+  gap: 20px; /* Space between slides */
+  padding: 20px;
+  margin-left: 150px; /* Left margin */
+  margin-right: 150px; /* Right margin */
+}
+
+.slider-container {
+  position: relative;
+  overflow: hidden; /* Prevent overflow */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: 280px; /* Fixed height to keep layout stable */
+  width: 100%; /* Full width */
+  display: flex; /* Use flexbox to center items */
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}
+
+.slider-container img {
+  max-width: 100%; /* Ensure the image does not exceed container width */
+  max-height: 100%; /* Ensure the image does not exceed container height */
+  object-fit: contain; /* Maintain aspect ratio while filling the container */
+}
+
+.image-button {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+}
+
+.image-title {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+}

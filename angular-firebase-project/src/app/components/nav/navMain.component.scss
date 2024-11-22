@@ -1,0 +1,30 @@
+.formlab {
+  font-family: "Monoton";
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.formlab-white {
+  color: white;
+}
+
+.formlab-orange {
+  color: #e3986d;
+}
+
+.icon {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+// Dropdown stílusok
+.dropdown-item {
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
+}

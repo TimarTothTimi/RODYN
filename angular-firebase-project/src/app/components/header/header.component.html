@@ -3,45 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Termékek</title>
+    <style>
+      /* Alap stílusok a gridhez */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 10px;
+      }
+
+      .product-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+
+      .product-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .product-card button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 0 0 8px 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      .product-card button:hover {
+        background-color: #0056b3;
+      }
+
+      .product-card:hover {
+        transform: scale(1.05);
+      }
+    </style>
   </head>
   <body>
     <!-- Grid container a kártyákhoz -->
-    <div class="product-grid">
-      <!-- Termék kártya 1 -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x300" alt="Termék 1" />
-        <button>székek</button>
-      </div>
-
-      <!-- Termék kártya 2 -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x300" alt="Termék 2" />
-        <button>asztalok</button>
-      </div>
-
-      <!-- Termék kártya 3 -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x300" alt="Termék 3" />
-        <button>recepciós asztalok</button>
-      </div>
-
-      <!-- Termék kártya 4 -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x300" alt="Termék 4" />
-        <button>tárgyalóasztalok</button>
-      </div>
-
-      <!-- Termék kártya 5 -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x300" alt="Termék 5" />
-        <button>fotelek</button>
-      </div>
-
-      <!-- Termék kártya 6 -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x300" alt="Termék 6" />
-        <button>tároló bútorok</button>
-      </div>
-    </div>
   </body>
 </html>

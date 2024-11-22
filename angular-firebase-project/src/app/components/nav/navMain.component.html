@@ -1,0 +1,152 @@
+<div>
+  <video
+    autoplay
+    [muted]="true"
+    loop
+    class="w-100 vh-100 object-fit-cover d-block"
+    src="/videos/navBg.mp4"
+  ></video>
+  <nav class="navbar fixed-top bg-secondary bg-opacity-25">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <a class="navbar-brand mx-auto text-center formlab" routerLink=""
+        ><span class="formlab-white">Form</span
+        ><span class="formlab-orange">Lab</span></a
+      >
+
+      <a href="#" class="p-2 link-dark"
+        ><i class="fa-solid fa-magnifying-glass fa-lg"></i
+      ></a>
+
+      <a routerLink="/sign-in" class="p-2 link-dark"
+        ><i class="fa-regular fa-user fa-xl"></i
+      ></a>
+      <a href="#" class="p-2 link-dark"
+        ><i class="fa-solid fa-basket-shopping fa-xl"></i>
+      </a>
+      <div
+        class="offcanvas offcanvas-start"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+        data-bs-scroll="true"
+      >
+        <div class="offcanvas-header bg-secondary-subtle formlab">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+            <span class="formlab-white">Form</span
+            ><span class="formlab-orange">Lab</span>
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body bg-secondary-subtle">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink=""
+                >Főoldal</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="!(loggedInStatus$ | async)">
+              <a class="nav-link" routerLink="/sign-in">Bejelentkezés</a>
+            </li>
+            <li class="nav-item" *ngIf="loggedInStatus$ | async">
+              <a class="nav-link" (click)="logout()">Kijelentkezés</a>
+            </li>
+            <li class="nav-item" *ngIf="loggedInStatus$ | async">
+              <a class="nav-link" routerLink="/catalog">Katalógusok</a>
+            </li>
+            <!-- <li *ngIf="userEmail$ | async" class="nav-item">
+          <a class="nav-link">Szia {{ userEmail$ | async }}!</a>
+        </li> -->
+        <li class="nav-item" *ngIf="isAdmin$ | async">
+          <a class="nav-link" routerLink="/admin">Termék feltöltés</a>
+        </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Termékek
+              </a>
+              <ul class="dropdown-menu bg-secondary-subtle border border-0">
+                <li>
+                  <a class="dropdown-item" routerLink="szekek">
+                    <i class="fa-solid fa-chair p-2"></i> Székek
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="fotelek">
+                    <i class="fa-solid fa-couch p-2"></i> Fotelek</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="recepcio">
+                    <img
+                      src="assets/images/reception.png"
+                      alt=""
+                      class="icon"
+                    />
+                    Recepciós asztalok
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="barszekek">
+                    <img src="assets/images/stool.png" alt="" class="icon" />
+                    Bárszékek
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="asztalok">
+                    <img src="assets/images/desk.png" alt="" class="icon" />
+                    Asztalok
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="tarolo">
+                    <img src="assets/images/locker.png" alt="" class="icon" />
+                    Tároló bútorok
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Cikkeink</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Kapcsolat</a>
+            </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
