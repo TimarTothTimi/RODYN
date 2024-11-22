@@ -40,6 +40,7 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
 import { HttpClientModule } from "@angular/common/http";
 import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
     ProductCardComponent,
     AdminComponent,
     ProductFormComponent,
+    ProductPageComponent,
   ],
 
   imports: [

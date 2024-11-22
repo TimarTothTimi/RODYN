@@ -22,6 +22,7 @@ import { TaroloComponent } from "./components/tarolo/tarolo.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { AdminGuard } from "./guard/admin.guard";
 import { ProductFormComponent } from "./product-form/product-form.component";
+import { ProductPageComponent } from "./components/product-page/product-page.component";
 
 const routes: Routes = [
   { path: "registration", component: CustomerRegComponent },
@@ -69,10 +70,17 @@ const routes: Routes = [
 
   { path: "asztalok", component: AsztalokComponent },
   { path: "tarolo", component: TaroloComponent },
+  { path: "product-page", component: ProductPageComponent },
+  { path: "product-page/:id", component: ProductPageComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "top" })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: "top",
+      anchorScrolling: "enabled",
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

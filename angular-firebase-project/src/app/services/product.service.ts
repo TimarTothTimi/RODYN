@@ -79,14 +79,14 @@ export class ProductService {
   getProducts(category: string): Observable<Product[]> {
     const collectionRef = collection(this.firestore, category);
     return from(getDocs(collectionRef)).pipe(
-      map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const data = doc.data() as Product;
-          const id = doc.id;
-          return { id, ...data };
-        });
-        return resultList;
-      })
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
     );
   }
 

@@ -1,7 +1,4 @@
 .formlab {
-  font-family: "Monoton";
-  font-size: 25px;
-  text-decoration: none;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -9,10 +6,16 @@
 
 .formlab-white {
   color: white;
+  font-family: "Monoton";
+  font-size: 25px;
+  text-decoration: none;
 }
 
 .formlab-orange {
   color: #e3986d;
+  font-family: "Monoton";
+  font-size: 25px;
+  text-decoration: none;
 }
 
 .icon {
