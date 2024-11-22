@@ -43,6 +43,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { FloatingSectionComponent } from "./components/floating-section/floating-section";
 import { ArticlesComponent } from "./components/articles/articles.component";
 import { FooterComponent } from "./components/footer/footer.components";
+import { ProductFormComponent } from "./product-form/product-form.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,10 +76,6 @@ import { FooterComponent } from "./components/footer/footer.components";
     ImageSliderComponent,
     ProductCardComponent,
     AdminComponent,
-    CenterSectionComponent,
-    FloatingSectionComponent,
-    ArticlesComponent,
-    FooterComponent,
   ],
 
   imports: [

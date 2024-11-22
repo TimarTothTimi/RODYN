@@ -5,27 +5,24 @@
     <div class="col-12 col-md-6">
       <form [formGroup]="loginForm">
         <h6 class="p-1">Email</h6>
-        <div *ngIf="email" class="form-floating">
+        <div *ngIf="email">
           <input
             formControlName="email"
             class="form-control"
             id="email"
             type="email"
-            placeholder="Enter your email..."
           />
-          <div *ngIf="email.invalid && email.touched" class="small text-danger">
-            <span *ngIf="email.touched">Kötelező email címet megadni.</span>
-            <span *ngIf="email.invalid">Email nem érvényes.</span>
+          <div *ngIf="email.invalid && email.dirty" class="small text-danger">
+            <span>Kötelező érvényes email címet megadni. </span>
           </div>
         </div>
         <h6 class="pt-5 pb-1 ps-1">Jelszó</h6>
-        <div *ngIf="password" class="form-floating">
+        <div *ngIf="password">
           <input
             formControlName="password"
             class="form-control"
             type="password"
             id="password"
-            placeholder="Enter your password..."
           />
           <div
             *ngIf="password.invalid && password.touched"

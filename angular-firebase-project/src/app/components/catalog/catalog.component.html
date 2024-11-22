@@ -11,6 +11,15 @@
     <div class="col-12 col-md-6 col-xl-4">
       <div class="pb-3">
         <div class="card" style="width: 18rem">
+          <a *ngIf="isAdmin" class="badge-delete">
+            <i
+              class="fa-regular fa-circle-xmark fa-2xl"
+              style="color: #d92020"
+            ></i>
+          </a>
+          <a *ngIf="isAdmin" class="badge-update" routerLink="/product-form">
+            <i class="fa-solid fa-pen fa-xl" style="color: #1a4566"></i>
+          </a>
           <img
             src="https://images.unsplash.com/photo-1633975847368-a2b19b00bf44?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             class="card-img-top"
@@ -23,8 +32,8 @@
               href="/catalogs/peldaKatalogus.pdf"
               target="_blank"
               class="btn btn-outline-secondary"
-              >Megnyitás</a
-            >
+              >Megnyitás
+            </a>
           </div>
         </div>
       </div>

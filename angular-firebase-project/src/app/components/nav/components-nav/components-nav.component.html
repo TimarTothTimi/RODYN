@@ -16,16 +16,17 @@
       ><span class="formlab-orange">Lab</span></a
     >
 
-    <a href="#" class="p-2 link-dark"
-      ><i class="fa-solid fa-magnifying-glass fa-lg"></i
-    ></a>
-
-    <a routerLink="/sign-in" class="p-2 link-dark"
-      ><i class="fa-regular fa-user fa-xl"></i
-    ></a>
-    <a href="#" class="p-2 link-dark"
-      ><i class="fa-solid fa-basket-shopping fa-xl"></i>
-    </a>
+    <div class="d-flex ms-auto">
+      <a href="#" class="p-2 link-dark">
+        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+      </a>
+      <a routerLink="/sign-in" class="p-2 link-dark">
+        <i class="fa-regular fa-user fa-xl"></i>
+      </a>
+      <a href="#" class="p-2 link-dark">
+        <i class="fa-solid fa-basket-shopping fa-xl"></i>
+      </a>
+    </div>
 
     <div
       class="offcanvas offcanvas-start"
@@ -78,35 +79,35 @@
             </a>
             <ul class="dropdown-menu bg-secondary-subtle border border-0">
               <li>
-                <a class="dropdown-item" routerLink="szekek">
+                <a class="dropdown-item" routerLink="/szekek">
                   <i class="fa-solid fa-chair p-2"></i> Székek
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" routerLink="fotelek">
+                <a class="dropdown-item" routerLink="/fotelek">
                   <i class="fa-solid fa-couch p-2"></i> Fotelek</a
                 >
               </li>
               <li>
-                <a class="dropdown-item" routerLink="recepcio">
+                <a class="dropdown-item" routerLink="/recepcio">
                   <img src="assets/images/reception.png" alt="" class="icon" />
                   Recepciós asztalok
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" routerLink="barszekek">
+                <a class="dropdown-item" routerLink="/barszekek">
                   <img src="assets/images/stool.png" alt="" class="icon" />
                   Bárszékek
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" routerLink="asztalok">
+                <a class="dropdown-item" routerLink="/asztalok">
                   <img src="assets/images/desk.png" alt="" class="icon" />
                   Asztalok
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" routerLink="tarolo">
+                <a class="dropdown-item" routerLink="/tarolo">
                   <img src="assets/images/locker.png" alt="" class="icon" />
                   Tároló bútorok
                 </a>
@@ -118,6 +119,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Kapcsolat</a>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin">
+            <a class="nav-link" routerLink="/termekfeltoltes"
+              >Termékfeltöltés</a
+            >
           </li>
         </ul>
         <form class="d-flex mt-3" role="search">

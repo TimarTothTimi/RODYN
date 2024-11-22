@@ -21,12 +21,30 @@ import { AsztalokComponent } from "./components/asztalok/asztalok.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { AdminGuard } from "./guard/admin.guard";
+import { ProductFormComponent } from "./product-form/product-form.component";
 
 const routes: Routes = [
   { path: "registration", component: CustomerRegComponent },
   { path: "sign-in", component: SignInComponent },
   { path: "catalog", component: CatalogComponent },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
+  {
+    path: "product-form/:id",
+    component: ProductFormComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: "product-form",
+    component: ProductFormComponent,
+    canActivate: [AdminGuard],
+  },
+
+  {
+    path: "barszekek/:id",
+    component: ProductFormComponent,
+    canActivate: [AdminGuard],
+  },
+
   { path: "article1", component: Article1Component },
   { path: "article2", component: Article2Component },
   { path: "article3", component: Article3Component },
@@ -39,9 +57,16 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
 
   { path: "szekek", component: SzekekComponent },
+  {
+    path: "szekek/:id",
+    component: ProductFormComponent,
+    canActivate: [AdminGuard],
+  },
+
   { path: "fotelek", component: FotelekComponent },
   { path: "recepcio", component: RecepcioComponent },
   { path: "barszekek", component: BarszekekComponent },
+
   { path: "asztalok", component: AsztalokComponent },
   { path: "tarolo", component: TaroloComponent },
 ];
