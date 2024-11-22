@@ -1,0 +1,46 @@
+.footer {
+  .footer-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .footer-link {
+    text-decoration: underline;
+    color: #ffffff; // Keep the text color white
+    &:hover {
+      color: #ccc; // Slight dimming on hover
+      text-decoration: none; // Remove underline on hover
+    }
+  }
+
+  .form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d; // Gray button
+    border-color: #6c757d;
+    font-size: 0.875rem; // Smaller text
+    padding: 0.375rem 0.75rem;
+    &:hover {
+      background-color: darken(#6c757d, 10%);
+      border-color: darken(#6c757d, 10%);
+    }
+  }
+
+  .social-media nav a {
+    font-size: 0.9rem;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+      color: #ccc;
+    }
+  }
+
+  .footer-bottom {
+    font-size: 0.875rem;
+  }
+}

@@ -1,11 +1,12 @@
 import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { CenterSectionComponent } from "./components/center-section/center-section.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app.routing.module";
 import { AppComponent } from "./app.component";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getAuth, provideAuth } from "@angular/fire/auth";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
-import { ArticlesComponent } from "./components/articles/articles.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
 import { NavComponent } from "./components/nav/navMain.component";
@@ -39,7 +40,10 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
 import { HttpClientModule } from "@angular/common/http";
-import { ProductFormComponent } from './product-form/product-form.component';
+import { FloatingSectionComponent } from "./components/floating-section/floating-section";
+import { ArticlesComponent } from "./components/articles/articles.component";
+import { FooterComponent } from "./components/footer/footer.components";
+import { ProductFormComponent } from "./product-form/product-form.component";
 
 @NgModule({
   declarations: [
@@ -73,11 +77,15 @@ import { ProductFormComponent } from './product-form/product-form.component';
     ProductCardComponent,
     AdminComponent,
     ProductFormComponent,
+    FooterComponent,
+    FloatingSectionComponent,
+    CenterSectionComponent,
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
     ReactiveFormsModule,
     FormsModule,
     ToastrModule.forRoot(),
