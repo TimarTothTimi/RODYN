@@ -76,6 +76,10 @@ import { ProductFormComponent } from "./product-form/product-form.component";
     ImageSliderComponent,
     ProductCardComponent,
     AdminComponent,
+    ProductFormComponent,
+    FooterComponent,
+    FloatingSectionComponent,
+    CenterSectionComponent,
   ],
 
   imports: [
