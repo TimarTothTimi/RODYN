@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Observable, Subscription } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
@@ -7,8 +7,9 @@ import { AuthService } from "../../services/auth.service";
   templateUrl: "./catalog.component.html",
   styleUrl: "./catalog.component.scss",
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
+  subCurrentUserRole?: Subscription;
 
   public loggedInStatus$?: Observable<boolean | null>;
   public isAdmin$?: Observable<boolean | null>;
@@ -27,5 +28,8 @@ export class CatalogComponent implements OnInit {
 
   async logout(): Promise<void> {
     await this.authService.logout();
+  }
+  ngOnDestroy(): void {
+    this.subCurrentUserRole?.unsubscribe();
   }
 }

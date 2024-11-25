@@ -8,13 +8,23 @@ import {
   signInWithPopup,
   UserCredential,
   User,
+  Unsubscribe,
 } from "@angular/fire/auth";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { ToastrService } from "ngx-toastr";
-import { BehaviorSubject, catchError, from, map, Observable, tap } from "rxjs";
+import {
+  BehaviorSubject,
+  catchError,
+  from,
+  map,
+  Observable,
+  Subscription,
+  switchMap,
+  tap,
+} from "rxjs";
 
 interface userAuthData {
   email: string;
@@ -37,25 +47,17 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore
   ) {
+    let subscription: Subscription | null = null;
     this.auth.onAuthStateChanged((user: User | null) => {
-      console.log("AuthService.onAuthStateChanged", user);
+      subscription?.unsubscribe();
       if (user) {
-        this.getCurrentUserRole(user.uid).subscribe((role) => {
+        subscription = this.getCurrentUserRole(user.uid).subscribe((role) => {
           this.currentUserRole.next(role);
         });
       } else {
         this.currentUserRole.next(null);
       }
     });
-    // this.afAuth.authState.subscribe((user) => {
-    //   if (user) {
-    //     this.getCurrentUserRole(user.uid).subscribe((role) => {
-    //       this.currentUserRole.next(role);
-    //     });
-    //   } else {
-    //     this.currentUserRole.next(null);
-    //   }
-    // });
   }
 
   getAuthState(): Observable<any> {
@@ -94,7 +96,6 @@ export class AuthService {
       createUserWithEmailAndPassword(getAuth(), regData.email, regData.password)
     ).pipe(
       tap((userCredential) => {
-        console.log("user adatok: ", userCredential);
         this.loggedInStatus.next(true);
         this.toastr.success("Registration sucessfully");
         this.router.navigate([""]);
@@ -111,7 +112,6 @@ export class AuthService {
       signInWithEmailAndPassword(this.auth, loginData.email, loginData.password)
     ).pipe(
       tap((userCredential) => {
-        console.log("user adatok: ", userCredential);
         this.loggedInStatus.next(true);
         this.toastr.success("Login sucessfully");
         this.router.navigate([""]);

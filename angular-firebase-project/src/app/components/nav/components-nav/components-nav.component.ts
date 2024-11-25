@@ -19,7 +19,6 @@ export class ArticlesNavComponent implements OnDestroy {
   constructor(private authService: AuthService) {
     this.subCurrentUserRole = this.authService.currentUserRole.subscribe({
       next: (role) => {
-        console.log("nav role", role);
         this.loggedInStatus$.next(role !== null);
         this.isAdmin = role === "admin";
       },
