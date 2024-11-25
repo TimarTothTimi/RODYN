@@ -1,13 +1,5 @@
 import { Component, OnDestroy } from "@angular/core";
-import {
-  BehaviorSubject,
-  map,
-  Observable,
-  Subject,
-  Subscription,
-  takeUntil,
-  tap,
-} from "rxjs";
+import { BehaviorSubject, Observable, Subject, takeUntil } from "rxjs";
 import { AuthService } from "../../../services/auth.service";
 
 @Component({
@@ -39,5 +31,6 @@ export class ArticlesNavComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.destroy$.next();
+    this.destroy$.complete();
   }
 }

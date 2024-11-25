@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Product } from "../../models/product";
-import { Observable } from "rxjs";
+import { Observable, Subject, takeUntil } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 import { ProductService } from "../../services/product.service";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -10,10 +10,11 @@ import { Router, ActivatedRoute } from "@angular/router";
   templateUrl: "./product-page.component.html",
   styleUrl: "./product-page.component.scss",
 })
-export class ProductPageComponent implements OnInit {
+export class ProductPageComponent implements OnInit, OnDestroy {
   public loggedInStatus$?: Observable<boolean | null>;
   public userEmail$?: Observable<string | null>;
   public product?: Product;
+  destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private authService: AuthService,
@@ -31,9 +32,14 @@ export class ProductPageComponent implements OnInit {
     if (productCategory && productId) {
       this.productService
         .getProduct(productCategory, productId)
+        .pipe(takeUntil(this.destroy$))
         .subscribe((product) => {
           this.product = product;
         });
     }
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

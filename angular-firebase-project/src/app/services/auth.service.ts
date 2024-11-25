@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import {
   Auth,
   getAuth,
@@ -22,7 +22,6 @@ import {
   map,
   Observable,
   Subscription,
-  switchMap,
   tap,
 } from "rxjs";
 
@@ -34,11 +33,13 @@ interface userAuthData {
 @Injectable({
   providedIn: "root",
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
   private googleAuthProvider = new GoogleAuthProvider();
   currentUserRole = new BehaviorSubject<string | null>(null);
 
   jwtHelper = new JwtHelperService();
+  unsubscribeFn: Unsubscribe | null = null;
+  subscription: Subscription | null = null;
 
   constructor(
     private router: Router,
@@ -47,13 +48,14 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore
   ) {
-    let subscription: Subscription | null = null;
-    this.auth.onAuthStateChanged((user: User | null) => {
-      subscription?.unsubscribe();
+    this.unsubscribeFn = this.auth.onAuthStateChanged((user: User | null) => {
+      this.subscription?.unsubscribe();
       if (user) {
-        subscription = this.getCurrentUserRole(user.uid).subscribe((role) => {
-          this.currentUserRole.next(role);
-        });
+        this.subscription = this.getCurrentUserRole(user.uid).subscribe(
+          (role) => {
+            this.currentUserRole.next(role);
+          }
+        );
       } else {
         this.currentUserRole.next(null);
       }
@@ -182,5 +184,10 @@ export class AuthService {
       .pipe(
         map((user: any) => user?.role || "user") // Alapértelmezett szerepkör: 'user'
       );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+    this.unsubscribeFn?.call(this);
   }
 }

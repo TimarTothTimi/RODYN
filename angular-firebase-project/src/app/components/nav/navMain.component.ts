@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
-import { BehaviorSubject, map, Observable, Subscription, tap } from "rxjs";
+import { BehaviorSubject, Observable, Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "app-nav",
@@ -9,14 +9,14 @@ import { BehaviorSubject, map, Observable, Subscription, tap } from "rxjs";
 })
 export class NavComponent implements OnDestroy {
   isAdmin: boolean = false;
-  subCurrentUserRole?: Subscription;
+  destroy$: Subject<void> = new Subject<void>();
 
   public loggedInStatus$ = new BehaviorSubject<boolean>(false);
   public isAdmin$?: Observable<boolean | null>;
   public userEmail$?: Observable<string | null>;
 
   constructor(private authService: AuthService) {
-    this.subCurrentUserRole = this.authService.currentUserRole.subscribe({
+    this.authService.currentUserRole.pipe(takeUntil(this.destroy$)).subscribe({
       next: (role) => {
         this.loggedInStatus$.next(role !== null);
         this.isAdmin = role === "admin";
@@ -30,6 +30,7 @@ export class NavComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subCurrentUserRole?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

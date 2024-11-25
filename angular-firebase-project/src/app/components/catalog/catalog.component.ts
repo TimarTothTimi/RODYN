@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Observable, Subscription } from "rxjs";
+import { Observable, Subject, Subscription, takeUntil } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
@@ -10,6 +10,7 @@ import { AuthService } from "../../services/auth.service";
 export class CatalogComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
   subCurrentUserRole?: Subscription;
+  destroy$: Subject<void> = new Subject<void>();
 
   public loggedInStatus$?: Observable<boolean | null>;
   public isAdmin$?: Observable<boolean | null>;
@@ -21,15 +22,18 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authService.currentUserRole.subscribe((role) => {
-      this.isAdmin = role === "admin";
-    });
+    this.authService.currentUserRole
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((role) => {
+        this.isAdmin = role === "admin";
+      });
   }
 
   async logout(): Promise<void> {
     await this.authService.logout();
   }
   ngOnDestroy(): void {
-    this.subCurrentUserRole?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
