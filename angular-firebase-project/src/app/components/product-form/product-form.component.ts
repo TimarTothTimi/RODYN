@@ -53,7 +53,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       this.productService.getRecepciosAsztalok(),
       this.productService.getBarszekek(),
       this.productService.getAsztalok(),
-      this.productService.getTarolok(),
+      this.productService.getTaroloButorok(),
     ])
       .pipe(
         first(),
@@ -130,7 +130,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           });
       } else {
         this.subSaveProduct = this.productService
-          .createProduct(product)
+          .creatProduct(product)
           .subscribe({
             next: () => {
               console.log("Product created!");

@@ -50,7 +50,7 @@ export class ImageSliderComponent implements OnInit {
         "assets/images/recepcio/header/image2.jpg",
         "assets/images/recepcio/header/image3.jpg",
       ],
-      link: "/recepcios asztalok",
+      link: "/recepciosAsztalok",
     },
     {
       title: "bárszékek",
@@ -77,7 +77,7 @@ export class ImageSliderComponent implements OnInit {
         "assets/images/tarolo/header/2.jpg",
         "assets/images/tarolo/header/3.jpg",
       ],
-      link: "/tarolo",
+      link: "/taroloButorok",
     },
   ];
 

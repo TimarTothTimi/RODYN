@@ -24,6 +24,7 @@ import { AdminGuard } from "./guard/admin.guard";
 import { ProductFormComponent } from "./components/product-form/product-form.component";
 import { ProductPageComponent } from "./components/product-page/product-page.component";
 import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-basket.component";
+import { ProductCardComponent } from "./components/product-card/product-card.component";
 
 const routes: Routes = [
   { path: "registration", component: CustomerRegComponent },
@@ -63,19 +64,7 @@ const routes: Routes = [
   },
 
   { path: "asztalok", component: AsztalokComponent },
-  { path: "tarolo", component: TaroloComponent },
-  {
-    path: "tarolo/:id",
-    component: ProductFormComponent,
-    canActivate: [AdminGuard],
-  },
-
-  { path: "recepcio", component: RecepcioComponent },
-  {
-    path: "recepcio/:id",
-    component: ProductFormComponent,
-    canActivate: [AdminGuard],
-  },
+  { path: "taroloButorok", component: TaroloComponent },
 
   { path: "article1", component: Article1Component },
   { path: "article2", component: Article2Component },

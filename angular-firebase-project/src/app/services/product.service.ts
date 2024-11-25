@@ -1,19 +1,18 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
+  DocumentData,
   Firestore,
   getDoc,
   getDocs,
   setDoc,
-  DocumentReference,
-  DocumentData,
 } from "@angular/fire/firestore";
-import { from, Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { Product } from "../models/product"; // Győződjön meg arról, hogy ez az útvonal helyes
+import { from, map, Observable } from "rxjs";
+import { Product } from "../models/product";
 
 @Injectable({
   providedIn: "root",
@@ -21,16 +20,62 @@ import { Product } from "../models/product"; // Győződjön meg arról, hogy ez
 export class ProductService {
   constructor(private firestore: Firestore) {}
 
-  getProductsByCategory(category: string): Observable<Product[]> {
+  private readonly szekekCollestionRef = collection(this.firestore, "szekek");
+  private readonly fotelekCollestionRef = collection(this.firestore, "fotelek");
+  private readonly recepciosAsztalokCollestionRef = collection(
+    this.firestore,
+    "recepciosAsztalok"
+  );
+  private readonly barszekekCollestionRef = collection(
+    this.firestore,
+    "barszekek"
+  );
+  private readonly asztalokCollestionRef = collection(
+    this.firestore,
+    "asztalok"
+  );
+  private readonly taroloButorokCollestionRef = collection(
+    this.firestore,
+    "taroloButorok"
+  );
+
+  creatProduct(product: Product): Observable<DocumentData> {
+    if (product.category === "szekek") {
+      return from(addDoc(this.szekekCollestionRef, product));
+    } else if (product.category === "fotelek") {
+      return from(addDoc(this.fotelekCollestionRef, product));
+    } else if (product.category === "recepciosAsztalok") {
+      return from(addDoc(this.recepciosAsztalokCollestionRef, product));
+    } else if (product.category === "barszekek") {
+      return from(addDoc(this.barszekekCollestionRef, product));
+    } else if (product.category === "asztalok") {
+      return from(addDoc(this.asztalokCollestionRef, product));
+    } else {
+      return from(addDoc(this.taroloButorokCollestionRef, product));
+    }
+  }
+
+  getProducts(category: string): Observable<Product[]> {
     const collectionRef = collection(this.firestore, category);
     return from(getDocs(collectionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
+    );
+  }
+  getProduct(category: string, id: string): Observable<Product> {
+    const collectionRef = collection(this.firestore, category);
+    const productDocRef = doc(this.firestore, `${collectionRef.path}/${id}`);
+    return from(getDoc(productDocRef)).pipe(
       map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const data = doc.data() as Product;
-          const id = doc.id;
-          return { id, ...data };
-        });
-        return resultList;
+        const result = snapshot.data() as Product;
+        result.id = snapshot.id;
+        return result;
       })
     );
   }
@@ -38,57 +83,108 @@ export class ProductService {
   getSzekek(): Observable<Product[]> {
     return from(getDocs(this.szekekCollestionRef)).pipe(
       map((snapshot) =>
-        snapshot.docs.map((doc) => ({
-          ...(doc.data() as Product),
-          id: doc.id,
-        }))
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
+    );
+  }
+  getFotelek(): Observable<Product[]> {
+    return from(getDocs(this.fotelekCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
+    );
+  }
+  getRecepciosAsztalok(): Observable<Product[]> {
+    return from(getDocs(this.recepciosAsztalokCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
+    );
+  }
+  getBarszekek(): Observable<Product[]> {
+    return from(getDocs(this.barszekekCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
+    );
+  }
+  getAsztalok(): Observable<Product[]> {
+    return from(getDocs(this.asztalokCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
+      )
+    );
+  }
+  getTaroloButorok(): Observable<Product[]> {
+    return from(getDocs(this.taroloButorokCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => {
+          return {
+            ...(doc.data() as Product),
+            id: doc.id,
+          };
+        })
       )
     );
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.getProductsByCategory("products");
-  }
-
-  getBarszekek(): Observable<Product[]> {
-    return this.getProductsByCategory("barszekek");
-  }
-
-  getSzekek(): Observable<Product[]> {
-    return this.getProductsByCategory("szekek");
-  }
-
-  getFotelek(): Observable<Product[]> {
-    return this.getProductsByCategory("fotelek");
-  }
-
-  getRecepciosAsztalok(): Observable<Product[]> {
-    return this.getProductsByCategory("recepciosasztalok");
-  }
-
-  getAsztalok(): Observable<Product[]> {
-    return this.getProductsByCategory("asztalok");
-  }
-
-  getTarolok(): Observable<Product[]> {
-    return this.getProductsByCategory("tarolok");
-  }
-
-  createProduct(product: Product): Observable<DocumentReference<DocumentData>> {
-    if (!product.category) {
-      throw new Error("Product category is required");
-    }
-    const collectionRef = collection(this.firestore, product.category);
-    return from(addDoc(collectionRef, product));
-  }
-
+  // DELETE
   deleteProduct(productId: string, category: string): Observable<void> {
-    const productDocRef = doc(this.firestore, `${category}/${productId}`);
-    return from(deleteDoc(productDocRef)).pipe(map(() => void 0));
+    const collectionRef =
+      category === "szekek"
+        ? this.szekekCollestionRef
+        : category === "fotelek"
+        ? this.fotelekCollestionRef
+        : category === "recepciosAsztalok"
+        ? this.recepciosAsztalokCollestionRef
+        : category === "barszekek"
+        ? this.barszekekCollestionRef
+        : category === "asztalok"
+        ? this.asztalokCollestionRef
+        : category === "taroloButorok"
+        ? this.taroloButorokCollestionRef
+        : null;
+
+    if (collectionRef) {
+      const productDocRef = doc(
+        this.firestore,
+        `${collectionRef.path}/${productId}`
+      );
+      return from(deleteDoc(productDocRef));
+    } else {
+      throw new Error("Invalid product category");
+    }
   }
 
+  //UPDATE
   updateProduct(product: Product): Observable<void> {
-    const productDoc = doc(this.firestore, `${product.category}/${product.id}`);
-    return from(setDoc(productDoc, product)).pipe(map(() => void 0));
+    const path = `${product.category}/${product.id}`; //figyelni kell a helyes elérési útra!!!
+    const productDoc = doc(this.firestore, path);
+    return from(setDoc(productDoc, product));
   }
 }
