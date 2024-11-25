@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import {
   catchError,
   from,
@@ -24,10 +24,23 @@ export class CardComponent implements OnInit, OnDestroy {
   private subDeleteProduct?: Subscription;
   private subProductRefresh?: Subscription;
 
-  public loggedInStatus$?: Observable<boolean | null>;
+  // Alapértelmezett @Input() értékek
+  @Input() title: string = "Alapértelmezett cím"; // Alapértelmezett cím
+  @Input() description: string = "Alapértelmezett leírás"; // Alapértelmezett leírás
+  @Input() imageUrl: string | null = null; // Opcionális kép URL
+
+  private _loggedInStatus$?: Observable<boolean | null>;
+  public get loggedInStatus$(): Observable<boolean | null> | undefined {
+    return this._loggedInStatus$;
+  }
+  public set loggedInStatus$(value: Observable<boolean | null> | undefined) {
+    this._loggedInStatus$ = value;
+  }
+
   public isAdmin$?: Observable<boolean | null>;
   public userEmail$?: Observable<string | null>;
 
+  // Firestore collection referenciák
   taroloButorokCollestionRef: any;
   asztalokCollestionRef: any;
   barszekekCollestionRef: any;
@@ -44,6 +57,7 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Admin szerep beállítása
     this.authService.currentUserRole.subscribe({
       next: (role) => {
         this.isAdmin = role === "admin";
@@ -51,7 +65,7 @@ export class CardComponent implements OnInit, OnDestroy {
       error: (err) => console.error("Failed to fetch user role:", err),
     });
 
-    this.refresh();
+    this.refresh(); // Termékek betöltése
   }
 
   refresh(): void {
@@ -65,37 +79,53 @@ export class CardComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Törlés metódus
   deleteProduct(id: string, category: string): Observable<void> {
-    const collectionRef =
-      category === "szekek"
-        ? this.barszekekCollestionRef
-        : category === "fotelek"
-        ? this.fotelekCollestionRef
-        : category === "recepciosAsztalok"
-        ? this.asztalokCollestionRef
-        : category === "barszekek"
-        ? this.barszekekCollestionRef
-        : category === "asztalok"
-        ? this.asztalokCollestionRef
-        : category === "taroloButorok"
-        ? this.taroloButorokCollestionRef
-        : null;
+    let collectionRef;
 
+    // Kategória alapján beállítjuk a megfelelő Firestore gyűjteményt
+    switch (category) {
+      case "szekek":
+        collectionRef = this.barszekekCollestionRef;
+        break;
+      case "fotelek":
+        collectionRef = this.fotelekCollestionRef;
+        break;
+      case "recepciosAsztalok":
+        collectionRef = this.asztalokCollestionRef;
+        break;
+      case "barszekek":
+        collectionRef = this.barszekekCollestionRef;
+        break;
+      case "asztalok":
+        collectionRef = this.asztalokCollestionRef;
+        break;
+      case "taroloButorok":
+        collectionRef = this.taroloButorokCollestionRef;
+        break;
+      default:
+        return throwError(() => new Error("Invalid product category"));
+    }
+
+    // Ha nincs megfelelő gyűjtemény, hiba
     if (!collectionRef) {
       return throwError(() => new Error("Invalid product category"));
     }
 
+    // Firestore dokumentum referencia létrehozása
     const productDocRef = doc(this.firestore, `${collectionRef.path}/${id}`);
 
+    // Törlés végrehajtása
     return from(deleteDoc(productDocRef)).pipe(
-      map(() => void 0),
+      map(() => void 0), // Visszaadjuk a void típusú eredményt
       catchError((err) => {
         console.error("Failed to delete product:", err);
-        return throwError(() => err);
+        return throwError(() => err); // Hibát továbbítjuk
       })
     );
   }
 
+  // Kijelentkezés metódus
   async logout(): Promise<void> {
     try {
       await this.authService.logout();
@@ -106,6 +136,7 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // Előfizetések leiratkozása
     this.subDeleteProduct?.unsubscribe();
     this.subProductRefresh?.unsubscribe();
   }

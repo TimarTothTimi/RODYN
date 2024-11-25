@@ -1,5 +1,10 @@
 <div class="container">
-  <div class="row justify-content-center" *ngIf="products?.length">
+  <!-- Csak akkor jelenik meg, ha a products tömb nem üres -->
+  <div
+    class="row justify-content-center"
+    *ngIf="products && products.length > 0; else noProducts"
+  >
+    <!-- Iterálunk a termékek között -->
     <div
       class="col-sm-12 col-md-6 col-lg-4 mb-4"
       *ngFor="let product of products"
@@ -7,19 +12,22 @@
       <div class="card text-dark mx-auto">
         <div class="card-header d-flex justify-content-between">
           <!-- Delete button -->
-          <a *ngIf="isAdmin" class="badge-delete">
+          <a
+            *ngIf="isAdmin && product?.id && product?.category"
+            class="badge-delete"
+          >
             <i
               class="fa-regular fa-circle-xmark fa-2xl"
               style="color: #d92020"
-              (click)="deleteProduct(product?.id, product?.category)"
+              (click)="deleteProduct(product.id!, product.category!)"
             ></i>
           </a>
 
           <!-- Update button -->
           <a
-            *ngIf="isAdmin"
+            *ngIf="isAdmin && product?.id && product?.category"
             class="badge-update"
-            [routerLink]="['/', product?.category, product?.id]"
+            [routerLink]="['/', product.category, product.id]"
           >
             <i class="fa-solid fa-pen fa-xl" style="color: #1a4566"></i>
           </a>
@@ -50,7 +58,9 @@
       </div>
     </div>
   </div>
-  <p *ngIf="!products?.length" class="text-center">
-    Nincsenek elérhető termékek
-  </p>
+
+  <!-- Ha a products tömb üres vagy nem létezik, ez a rész jelenik meg -->
+  <ng-template #noProducts>
+    <p class="text-center">Nincsenek elérhető termékek</p>
+  </ng-template>
 </div>

@@ -41,6 +41,7 @@ import { SzekekComponent } from "./components/szekek/szekek.component";
 import { ProductFormComponent } from "./product-form/product-form.component";
 import { RouterModule } from "@angular/router";
 import { CardComponent } from "./components/card/card.component";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { CardComponent } from "./components/card/card.component";
     AdminComponent,
     SzekekComponent,
     ProductFormComponent,
+    CardComponent,
   ],
 
   imports: [
@@ -84,6 +86,7 @@ import { CardComponent } from "./components/card/card.component";
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    HttpClientModule,
   ],
 
   providers: [
