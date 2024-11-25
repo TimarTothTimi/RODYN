@@ -12,7 +12,7 @@ import {
 } from "@angular/fire/firestore";
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Product } from "../models/product";
+import { Product } from "../models/product"; // Győződjön meg arról, hogy ez az útvonal helyes
 
 @Injectable({
   providedIn: "root",

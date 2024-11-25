@@ -1,5 +1,12 @@
 <app-components-nav></app-components-nav>
-
-<div class="chairs-container">
-  <app-card *ngFor="let szek of szekek" [item]="szek"></app-card>
+<h3 class="text-center my-3" *ngIf="!szekek?.length">
+  Nincsenek elérhető székek
+</h3>
+<!-- Ha van adat, akkor jelenjenek meg a kártyák -->
+<div class="row">
+  <app-card
+    *ngFor="let szek of szekek"
+    [item]="szek"
+    class="col-4 mb-4"
+  ></app-card>
 </div>

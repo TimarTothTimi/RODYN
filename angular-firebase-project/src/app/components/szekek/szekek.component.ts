@@ -1,6 +1,6 @@
-import { ProductService } from "./../../product.service";
-import { Product } from "./../../models/product";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
+import { ProductService } from "../product.service";
+import { Product } from "../models/product";
 
 @Component({
   selector: "app-szekek",
@@ -10,13 +10,16 @@ import { Component, OnInit } from "@angular/core";
 export class SzekekComponent implements OnInit {
   szekek: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(@Inject(ProductService) private productService: ProductService) {}
 
-  ngOnInit(): void {
-    this.productService
-      .getProductsByCategory("chairs")
-      .subscribe((products: Product[]) => {
-        this.szekek = products || [];
-      });
+  ngOnInit() {
+    this.productService.getSzekek().subscribe({
+      next: (data: Product[]) => {
+        this.szekek = data;
+      },
+      error: (err: any) => {
+        console.error("Failed to fetch products:", err);
+      },
+    });
   }
 }

@@ -12,7 +12,7 @@ import {
 } from "@angular/fire/firestore";
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Product } from "../models/product";
+import { Product } from "angular-firebase-project/src/app/models/product";
 
 @Injectable({
   providedIn: "root",
