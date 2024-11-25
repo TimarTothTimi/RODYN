@@ -9,7 +9,7 @@ import { ShoppingBasketService } from "../../services/shopping-basket.service";
 @Component({
   selector: "app-barszekek",
   templateUrl: "./barszekek.component.html",
-  styleUrl: "./barszekek.component.scss",
+  styleUrls: ["./barszekek.component.scss"],
 })
 export class BarszekekComponent implements OnInit {
   products: Product[] = [];
@@ -24,7 +24,7 @@ export class BarszekekComponent implements OnInit {
   }
 
   refresh(): void {
-    this.productService.getBarszekek().subscribe((products) => {
+    this.productService.getBarszekek().subscribe((products: Product[]) => {
       this.products = products;
     });
   }

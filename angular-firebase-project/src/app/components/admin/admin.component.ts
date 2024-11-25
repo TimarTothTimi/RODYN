@@ -1,12 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { ProductService } from "../../services/product.service";
-import { map, Observable } from "rxjs";
-import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "app-admin",
   templateUrl: "./admin.component.html",
-  styleUrl: "./admin.component.scss",
+  styleUrls: ["./admin.component.scss"],
 })
 export class AdminComponent {
   // productName: string = "";

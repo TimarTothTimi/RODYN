@@ -5,7 +5,6 @@ import {
   deleteDoc,
   doc,
   Firestore,
-  getDoc,
   getDocs,
   setDoc,
   DocumentReference,
@@ -13,7 +12,7 @@ import {
 } from "@angular/fire/firestore";
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Product } from "../models/product"; // Győződjön meg arról, hogy ez az útvonal helyes
+import { Product } from "angular-firebase-project/src/app/models/product";
 
 @Injectable({
   providedIn: "root",
@@ -24,19 +23,6 @@ export class ProductService {
   getProductsByCategory(category: string): Observable<Product[]> {
     const collectionRef = collection(this.firestore, category);
     return from(getDocs(collectionRef)).pipe(
-      map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const data = doc.data() as Product;
-          const id = doc.id;
-          return { id, ...data };
-        });
-        return resultList;
-      })
-    );
-  }
-
-  getSzekek(): Observable<Product[]> {
-    return from(getDocs(this.szekekCollestionRef)).pipe(
       map((snapshot) =>
         snapshot.docs.map((doc) => ({
           ...(doc.data() as Product),

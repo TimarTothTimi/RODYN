@@ -19,7 +19,6 @@ import { Article6Component } from "./components/articles/article6/article6.compo
 import { Article7Component } from "./components/articles/article7/article7.component";
 import { Article8Component } from "./components/articles/article8/article8.component";
 import { Article9Component } from "./components/articles/article9/article9.component";
-import { SzekekComponent } from "./components/szekek/szekek.component";
 import { ArticlesNavComponent } from "./components/nav/components-nav/components-nav.component";
 import { ToastrModule } from "ngx-toastr";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -39,13 +38,11 @@ import { AdminComponent } from "./components/admin/admin.component";
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
+import { ProductFormComponent } from "./product-form/product-form.component";
+import { RouterModule } from "@angular/router";
+import { CardComponent } from "./components/card/card.component";
 import { HttpClientModule } from "@angular/common/http";
-import { FloatingSectionComponent } from "./components/floating-section/floating-section";
-import { ArticlesComponent } from "./components/articles/articles.component";
-import { FooterComponent } from "./components/footer/footer.components";
-import { ProductFormComponent } from "./components/product-form/product-form.component";
-import { ProductPageComponent } from "./components/product-page/product-page.component";
-import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-basket.component";
+import { ProductFormComponent } from "./product-form/product-form.component";
 
 @NgModule({
   declarations: [
@@ -64,7 +61,6 @@ import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-b
     Article8Component,
     Article9Component,
     ArticlesComponent,
-    SzekekComponent,
     ArticlesNavComponent,
     SignInComponent,
     CustomerRegComponent,
@@ -73,10 +69,8 @@ import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-b
     AsztalokComponent,
     BarszekekComponent,
     RecepcioComponent,
-    SzekekComponent,
     TaroloComponent,
     ImageSliderComponent,
-    ProductCardComponent,
     AdminComponent,
     ProductFormComponent,
     FooterComponent,
@@ -84,6 +78,8 @@ import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-b
     CenterSectionComponent,
     ProductPageComponent,
     ShoppingBasketComponent,
+    CardComponent,
+    SzekekComponent,
   ],
 
   imports: [
@@ -95,9 +91,10 @@ import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-b
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule, // Ha használod az Auth modult
+    AngularFireAuthModule,
     HttpClientModule,
   ],
+
   providers: [
     provideFirebaseApp(() =>
       initializeApp({

@@ -32,7 +32,7 @@ export class ImageSliderComponent implements OnInit {
         "assets/images/szekek/header/image2.jpg",
         "assets/images/szekek/header/image3.jpg",
       ],
-      link: "/subpage1",
+      link: "/szekek",
     },
     {
       title: "fotelek",
@@ -41,7 +41,7 @@ export class ImageSliderComponent implements OnInit {
         "assets/images/fotelek/header/image2.jpg",
         "assets/images/fotelek/header/image3.jpg",
       ],
-      link: "/subpage2",
+      link: "/fotelek",
     },
     {
       title: "recepciós asztalok",
@@ -50,7 +50,7 @@ export class ImageSliderComponent implements OnInit {
         "assets/images/recepcio/header/image2.jpg",
         "assets/images/recepcio/header/image3.jpg",
       ],
-      link: "/subpage3",
+      link: "/recepcios asztalok",
     },
     {
       title: "bárszékek",
@@ -59,7 +59,7 @@ export class ImageSliderComponent implements OnInit {
         "assets/images/barszek/header/image2.jpg",
         "assets/images/barszek/header/image3.jpg",
       ],
-      link: "/subpage4",
+      link: "/barszekek",
     },
     {
       title: "asztalok",
@@ -68,7 +68,7 @@ export class ImageSliderComponent implements OnInit {
         "assets/images/asztalok/header/image2.jpg",
         "assets/images/asztalok/header/image3.jpg",
       ],
-      link: "/subpage5",
+      link: "/asztalok",
     },
     {
       title: "tároló bútorok",
@@ -77,7 +77,7 @@ export class ImageSliderComponent implements OnInit {
         "assets/images/tarolo/header/2.jpg",
         "assets/images/tarolo/header/3.jpg",
       ],
-      link: "/subpage6",
+      link: "/tarolo",
     },
   ];
 

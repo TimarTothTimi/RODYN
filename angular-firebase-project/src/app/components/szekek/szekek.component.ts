@@ -8,7 +8,7 @@ import { ShoppingBasketService } from "../../services/shopping-basket.service";
 @Component({
   selector: "app-szekek",
   templateUrl: "./szekek.component.html",
-  styleUrl: "./szekek.component.scss",
+  styleUrls: ["./szekek.component.scss"],
 })
 export class SzekekComponent implements OnInit {
   products: Product[] = [];
