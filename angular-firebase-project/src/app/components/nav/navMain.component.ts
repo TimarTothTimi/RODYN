@@ -16,9 +16,8 @@ export class NavComponent implements OnDestroy {
   public userEmail$?: Observable<string | null>;
 
   constructor(private authService: AuthService) {
-    this.authService.currentUserRole.subscribe({
+    this.subCurrentUserRole = this.authService.currentUserRole.subscribe({
       next: (role) => {
-        console.log("nav role", role);
         this.loggedInStatus$.next(role !== null);
         this.isAdmin = role === "admin";
       },

@@ -1,17 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Product } from "../../models/product";
 import { ProductService } from "../../services/product.service";
 import { ShoppingBasketService } from "../../services/shopping-basket.service";
 import { AuthService } from "../../services/auth.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-fotelek",
   templateUrl: "./fotelek.component.html",
   styleUrl: "./fotelek.component.scss",
 })
-export class FotelekComponent implements OnInit {
+export class FotelekComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   isAdmin: boolean = false;
+  subCurrentUserRole?: Subscription;
 
   constructor(
     private productService: ProductService,
@@ -45,5 +47,8 @@ export class FotelekComponent implements OnInit {
     this.authService.currentUserRole.subscribe((role) => {
       this.isAdmin = role === "admin";
     });
+  }
+  ngOnDestroy(): void {
+    this.subCurrentUserRole?.unsubscribe();
   }
 }

@@ -11,9 +11,10 @@ import { ShoppingBasketService } from "../../services/shopping-basket.service";
   templateUrl: "./barszekek.component.html",
   styleUrls: ["./barszekek.component.scss"],
 })
-export class BarszekekComponent implements OnInit {
+export class BarszekekComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   isAdmin: boolean = false;
+  subCurrentUserRole?: Subscription;
 
   constructor(
     private productService: ProductService,
@@ -49,6 +50,10 @@ export class BarszekekComponent implements OnInit {
 
       this.isAdmin = role === "admin";
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subCurrentUserRole?.unsubscribe();
   }
   // isAdmin: boolean = false;
   // products: Product[] = [];
