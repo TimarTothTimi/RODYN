@@ -1,21 +1,5 @@
 <app-components-nav></app-components-nav>
 
-<section class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="col text-center mb-5">
-        <h1 class="display-4 font-weight-bolder">Székek</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4" *ngFor="let product of products">
-        <app-card
-          [title]="product.title"
-          [description]="product.description"
-          [imageUrl]="product.imageUrl"
-        >
-        </app-card>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="chairs-container">
+  <app-card *ngFor="let szek of szekek" [item]="szek"></app-card>
+</div>

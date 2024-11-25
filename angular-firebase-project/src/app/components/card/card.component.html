@@ -1,66 +1,50 @@
 <div class="container">
-  <!-- Csak akkor jelenik meg, ha a products tömb nem üres -->
-  <div
-    class="row justify-content-center"
-    *ngIf="products && products.length > 0; else noProducts"
-  >
-    <!-- Iterálunk a termékek között -->
+  <div class="row justify-content-center" *ngIf="products?.length">
     <div
-      class="col-sm-12 col-md-6 col-lg-4 mb-4"
       *ngFor="let product of products"
+      class="col-sm-12 col-md-6 col-lg-4 mb-4"
     >
+      <div class="card">
+        <img [src]="product?.images" alt="{{ product?.name }}" />
+        <h2>{{ product.name }}</h2>
+        <h4>{{ product.manufacturer }}</h4>
+        <p>{{ product.description }}</p>
+        <p><strong>Ár:</strong> {{ product.price }} Ft</p>
+      </div>
       <div class="card text-dark mx-auto">
-        <div class="card-header d-flex justify-content-between">
-          <!-- Delete button -->
-          <a
-            *ngIf="isAdmin && product?.id && product?.category"
-            class="badge-delete"
-          >
-            <i
-              class="fa-regular fa-circle-xmark fa-2xl"
-              style="color: #d92020"
-              (click)="deleteProduct(product.id!, product.category!)"
-            ></i>
+        <!-- Update button -->
+        <a
+          *ngIf="isAdmin && product?.id && product?.category"
+          class="badge-update"
+          [routerLink]="['/', product.category, product.id]"
+        >
+          <i class="fa-solid fa-pen fa-xl" style="color: #1a4566"></i>
+        </a>
+      </div>
+
+      <div class="card-body">
+        <!-- Product title -->
+        <h4 class="card-title mt-0">
+          <a class="text-dark" href="javascript:void(0)">
+            {{ product?.name }}
           </a>
+        </h4>
 
-          <!-- Update button -->
-          <a
-            *ngIf="isAdmin && product?.id && product?.category"
-            class="badge-update"
-            [routerLink]="['/', product.category, product.id]"
-          >
-            <i class="fa-solid fa-pen fa-xl" style="color: #1a4566"></i>
-          </a>
-        </div>
+        <!-- Product image -->
+        <img
+          *ngIf="product?.images"
+          [src]="product.images"
+          [alt]="product?.name"
+          class="img-fluid"
+        />
+        <p *ngIf="!product?.images">Kép nem érhető el</p>
 
-        <div class="card-body">
-          <!-- Product title -->
-          <h4 class="card-title mt-0">
-            <a class="text-dark" href="javascript:void(0)">
-              {{ product?.name }}
-            </a>
-          </h4>
-
-          <!-- Product image -->
-          <img
-            *ngIf="product?.images"
-            [src]="product.images"
-            [alt]="product?.name"
-            class="img-fluid"
-          />
-          <p *ngIf="!product?.images">Kép nem érhető el</p>
-
-          <!-- Product price -->
-          <div class="card-footer text-center">
-            <p class="mb-0">{{ product?.price }} Forint</p>
-          </div>
+        <!-- Product price -->
+        <div class="card-footer text-center">
+          <p class="mb-0">{{ product?.price }} Forint</p>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Ha a products tömb üres vagy nem létezik, ez a rész jelenik meg -->
-  <ng-template #noProducts>
-    <p class="text-center">Nincsenek elérhető termékek</p>
-  </ng-template>
 </div>
+<p *ngIf="!products?.length" class="text-center">Nincsenek elérhető termékek</p>

@@ -32,16 +32,15 @@ import { RecepcioComponent } from "./components/recepcio/recepcio.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
 import { producerNotifyConsumers } from "@angular/core/primitives/signals";
 import { ImageSliderComponent } from "./components/image-slider/image-slider.component";
-import { ProductCardComponent } from "./product-card/product-card.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
-import { SzekekComponent } from "./components/szekek/szekek.component";
 import { ProductFormComponent } from "./product-form/product-form.component";
 import { RouterModule } from "@angular/router";
 import { CardComponent } from "./components/card/card.component";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { SzekekComponent } from "./components/szekek/szekek.component";
 
 @NgModule({
   declarations: [
@@ -70,11 +69,10 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
     RecepcioComponent,
     TaroloComponent,
     ImageSliderComponent,
-    ProductCardComponent,
     AdminComponent,
-    SzekekComponent,
     ProductFormComponent,
     CardComponent,
+    SzekekComponent,
   ],
 
   imports: [

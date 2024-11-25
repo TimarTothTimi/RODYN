@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ProductService } from "../services/product.service";
-import { ActivatedRoute, ParamMap, Router, UrlSegment } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import {
   AbstractControl,
   FormControl,
@@ -13,7 +13,7 @@ import { Product } from "../models/product";
 @Component({
   selector: "app-product-form",
   templateUrl: "./product-form.component.html",
-  styleUrl: "./product-form.component.scss",
+  styleUrls: ["./product-form.component.scss"],
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
   productForm: FormGroup;
@@ -121,7 +121,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
             next: () => {
               console.log("Product updated!");
             },
-            error: (err) => {
+            error: (err: any) => {
               console.log(err);
             },
             complete: () => {
@@ -130,16 +130,15 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           });
       } else {
         this.subSaveProduct = this.productService
-          .creatProduct(product)
+          .createProduct(product)
           .subscribe({
             next: () => {
               console.log("Product created!");
             },
-            error: (err) => {
+            error: (err: any) => {
               console.log(err);
             },
             complete: () => {
-              console.log(product);
               this.router.navigate(["/", product.category]);
             },
           });
@@ -154,7 +153,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         next: () => {
           console.log("Product deleted!");
         },
-        error: (err) => {
+        error: (err: any) => {
           console.log(err);
         },
         complete: () => {

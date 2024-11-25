@@ -23,10 +23,7 @@ export class BarszekekComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private productService: ProductService,
     private router: Router
-  ) {
-    this.loggedInStatus$ = this.authService.loggedInStatus$;
-    this.userEmail$ = this.authService.userEmail$;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.authService.currentUserRole.subscribe((role) => {
@@ -48,7 +45,7 @@ export class BarszekekComponent implements OnInit, OnDestroy {
         next: () => {
           console.log("Product deleted!");
         },
-        error: (err) => {
+        error: (err: any) => {
           console.log(err);
         },
         complete: () => {
@@ -61,6 +58,7 @@ export class BarszekekComponent implements OnInit, OnDestroy {
   async logout(): Promise<void> {
     await this.authService.logout();
   }
+
   ngOnDestroy(): void {
     this.subDeleteProduct?.unsubscribe();
   }
