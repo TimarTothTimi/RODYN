@@ -1,17 +1,13 @@
 <div class="card text-dark mx-auto">
-  <div class="card-header d-flex justify-content-between">
-    <a *ngIf="isAdmin" class="badge-delete">
+  <div *ngIf="isAdmin" class="card-header d-flex justify-content-between">
+    <a class="badge-delete">
       <i
         class="fa-regular fa-circle-xmark fa-2xl"
         style="color: #d92020"
         (click)="deleteProduct.next(product)"
       ></i>
     </a>
-    <a
-      *ngIf="isAdmin"
-      class="badge-update"
-      routerLink="/product-form/{{ product.id }}"
-    >
+    <a class="badge-update" routerLink="/product-form/{{ product.id }}">
       <i class="fa-solid fa-pen fa-xl" style="color: #1a4566"></i>
     </a>
   </div>
@@ -24,7 +20,7 @@
       <span class="text-dark h4">{{ product.name }}</span>
     </span>
     <img src="{{ product.images }}" alt="{{ product.name }}" />
-    <span class="card-footer text-center">
+    <span class="card-footer text-center mt-3">
       <p class="mb-0">{{ product.price }} Forint</p>
     </span>
   </a>

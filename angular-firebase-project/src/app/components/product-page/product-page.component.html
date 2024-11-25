@@ -3,7 +3,11 @@
   <section class="container w-75 pt-3" *ngIf="product">
     <div class="row align-items-stretch pb-5">
       <div class="col-12 col-md-6 text-center">
-        <img [src]="product.images" [alt]="product.name" class="pb-3" />
+        <img
+          [src]="product.images"
+          [alt]="product.name"
+          class="pb-3 object-fit-cover"
+        />
       </div>
       <div class="col-12 col-md-6 text-start">
         <h3 class="pb-1">{{ product.name }}</h3>
@@ -15,8 +19,14 @@
       </div>
     </div>
     <section>
-      <h3>Kapcsolódó termékek</h3>
-      <p>Hasonló termékek kártryái (azonos kategóriában)</p>
+      <h3 class="mb-5">Kapcsolódó termékek</h3>
+      <div class="d-flex justify-content-around flex-wrap">
+        <app-product-card
+          *ngFor="let product of relatedProducts"
+          [product]="product"
+          class="mb-5"
+        ></app-product-card>
+      </div>
     </section>
   </section>
 </main>
