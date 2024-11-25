@@ -7,7 +7,7 @@ export interface Product {
   category:
     | "szekek"
     | "fotelek"
-    | "recepciosAsztalok"
+    | "recepciosasztalok"
     | "barszekek"
     | "asztalok"
     | "taroloButorok";

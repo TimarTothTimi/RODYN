@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-barszekek",
   templateUrl: "./barszekek.component.html",
-  styleUrl: "./barszekek.component.scss",
+  styleUrls: ["./barszekek.component.scss"],
 })
 export class BarszekekComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
@@ -33,7 +33,7 @@ export class BarszekekComponent implements OnInit, OnDestroy {
   }
 
   refresh(): void {
-    this.productService.getBarszekek().subscribe((products) => {
+    this.productService.getBarszekek().subscribe((products: Product[]) => {
       this.products = products;
     });
   }

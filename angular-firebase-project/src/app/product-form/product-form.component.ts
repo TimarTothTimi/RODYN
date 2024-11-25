@@ -53,7 +53,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       this.productService.getRecepciosAsztalok(),
       this.productService.getBarszekek(),
       this.productService.getAsztalok(),
-      this.productService.getTaroloButorok(),
+      this.productService.getTarolok(),
     ])
       .pipe(
         first(),

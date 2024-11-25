@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import {
   addDoc,
   collection,
@@ -11,20 +10,16 @@ import {
   DocumentReference,
   DocumentData,
 } from "@angular/fire/firestore";
-import { from, map, Observable } from "rxjs";
+import { from, Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import { Product } from "../models/product";
 
 @Injectable({
-  providedIn: "root", // Globálisan elérhetővé teszi a szolgáltatást
+  providedIn: "root",
 })
 export class ProductService {
   constructor(private firestore: Firestore) {}
 
-  /**
-   * Kategóriánkénti termékek lekérdezése.
-   * @param category A kategória neve
-   * @returns Observable a terméklistával
-   */
   getProductsByCategory(category: string): Observable<Product[]> {
     const collectionRef = collection(this.firestore, category);
     return from(getDocs(collectionRef)).pipe(
@@ -37,11 +32,10 @@ export class ProductService {
     );
   }
 
-  /**
-   * Új termék hozzáadása egy adott kategóriához.
-   * @param product A hozzáadandó termék
-   * @returns Observable a dokumentumadatokkal
-   */
+  getProducts(): Observable<Product[]> {
+    return this.getProductsByCategory("products");
+  }
+
   getBarszekek(): Observable<Product[]> {
     return this.getProductsByCategory("barszekek");
   }
@@ -62,8 +56,8 @@ export class ProductService {
     return this.getProductsByCategory("asztalok");
   }
 
-  getTaroloButorok(): Observable<Product[]> {
-    return this.getProductsByCategory("tarolobutorok");
+  getTarolok(): Observable<Product[]> {
+    return this.getProductsByCategory("tarolok");
   }
 
   createProduct(product: Product): Observable<DocumentReference<DocumentData>> {
@@ -73,31 +67,14 @@ export class ProductService {
     const collectionRef = collection(this.firestore, product.category);
     return from(addDoc(collectionRef, product));
   }
-}
 
-  /**
-   * Termék törlése adott kategóriából.
-   * @param productId A törlendő termék azonosítója
-   * @param category A kategória neve
-   * @returns Observable a törlési művelethez
-   */
   deleteProduct(productId: string, category: string): Observable<void> {
-    if (!category || !productId) {
-      throw new Error("Category and productId are required");
-    }
     const productDocRef = doc(this.firestore, `${category}/${productId}`);
-    return from(deleteDoc(productDocRef));
+    return from(deleteDoc(productDocRef)).pipe(map(() => void 0));
   }
 
-  /**
-   * Termék frissítése.
-   * @param product A frissítendő termék
-   * @returns Observable a frissítési művelethez
-   */
   updateProduct(product: Product): Observable<void> {
-    if (!product.category || !product.id) {
-      throw new Error("Product category and id are required");
-    }
     const productDoc = doc(this.firestore, `${product.category}/${product.id}`);
-    return from(setDoc(productDoc, product));
+    return from(setDoc(productDoc, product)).pipe(map(() => void 0));
   }
+}

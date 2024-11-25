@@ -1,11 +1,14 @@
 import { Injectable } from "@angular/core";
 import {
-  Firestore,
+  addDoc,
   collection,
-  getDocs,
-  doc,
   deleteDoc,
+  doc,
+  Firestore,
+  getDocs,
   setDoc,
+  DocumentReference,
+  DocumentData,
 } from "@angular/fire/firestore";
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -29,6 +32,10 @@ export class ProductService {
     );
   }
 
+  getProducts(): Observable<Product[]> {
+    return this.getProductsByCategory("products");
+  }
+
   getBarszekek(): Observable<Product[]> {
     return this.getProductsByCategory("barszekek");
   }
@@ -49,8 +56,16 @@ export class ProductService {
     return this.getProductsByCategory("asztalok");
   }
 
-  getTaroloButorok(): Observable<Product[]> {
-    return this.getProductsByCategory("tarolobutorok");
+  getTarolok(): Observable<Product[]> {
+    return this.getProductsByCategory("tarolok");
+  }
+
+  createProduct(product: Product): Observable<DocumentReference<DocumentData>> {
+    if (!product.category) {
+      throw new Error("Product category is required");
+    }
+    const collectionRef = collection(this.firestore, product.category);
+    return from(addDoc(collectionRef, product));
   }
 
   deleteProduct(productId: string, category: string): Observable<void> {
