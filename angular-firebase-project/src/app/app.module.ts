@@ -34,7 +34,7 @@ import { RecepcioComponent } from "./components/recepcio/recepcio.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
 import { producerNotifyConsumers } from "@angular/core/primitives/signals";
 import { ImageSliderComponent } from "./components/image-slider/image-slider.component";
-import { ProductCardComponent } from "./product-card/product-card.component";
+import { ProductCardComponent } from "./components/product-card/product-card.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
@@ -43,7 +43,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { FloatingSectionComponent } from "./components/floating-section/floating-section";
 import { ArticlesComponent } from "./components/articles/articles.component";
 import { FooterComponent } from "./components/footer/footer.components";
-import { ProductFormComponent } from "./product-form/product-form.component";
+import { ProductFormComponent } from "./components/product-form/product-form.component";
+import { ProductPageComponent } from "./components/product-page/product-page.component";
+import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-basket.component";
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { ProductFormComponent } from "./product-form/product-form.component";
     FooterComponent,
     FloatingSectionComponent,
     CenterSectionComponent,
+    ProductPageComponent,
+    ShoppingBasketComponent,
   ],
 
   imports: [

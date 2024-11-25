@@ -21,7 +21,9 @@ import { AsztalokComponent } from "./components/asztalok/asztalok.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { AdminGuard } from "./guard/admin.guard";
-import { ProductFormComponent } from "./product-form/product-form.component";
+import { ProductFormComponent } from "./components/product-form/product-form.component";
+import { ProductPageComponent } from "./components/product-page/product-page.component";
+import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-basket.component";
 
 const routes: Routes = [
   { path: "registration", component: CustomerRegComponent },
@@ -64,15 +66,23 @@ const routes: Routes = [
   },
 
   { path: "fotelek", component: FotelekComponent },
-  { path: "recepcio", component: RecepcioComponent },
+  { path: "recepciosAsztalok", component: RecepcioComponent },
   { path: "barszekek", component: BarszekekComponent },
 
   { path: "asztalok", component: AsztalokComponent },
-  { path: "tarolo", component: TaroloComponent },
+  { path: "taroloButorok", component: TaroloComponent },
+  { path: "product-page/:category/:id", component: ProductPageComponent },
+  { path: "product-page", component: ProductPageComponent },
+  { path: "shooping-basket", component: ShoppingBasketComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "top" })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: "top",
+      anchorScrolling: "enabled",
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

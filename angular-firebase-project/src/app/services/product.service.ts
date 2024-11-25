@@ -7,6 +7,7 @@ import {
   doc,
   DocumentData,
   Firestore,
+  getDoc,
   getDocs,
   setDoc,
 } from "@angular/fire/firestore";
@@ -17,28 +18,6 @@ import { Product } from "../models/product";
   providedIn: "root",
 })
 export class ProductService {
-  // private apiUrl = "http://localhost:3000/products"; // Backend URL
-
-  // private readonly szekekCollestionRef = collection(this.firestore, "szekek");
-
-  // constructor(private http: HttpClient, private firestore: Firestore) {}
-
-  // addProduct(product: any): Observable<any> {
-  //   return this.http.post<any>(this.apiUrl, product);
-  // }
-
-  // getProdut(): Observable<Product[]> {
-  //   return from(getDocs(this.szekekCollestionRef)).pipe(
-  //     map((snapshot) => {
-  //       const resultList = snapshot.docs.map((doc) => {
-  //         const szekekData: Product = doc.data() as Product;
-  //         return szekekData;
-  //       });
-  //       return resultList;
-  //     })
-  //   );
-  // }
-
   constructor(private firestore: Firestore) {}
 
   private readonly szekekCollestionRef = collection(this.firestore, "szekek");
@@ -87,6 +66,17 @@ export class ProductService {
           };
         })
       )
+    );
+  }
+  getProduct(category: string, id: string): Observable<Product> {
+    const collectionRef = collection(this.firestore, category);
+    const productDocRef = doc(this.firestore, `${collectionRef.path}/${id}`);
+    return from(getDoc(productDocRef)).pipe(
+      map((snapshot) => {
+        const result = snapshot.data() as Product;
+        result.id = snapshot.id;
+        return result;
+      })
     );
   }
 

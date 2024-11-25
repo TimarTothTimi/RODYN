@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ProductService } from "../services/product.service";
+import { ProductService } from "../../services/product.service";
 import { ActivatedRoute, ParamMap, Router, UrlSegment } from "@angular/router";
 import {
   AbstractControl,
@@ -8,7 +8,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { combineLatest, first, map, Subscription } from "rxjs";
-import { Product } from "../models/product";
+import { Product } from "../../models/product";
 
 @Component({
   selector: "app-product-form",

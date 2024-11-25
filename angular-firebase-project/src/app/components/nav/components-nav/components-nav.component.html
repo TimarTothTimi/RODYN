@@ -17,13 +17,13 @@
     >
 
     <div class="d-flex ms-auto">
-      <a href="#" class="p-2 link-dark">
+      <!-- <a href="#" class="p-2 link-dark">
         <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-      </a>
+      </a> -->
       <a routerLink="/sign-in" class="p-2 link-dark">
         <i class="fa-regular fa-user fa-xl"></i>
       </a>
-      <a href="#" class="p-2 link-dark">
+      <a routerLink="/shooping-basket" class="p-2 link-dark">
         <i class="fa-solid fa-basket-shopping fa-xl"></i>
       </a>
     </div>
@@ -35,7 +35,7 @@
       aria-labelledby="offcanvasNavbarLabel"
       data-bs-scroll="true"
     >
-      <div class="offcanvas-header bg-secondary-subtle formlab">
+      <div class="offcanvas-header bg-secondary-subtle">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
           <span class="formlab-white">Form</span
           ><span class="formlab-orange">Lab</span>
@@ -89,7 +89,7 @@
                 >
               </li>
               <li>
-                <a class="dropdown-item" routerLink="/recepcio">
+                <a class="dropdown-item" routerLink="/recepciosAsztalok">
                   <img src="assets/images/reception.png" alt="" class="icon" />
                   Recepciós asztalok
                 </a>
@@ -107,7 +107,7 @@
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" routerLink="/tarolo">
+                <a class="dropdown-item" routerLink="/taroloButorok">
                   <img src="assets/images/locker.png" alt="" class="icon" />
                   Tároló bútorok
                 </a>
@@ -115,18 +115,18 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cikkeink</a>
+            <a class="nav-link" href="#articlesSection">Cikkeink</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Kapcsolat</a>
           </li>
-          <li class="nav-item" *ngIf="isAdmin">
+          <!-- <li class="nav-item" *ngIf="isAdmin">
             <a class="nav-link" routerLink="/termekfeltoltes"
               >Termékfeltöltés</a
             >
-          </li>
+          </li> -->
         </ul>
-        <form class="d-flex mt-3" role="search">
+        <!-- <form class="d-flex mt-3" role="search">
           <input
             class="form-control me-2"
             type="search"
@@ -134,7 +134,7 @@
             aria-label="Search"
           />
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        </form> -->
       </div>
     </div>
   </div>
