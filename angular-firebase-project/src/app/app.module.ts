@@ -64,7 +64,6 @@ import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-b
     Article8Component,
     Article9Component,
     ArticlesComponent,
-    SzekekComponent,
     ArticlesNavComponent,
     SignInComponent,
     CustomerRegComponent,
