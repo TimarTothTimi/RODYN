@@ -3,6 +3,7 @@ import { ProductService } from "../../services/product.service";
 import { Observable } from "rxjs";
 import { Product } from "../../models/product";
 import { AuthService } from "../../services/auth.service";
+import { ShoppingBasketService } from "../../services/shopping-basket.service";
 
 @Component({
   selector: "app-szekek",
@@ -10,38 +11,40 @@ import { AuthService } from "../../services/auth.service";
   styleUrl: "./szekek.component.scss",
 })
 export class SzekekComponent implements OnInit {
-  // constructor(private productService: ProductService) {}
-  // szekek$?: Observable<Product[]>;
-
-  // ngOnInit(): void {
-  //   this.szekek$ = this.productService.getSzekek();
-  // }
-
-  isAdmin: boolean = false;
   products: Product[] = [];
-
-  public loggedInStatus$?: Observable<boolean | null>;
-  public isAdmin$?: Observable<boolean | null>;
-  public userEmail$?: Observable<string | null>;
+  isAdmin: boolean = false;
 
   constructor(
-    private authService: AuthService,
-    private productService: ProductService
+    private productService: ProductService,
+    private shoppingBasketService: ShoppingBasketService,
+    private authService: AuthService
   ) {
-    this.loggedInStatus$ = this.authService.loggedInStatus$;
-    this.userEmail$ = this.authService.userEmail$;
+    this.refresh();
+  }
+
+  refresh(): void {
+    this.productService.getSzekek().subscribe((products) => {
+      this.products = products;
+    });
+  }
+
+  deleteProduct(product: Product): void {
+    this.productService.deleteProduct(product.id!, product.category).subscribe({
+      next: () => {
+        console.log("Product deleted!");
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        this.refresh();
+      },
+    });
   }
 
   ngOnInit(): void {
     this.authService.currentUserRole.subscribe((role) => {
       this.isAdmin = role === "admin";
     });
-    this.productService.getProducts("szekek").subscribe((products) => {
-      this.products = products;
-    });
-  }
-
-  async logout(): Promise<void> {
-    await this.authService.logout();
   }
 }

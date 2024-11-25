@@ -1,31 +1,36 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
-import { Observable } from "rxjs";
+import { BehaviorSubject, map, Observable, Subscription, tap } from "rxjs";
 
 @Component({
   selector: "app-nav",
   templateUrl: "./navMain.component.html",
   styleUrls: ["./navMain.component.scss"],
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnDestroy {
   isAdmin: boolean = false;
+  subCurrentUserRole?: Subscription;
 
-  public loggedInStatus$?: Observable<boolean | null>;
+  public loggedInStatus$ = new BehaviorSubject<boolean>(false);
   public isAdmin$?: Observable<boolean | null>;
   public userEmail$?: Observable<string | null>;
 
   constructor(private authService: AuthService) {
-    this.loggedInStatus$ = this.authService.loggedInStatus$;
-    this.userEmail$ = this.authService.userEmail$;
-  }
-
-  ngOnInit(): void {
-    this.authService.currentUserRole.subscribe((role) => {
-      this.isAdmin = role === "admin";
+    this.authService.currentUserRole.subscribe({
+      next: (role) => {
+        console.log("nav role", role);
+        this.loggedInStatus$.next(role !== null);
+        this.isAdmin = role === "admin";
+      },
     });
+    this.userEmail$ = this.authService.userEmail$;
   }
 
   async logout(): Promise<void> {
     await this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.subCurrentUserRole?.unsubscribe();
   }
 }

@@ -16,7 +16,10 @@
     </a>
   </div>
 
-  <a class="card-body">
+  <a
+    class="card-body"
+    routerLink="/product-page/{{ product.category }}/{{ product.id }}"
+  >
     <span class="card-title mt-0">
       <span class="text-dark h4">{{ product.name }}</span>
     </span>

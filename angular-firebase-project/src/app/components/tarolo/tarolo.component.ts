@@ -1,19 +1,23 @@
 import { ShoppingBasketService } from "./../../services/shopping-basket.service";
 import { Firestore } from "@angular/fire/firestore";
 import { ProductService } from "./../../services/product.service";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Product } from "../../models/product";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "app-tarolo",
   templateUrl: "./tarolo.component.html",
   styleUrl: "./tarolo.component.scss",
 })
-export class TaroloComponent {
+export class TaroloComponent implements OnInit {
   products: Product[] = [];
+  isAdmin: boolean = false;
+
   constructor(
     private productService: ProductService,
-    private shoppingBasketService: ShoppingBasketService
+    private shoppingBasketService: ShoppingBasketService,
+    private authService: AuthService
   ) {
     this.refresh();
   }
@@ -38,7 +42,9 @@ export class TaroloComponent {
     });
   }
 
-  // addToBasket(product: Product) {
-  //   this.shoppingBasketService.setBasketItem(product.id, product.category, 1);
-  // }
+  ngOnInit(): void {
+    this.authService.currentUserRole.subscribe((role) => {
+      this.isAdmin = role === "admin";
+    });
+  }
 }

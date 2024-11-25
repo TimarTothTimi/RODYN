@@ -66,7 +66,7 @@ const routes: Routes = [
   },
 
   { path: "fotelek", component: FotelekComponent },
-  { path: "recepcio", component: RecepcioComponent },
+  { path: "recepciosAsztalok", component: RecepcioComponent },
   { path: "barszekek", component: BarszekekComponent },
 
   { path: "asztalok", component: AsztalokComponent },

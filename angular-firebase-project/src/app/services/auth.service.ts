@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   UserCredential,
+  User,
 } from "@angular/fire/auth";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
@@ -36,7 +37,8 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore
   ) {
-    this.afAuth.authState.subscribe((user) => {
+    this.auth.onAuthStateChanged((user: User | null) => {
+      console.log("AuthService.onAuthStateChanged", user);
       if (user) {
         this.getCurrentUserRole(user.uid).subscribe((role) => {
           this.currentUserRole.next(role);
@@ -45,6 +47,15 @@ export class AuthService {
         this.currentUserRole.next(null);
       }
     });
+    // this.afAuth.authState.subscribe((user) => {
+    //   if (user) {
+    //     this.getCurrentUserRole(user.uid).subscribe((role) => {
+    //       this.currentUserRole.next(role);
+    //     });
+    //   } else {
+    //     this.currentUserRole.next(null);
+    //   }
+    // });
   }
 
   getAuthState(): Observable<any> {
@@ -113,25 +124,10 @@ export class AuthService {
   }
 
   async logout(): Promise<void> {
+    await this.afAuth.signOut();
     await this.auth.signOut();
     this.loggedInStatus.next(false);
     this.userEmail.next(null);
-  }
-
-  checkAuthState(): void {
-    this.auth.onAuthStateChanged({
-      next: (user) => {
-        if (user) {
-          console.log("Van user initkor: ", user);
-          this.loggedInStatus.next(true);
-          this.userEmail.next(user.email);
-        }
-      },
-      error: (error) => {
-        console.log(error);
-      },
-      complete: () => {},
-    });
   }
 
   async loginWithGoogle(): Promise<void> {
@@ -153,12 +149,6 @@ export class AuthService {
       this.toastr.error("Hiba történt a Google-bejelentkezés során.");
       console.error("Google login error:", error);
     }
-  }
-
-  // Check if user is authenticated (i.e., has a valid token)
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem("token");
-    return token != null && !this.jwtHelper.isTokenExpired(token); // Ensure token exists and is not expired
   }
 
   // A token dekódolása
@@ -183,14 +173,6 @@ export class AuthService {
     }
     return null;
   }
-
-  // getCurrentUserRole(uid: string) {
-  //   return this.firestore
-  //     .collection("users")
-  //     .doc(uid)
-  //     .valueChanges()
-  //     .pipe(map((user: any) => user?.role));
-  // }
 
   getCurrentUserRole(uid: string): Observable<string> {
     return this.firestore
