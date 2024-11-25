@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class ProductPageComponent implements OnInit {
   public loggedInStatus$?: Observable<boolean | null>;
   public userEmail$?: Observable<string | null>;
+  public product?: Product;
 
   constructor(
     private authService: AuthService,
@@ -25,11 +26,14 @@ export class ProductPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // const productId = this.route.snapshot.paramMap.get("id");
-    // if (productId) {
-    //   this.productService.getProducts(productId).subscribe((product) => {
-    //     this.product = product;
-    //   });
-    // }
+    const productId = this.route.snapshot.paramMap.get("id");
+    const productCategory = this.route.snapshot.paramMap.get("category");
+    if (productCategory && productId) {
+      this.productService
+        .getProduct(productCategory, productId)
+        .subscribe((product) => {
+          this.product = product;
+        });
+    }
   }
 }
