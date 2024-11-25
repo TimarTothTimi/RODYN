@@ -8,16 +8,16 @@ import { Component } from "@angular/core";
   styleUrl: "./shopping-basket.component.scss",
 })
 export class ShoppingBasketComponent {
-  // items: BasketItem[];
-  // constructor(private shoppingBasketService: ShoppingBasketService) {
-  //   this.items = this.shoppingBasketService.getBasket();
-  // }
-  // increaseQuantity(id: string, category: string): void {
-  //   this.quantity++;
-  // }
-  // decreaseQuantity(id: string, category: string): void {
-  //   if (this.quantity > 1) {
-  //     this.quantity--;
-  //   }
-  // }
+  items: BasketItem[];
+  constructor(private shoppingBasketService: ShoppingBasketService) {
+    this.items = this.shoppingBasketService.getBasket();
+  }
+  increaseQuantity(id: string, category: string): void {
+    // this.quantity++;
+  }
+  decreaseQuantity(id: string, category: string): void {
+    // if (this.quantity > 1) {
+    //   this.quantity--;
+    // }
+  }
 }
