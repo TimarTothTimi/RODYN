@@ -24,7 +24,14 @@
         <i class="fa-regular fa-user fa-xl"></i>
       </a>
       <a routerLink="/shooping-basket" class="p-2 link-dark">
-        <i class="fa-solid fa-basket-shopping fa-xl"></i>
+        <i class="fa-solid fa-basket-shopping fa-xl"
+          ><span
+            *ngIf="basketItemCount > 0"
+            class="position-absolute translate-middle badge rounded-pill bg-danger badge-notification"
+          >
+            {{ basketItemCount }}
+          </span></i
+        >
       </a>
     </div>
 
