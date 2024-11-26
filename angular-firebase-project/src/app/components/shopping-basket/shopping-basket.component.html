@@ -5,11 +5,15 @@
     <div class="col-12 col-md-6">
       <ul>
         <li class="decorationNone mb-3" *ngFor="let item of items">
-          <div class="row">
-            <div class="col-3">
-              <img class="thumbnail" [src]="item.images" [alt]="item.name" />
+          <div class="row align-items-center">
+            <div class="col-3 flex-grow-1">
+              <img
+                class="thumbnail w-100 h-100 object-fit-contain"
+                [src]="item.images"
+                [alt]="item.name"
+              />
             </div>
-            <div class="col-6">
+            <div class="col-6 flex-grow-1">
               <h6 class="">{{ item.name }}</h6>
               <p class="text-secondary fs-6 fw-lighter">
                 {{ item.manufacturer }}
@@ -57,7 +61,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-3 flex-grow-1">
               <h6>{{ item.price }} Ft</h6>
             </div>
           </div>
