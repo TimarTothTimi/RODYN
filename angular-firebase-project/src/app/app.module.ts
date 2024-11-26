@@ -51,6 +51,7 @@ import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-b
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
     HomeComponent,
     NavComponent,
     ArticlesComponent,
@@ -78,7 +79,6 @@ import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-b
     ProductCardComponent,
     AdminComponent,
     ProductFormComponent,
-    FooterComponent,
     FloatingSectionComponent,
     CenterSectionComponent,
     ProductPageComponent,

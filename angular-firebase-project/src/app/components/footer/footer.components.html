@@ -3,67 +3,105 @@
     <div class="row">
       <!-- Contact Info -->
       <div class="col-md-4 mb-3">
-        <h3 class="footer-title">Kapcsolat</h3>
-        <p>Phone: +36 30 6969420</p>
+        <h4 class="footer-title">Kapcsolat</h4>
+        <p>Telefon: +36 30 6969420</p>
+        <!-- Google Térkép beágyazása -->
+        <div class="google-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2700.609969650443!2d19.092926791587317!3d47.40004242789515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741e8687c501255%3A0x599a7bcb3c30743e!2zQnVkYXBlc3QsIEvDtmvDtnJjc2luIHUuIDQsIDEyMTM!5e0!3m2!1sen!2shu!4v1732663121109!5m2!1sen!2shu"
+            width="100%"
+            height="300"
+            frameborder="0"
+            style="border: 0"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
       </div>
 
-      <!-- About -->
+      <!-- Combined Column -->
       <div class="col-md-2 mb-3">
-        <h3 class="footer-title">
-          <a href="/rolunk" class="footer-link">Rólunk</a>
-        </h3>
-      </div>
-
-      <!-- References -->
-      <div class="col-md-2 mb-3">
-        <h3 class="footer-title">
-          <a href="/referenciak" class="footer-link">Referenciák</a>
-        </h3>
-      </div>
-
-      <!-- Terms -->
-      <div class="col-md-2 mb-3">
-        <h3 class="footer-title">
+        <h4 class="footer-title">
           <a href="/aszf" class="footer-link">ÁSZF</a>
-        </h3>
+        </h4>
+        <h4 class="footer-title">
+          <a href="/rolunk" class="footer-link">Rólunk</a>
+        </h4>
+        <h4 class="footer-title">
+          <a href="/referenciak" class="footer-link">Referenciák</a>
+        </h4>
       </div>
 
       <!-- Newsletter -->
       <div class="col-md-4 mb-3">
-        <h3 class="footer-title">Hírlevél</h3>
+        <h4 class="footer-title">Hírlevél</h4>
         <p>Újdonságok elsőkézből</p>
-        <form class="d-flex flex-column gap-2">
+        <form
+          (ngSubmit)="subscribe()"
+          [formGroup]="form"
+          class="d-flex flex-column gap-2"
+        >
+          <label for="email">Email cím:</label>
           <input
+            id="email"
             type="email"
+            formControlName="email"
+            placeholder="Kérjük adja meg email címét..."
             class="form-control"
-            placeholder="Email cím"
-            aria-label="Email cím"
+            required
           />
-          <button class="btn btn-secondary btn-sm" type="submit">
-            Feliratkozom
+          <div
+            *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+            class="error text-danger"
+          >
+            Érvényes email címet adj meg!
+          </div>
+
+          <div class="gdpr">
+            <input type="checkbox" id="gdpr" formControlName="gdpr" />
+            <label for="gdpr">
+              Elfogadom az
+              <a href="/gdpr" target="_blank">Adatkezelési szabályzatot</a>.
+            </label>
+          </div>
+          <div
+            *ngIf="form.get('gdpr')?.invalid && form.get('gdpr')?.touched"
+            class="error text-danger"
+          >
+            El kell fogadnod az Adatvédelmi szabályzatot!
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="form.invalid"
+            class="btn btn-primary"
+          >
+            Feliratkozás
           </button>
         </form>
       </div>
 
-      <!-- Social Media -->
+      <!-- Social Media Links with FontAwesome -->
       <div class="col-md-4 mb-3">
-        <h3 class="footer-title">Social Media</h3>
         <nav class="d-flex gap-3">
-          <a href="https://twitter.com" target="_blank" class="footer-link"
-            >Twitter</a
-          >
-          <a href="https://facebook.com" target="_blank" class="footer-link"
-            >Facebook</a
-          >
-          <a href="https://instagram.com" target="_blank" class="footer-link"
-            >Instagram</a
-          >
+          <a href="https://twitter.com" target="_blank" class="footer-link">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="footer-link">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="footer-link">
+            <i class="fab fa-instagram"></i>
+          </a>
         </nav>
       </div>
     </div>
   </div>
 
-  <div class="footer-bottom bg-secondary text-center py-2">
+  <!-- Footer Bottom -->
+  <div class="footer-bottom bg-dark text-center py-2">
     <p class="mb-0">©2024 Minden jog fenntartva</p>
   </div>
 </footer>
