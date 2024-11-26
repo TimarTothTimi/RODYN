@@ -18,12 +18,6 @@ export class ShoppingBasketService {
     return JSON.parse(localStorage.getItem("shoppingBasket") || "[]");
   }
 
-  // getBasketItemCount(): number {
-  //   const shoppingBasket = this.getBasket();
-
-  //   return shoppingBasket.reduce((count, item) => count + item.quantity, 0);
-  // }
-
   getBasketItemCount(): BehaviorSubject<number> {
     return this.basketItemCount;
   }
