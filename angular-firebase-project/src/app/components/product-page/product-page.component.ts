@@ -4,6 +4,7 @@ import { Observable, Subject, takeUntil } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 import { ProductService } from "../../services/product.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import { ShoppingBasketService } from "../../services/shopping-basket.service";
 
 @Component({
   selector: "app-product-page",
@@ -20,8 +21,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private productService: ProductService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private shoppingBasketService: ShoppingBasketService
   ) {
     this.loggedInStatus$ = this.authService.loggedInStatus$;
     this.userEmail$ = this.authService.userEmail$;
@@ -50,6 +51,12 @@ export class ProductPageComponent implements OnInit, OnDestroy {
           });
       }
     });
+  }
+
+  addToBasket(): void {
+    if (this.product) {
+      this.shoppingBasketService.addToBasket(this.product);
+    }
   }
 
   ngOnDestroy(): void {

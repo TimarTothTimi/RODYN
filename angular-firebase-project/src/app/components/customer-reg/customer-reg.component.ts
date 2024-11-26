@@ -75,7 +75,7 @@ export class CustomerRegComponent implements OnDestroy {
 
   constructor(private router: Router, private authService: AuthService) {}
 
-  submitRegForm() {
+  submitRegForm(): void {
     if (!this.customerRegForm.invalid) {
       this.authService
         .registration(this.customerRegForm.value)

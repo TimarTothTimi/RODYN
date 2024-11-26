@@ -13,15 +13,21 @@
   </div>
 
   <a
-    class="card-body"
+    class="card-body d-flex flex-column"
     routerLink="/product-page/{{ product.category }}/{{ product.id }}"
   >
     <span class="card-title mt-0">
       <span class="text-dark h4">{{ product.name }}</span>
     </span>
-    <img src="{{ product.images }}" alt="{{ product.name }}" />
-    <span class="card-footer text-center mt-3">
-      <p class="mb-0">{{ product.price }} Forint</p>
-    </span>
+    <div class="flex-grow-1 flex-shrink-1">
+      <img
+        class="w-100 h-100 object-fit-cover"
+        src="{{ product.images }}"
+        alt="{{ product.name }}"
+      />
+    </div>
   </a>
+  <span class="card-footer text-center mt-3">
+    <p class="mb-0">{{ product.price }} Forint</p>
+  </span>
 </div>

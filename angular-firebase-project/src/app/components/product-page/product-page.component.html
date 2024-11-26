@@ -15,7 +15,9 @@
         <h6 class="pb-3">{{ product.price }} Forint</h6>
         <p class="pb-5"><strong>Leírás: </strong>{{ product.description }}</p>
 
-        <button class="btn btn-dark text-white">Kosárba teszem</button>
+        <button class="btn btn-dark text-white" (click)="addToBasket()">
+          Kosárba teszem
+        </button>
       </div>
     </div>
     <section>
