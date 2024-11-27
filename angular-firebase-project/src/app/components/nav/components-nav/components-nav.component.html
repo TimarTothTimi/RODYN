@@ -20,10 +20,35 @@
       <!-- <a href="#" class="p-2 link-dark">
         <i class="fa-solid fa-magnifying-glass fa-lg"></i>
       </a> -->
-      <a routerLink="/sign-in" class="p-2 link-dark">
+      <!-- <a routerLink="/sign-in" class="p-2 link-dark dropdown-toggle">
         <i class="fa-regular fa-user fa-xl"></i>
-      </a>
-      <a routerLink="/shooping-basket" class="p-2 link-dark">
+      </a> -->
+      <div class="dropdown">
+        <a
+          class="p-2 link-dark dropdown-toggle"
+          id="dropdownUserMenu"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fa-regular fa-user fa-xl"></i>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="dropdownUserMenu"
+        >
+          <ul>
+            <li class="nav-item singInOrOut" *ngIf="!(loggedInStatus$ | async)">
+              <a class="nav-link" routerLink="/sign-in">Bejelentkezés</a>
+            </li>
+            <li class="nav-item singInOrOut" *ngIf="loggedInStatus$ | async">
+              <a class="nav-link" (click)="logout()">Kijelentkezés</a>
+            </li>
+          </ul>
+        </ul>
+      </div>
+
+      <a routerLink="/shooping-basket" class="link-dark">
         <i class="fa-solid fa-basket-shopping fa-xl"
           ><span
             *ngIf="basketItemCount > 0"
