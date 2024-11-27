@@ -1,4 +1,3 @@
-import { SearchButtonComponent } from "./search-button/search-button.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CenterSectionComponent } from "./components/center-section/center-section.component";
