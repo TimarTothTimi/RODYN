@@ -38,3 +38,10 @@
 .nav-link {
   cursor: pointer;
 }
+
+.badge-notification {
+  font-size: 0.5rem;
+  transform: translate(0%, -50%);
+  top: 45px;
+  right: 5px;
+}

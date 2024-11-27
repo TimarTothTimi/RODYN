@@ -1,17 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Product } from "../../models/product";
 import { ProductService } from "../../services/product.service";
 import { ShoppingBasketService } from "../../services/shopping-basket.service";
 import { AuthService } from "../../services/auth.service";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "app-szekek",
   templateUrl: "./recepcio.component.html",
   styleUrl: "./recepcio.component.scss",
 })
-export class RecepcioComponent implements OnInit {
+export class RecepcioComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   isAdmin: boolean = false;
+  destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private productService: ProductService,
@@ -22,28 +24,41 @@ export class RecepcioComponent implements OnInit {
   }
 
   refresh(): void {
-    this.productService.getRecepciosAsztalok().subscribe((products) => {
-      this.products = products;
-    });
+    this.productService
+      .getRecepciosAsztalok()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((products) => {
+        this.products = products;
+      });
   }
 
   deleteProduct(product: Product): void {
-    this.productService.deleteProduct(product.id!, product.category).subscribe({
-      next: () => {
-        console.log("Product deleted!");
-      },
-      error: (err) => {
-        console.log(err);
-      },
-      complete: () => {
-        this.refresh();
-      },
-    });
+    this.productService
+      .deleteProduct(product.id!, product.category)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          console.log("Product deleted!");
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          this.refresh();
+        },
+      });
   }
 
   ngOnInit(): void {
-    this.authService.currentUserRole.subscribe((role) => {
-      this.isAdmin = role === "admin";
-    });
+    this.authService.currentUserRole
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((role) => {
+        this.isAdmin = role === "admin";
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

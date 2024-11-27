@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Product } from "../../models/product";
-import { Observable, Subscription } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 import { ProductService } from "../../services/product.service";
-import { Router } from "@angular/router";
 import { ShoppingBasketService } from "../../services/shopping-basket.service";
 
 @Component({
@@ -14,7 +13,7 @@ import { ShoppingBasketService } from "../../services/shopping-basket.service";
 export class BarszekekComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   isAdmin: boolean = false;
-  subCurrentUserRole?: Subscription;
+  destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private productService: ProductService,
@@ -25,81 +24,43 @@ export class BarszekekComponent implements OnInit, OnDestroy {
   }
 
   refresh(): void {
-    this.productService.getBarszekek().subscribe((products: Product[]) => {
-      this.products = products;
-    });
+    this.productService
+      .getBarszekek()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((products: Product[]) => {
+        this.products = products;
+      });
   }
 
   deleteProduct(product: Product): void {
-    this.productService.deleteProduct(product.id!, product.category).subscribe({
-      next: () => {
-        console.log("Product deleted!");
-      },
-      error: (err) => {
-        console.log(err);
-      },
-      complete: () => {
-        this.refresh();
-      },
-    });
+    this.productService
+      .deleteProduct(product.id!, product.category)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          console.log("Product deleted!");
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          this.refresh();
+        },
+      });
   }
 
   ngOnInit(): void {
-    this.authService.currentUserRole.subscribe((role) => {
-      console.log(role);
+    this.authService.currentUserRole
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((role) => {
+        console.log(role);
 
-      this.isAdmin = role === "admin";
-    });
+        this.isAdmin = role === "admin";
+      });
   }
 
   ngOnDestroy(): void {
-    this.subCurrentUserRole?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
-  // isAdmin: boolean = false;
-  // products: Product[] = [];
-  // subDeleteProduct?: Subscription;
-  // public loggedInStatus$?: Observable<boolean | null>;
-  // public isAdmin$?: Observable<boolean | null>;
-  // public userEmail$?: Observable<string | null>;
-  // constructor(
-  //   private authService: AuthService,
-  //   private productService: ProductService,
-  //   private router: Router
-  // ) {
-  //   this.loggedInStatus$ = this.authService.loggedInStatus$;
-  //   this.userEmail$ = this.authService.userEmail$;
-  // }
-  // ngOnInit(): void {
-  //   this.authService.currentUserRole.subscribe((role) => {
-  //     this.isAdmin = role === "admin";
-  //   });
-  //   this.refresh();
-  // }
-  // refresh(): void {
-  //   this.productService.getBarszekek().subscribe((products) => {
-  //     this.products = products;
-  //   });
-  // }
-  // deleteProduct(id: string, category: string): void {
-  //   this.subDeleteProduct = this.productService
-  //     .deleteProduct(id, category)
-  //     .subscribe({
-  //       next: () => {
-  //         console.log("Product deleted!");
-  //       },
-  //       error: (err) => {
-  //         console.log(err);
-  //       },
-  //       complete: () => {
-  //         this.router.navigate(["/", category]);
-  //         this.refresh();
-  //       },
-  //     });
-  // }
-  // async logout(): Promise<void> {
-  //   await this.authService.logout();
-  // }
-  // ngOnDestroy(): void {
-  //   this.subDeleteProduct?.unsubscribe();
-  // }
 }

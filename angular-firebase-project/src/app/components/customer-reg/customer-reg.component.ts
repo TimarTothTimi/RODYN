@@ -1,15 +1,18 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { UserCredential } from "@angular/fire/auth";
 import { Router } from "@angular/router";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "app-customer-reg",
   templateUrl: "./customer-reg.component.html",
   styleUrls: ["./customer-reg.component.scss"],
 })
-export class CustomerRegComponent {
+export class CustomerRegComponent implements OnDestroy {
+  destroy$: Subject<void> = new Subject<void>();
+
   customerRegForm: FormGroup = new FormGroup({
     firstName: new FormControl("", [
       Validators.required,
@@ -72,18 +75,25 @@ export class CustomerRegComponent {
 
   constructor(private router: Router, private authService: AuthService) {}
 
-  submitRegForm() {
+  submitRegForm(): void {
     if (!this.customerRegForm.invalid) {
-      this.authService.registration(this.customerRegForm.value).subscribe({
-        next: (userCredential: UserCredential) => {
-          console.log("Customer saved with ID:", userCredential.user.email);
-          this.customerRegForm.reset();
-          this.router.navigate([""]);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+      this.authService
+        .registration(this.customerRegForm.value)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (userCredential: UserCredential) => {
+            console.log("Customer saved with ID:", userCredential.user.email);
+            this.customerRegForm.reset();
+            this.router.navigate([""]);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
     }
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

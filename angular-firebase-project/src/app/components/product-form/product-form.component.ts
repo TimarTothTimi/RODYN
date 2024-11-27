@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ProductService } from "../../services/product.service";
-import { ActivatedRoute, ParamMap, Router, UrlSegment } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import {
   AbstractControl,
   FormControl,
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { combineLatest, first, map, Subscription } from "rxjs";
+import { combineLatest, first, map, Subject, takeUntil } from "rxjs";
 import { Product } from "../../models/product";
 
 @Component({
@@ -17,10 +17,9 @@ import { Product } from "../../models/product";
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
   productForm: FormGroup;
-  subSaveProduct?: Subscription;
-  subRoute?: Subscription;
-  subDeleteProduct?: Subscription;
+
   id: string | null;
+  destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private productService: ProductService,
@@ -47,7 +46,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subRoute = combineLatest([
+    combineLatest([
       this.productService.getSzekek(),
       this.productService.getFotelek(),
       this.productService.getRecepciosAsztalok(),
@@ -84,6 +83,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           }
         )
       )
+      .pipe(takeUntil(this.destroy$))
       .subscribe((product) => {
         if (product != undefined) {
           this.productForm.patchValue(product);
@@ -115,8 +115,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       const product: Product = this.productForm.value;
       if (this.id !== null) {
         product.id = this.id;
-        this.subSaveProduct = this.productService
+        this.productService
           .updateProduct(product)
+          .pipe(takeUntil(this.destroy$))
           .subscribe({
             next: () => {
               console.log("Product updated!");
@@ -129,8 +130,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
             },
           });
       } else {
-        this.subSaveProduct = this.productService
+        this.productService
           .creatProduct(product)
+          .pipe(takeUntil(this.destroy$))
           .subscribe({
             next: () => {
               console.log("Product created!");
@@ -147,8 +149,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   deleteProduct(id: string, category: string): void {
-    this.subDeleteProduct = this.productService
+    this.productService
       .deleteProduct(id, category)
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
           console.log("Product deleted!");
@@ -163,8 +166,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subSaveProduct?.unsubscribe();
-    this.subRoute?.unsubscribe();
-    this.subDeleteProduct?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

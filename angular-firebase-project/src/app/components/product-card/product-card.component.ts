@@ -1,6 +1,13 @@
 import { AuthService } from "./../../services/auth.service";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Observable } from "rxjs";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
+import { Observable, Subject, takeUntil } from "rxjs";
 import { Product } from "../../models/product";
 
 @Component({
@@ -8,18 +15,14 @@ import { Product } from "../../models/product";
   templateUrl: "./product-card.component.html",
   styleUrls: ["./product-card.component.scss"],
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent implements OnInit, OnDestroy {
   public isAdmin: boolean = false;
   public loggedInStatus$?: Observable<boolean | null>;
   public userEmail$?: Observable<string | null>;
+  destroy$: Subject<void> = new Subject<void>();
 
   products: Product[] = [];
 
-  // constructor(private authService: AuthService) {
-  //   this.authService.currentUserRole.subscribe((role) => {
-  //     this.isAdmin = role === "admin";
-  //   });
-  // }
   constructor(private authService: AuthService) {
     this.loggedInStatus$ = this.authService.loggedInStatus$;
     this.userEmail$ = this.authService.userEmail$;
@@ -29,8 +32,14 @@ export class ProductCardComponent implements OnInit {
   @Output() deleteProduct = new EventEmitter<Product>();
 
   ngOnInit(): void {
-    this.authService.currentUserRole.subscribe((role) => {
-      this.isAdmin = role === "admin";
-    });
+    this.authService.currentUserRole
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((role) => {
+        this.isAdmin = role === "admin";
+      });
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

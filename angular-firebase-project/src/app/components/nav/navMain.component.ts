@@ -1,22 +1,27 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
-import { BehaviorSubject, map, Observable, Subscription, tap } from "rxjs";
+import { BehaviorSubject, Observable, Subject, takeUntil } from "rxjs";
+import { ShoppingBasketService } from "../../services/shopping-basket.service";
 
 @Component({
   selector: "app-nav",
   templateUrl: "./navMain.component.html",
   styleUrls: ["./navMain.component.scss"],
 })
-export class NavComponent implements OnDestroy {
+export class NavComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
-  subCurrentUserRole?: Subscription;
+  destroy$: Subject<void> = new Subject<void>();
+  basketItemCount: number = 0;
 
   public loggedInStatus$ = new BehaviorSubject<boolean>(false);
   public isAdmin$?: Observable<boolean | null>;
   public userEmail$?: Observable<string | null>;
 
-  constructor(private authService: AuthService) {
-    this.subCurrentUserRole = this.authService.currentUserRole.subscribe({
+  constructor(
+    private authService: AuthService,
+    private shoppingBasketService: ShoppingBasketService
+  ) {
+    this.authService.currentUserRole.pipe(takeUntil(this.destroy$)).subscribe({
       next: (role) => {
         this.loggedInStatus$.next(role !== null);
         this.isAdmin = role === "admin";
@@ -29,7 +34,17 @@ export class NavComponent implements OnDestroy {
     await this.authService.logout();
   }
 
+  ngOnInit(): void {
+    this.shoppingBasketService
+      .getBasketItemCount()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((count) => {
+        this.basketItemCount = count;
+      });
+  }
+
   ngOnDestroy(): void {
-    this.subCurrentUserRole?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
