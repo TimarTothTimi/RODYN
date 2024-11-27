@@ -9,6 +9,9 @@ import { ShoppingBasketService } from "../../../services/shopping-basket.service
   styleUrl: "./components-nav.component.scss",
 })
 export class ArticlesNavComponent implements OnInit, OnDestroy {
+  toggleSearchOverlay() {
+    throw new Error("Method not implemented.");
+  }
   destroy$: Subject<void> = new Subject<void>();
   isAdmin: boolean = false;
   basketItemCount: number = 0;

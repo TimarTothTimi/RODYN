@@ -40,6 +40,7 @@ export class AuthService implements OnDestroy {
   jwtHelper = new JwtHelperService();
   unsubscribeFn: Unsubscribe | null = null;
   subscription: Subscription | null = null;
+  isAdmin$: Observable<boolean | null> | undefined;
 
   constructor(
     private router: Router,
