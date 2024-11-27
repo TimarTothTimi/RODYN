@@ -4,13 +4,17 @@ import {
   collection,
   deleteDoc,
   doc,
-  DocumentData,
   Firestore,
   getDoc,
   getDocs,
+  query,
+  where,
   setDoc,
+  DocumentReference,
+  DocumentData,
 } from "@angular/fire/firestore";
-import { from, map, Observable } from "rxjs";
+import { from, Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import { Product } from "../models/product";
 
 @Injectable({
@@ -38,35 +42,26 @@ export class ProductService {
     "taroloButorok"
   );
 
-  creatProduct(product: Product): Observable<DocumentData> {
-    if (product.category === "szekek") {
-      return from(addDoc(this.szekekCollestionRef, product));
-    } else if (product.category === "fotelek") {
-      return from(addDoc(this.fotelekCollestionRef, product));
-    } else if (product.category === "recepciosAsztalok") {
-      return from(addDoc(this.recepciosAsztalokCollestionRef, product));
-    } else if (product.category === "barszekek") {
-      return from(addDoc(this.barszekekCollestionRef, product));
-    } else if (product.category === "asztalok") {
-      return from(addDoc(this.asztalokCollestionRef, product));
-    } else {
-      return from(addDoc(this.taroloButorokCollestionRef, product));
+  creatProduct(product: Product): Observable<DocumentReference<DocumentData>> {
+    if (!product.category) {
+      throw new Error("Product category is required");
     }
+    const collectionRef = collection(this.firestore, product.category);
+    return from(addDoc(collectionRef, product));
   }
 
   getProducts(category: string): Observable<Product[]> {
     const collectionRef = collection(this.firestore, category);
     return from(getDocs(collectionRef)).pipe(
       map((snapshot) =>
-        snapshot.docs.map((doc) => {
-          return {
-            ...(doc.data() as Product),
-            id: doc.id,
-          };
-        })
+        snapshot.docs.map((doc) => ({
+          ...(doc.data() as Product),
+          id: doc.id,
+        }))
       )
     );
   }
+
   getProduct(category: string, id: string): Observable<Product> {
     const collectionRef = collection(this.firestore, category);
     const productDocRef = doc(this.firestore, `${collectionRef.path}/${id}`);
@@ -82,77 +77,69 @@ export class ProductService {
   getSzekek(): Observable<Product[]> {
     return from(getDocs(this.szekekCollestionRef)).pipe(
       map((snapshot) =>
-        snapshot.docs.map((doc) => {
-          return {
-            ...(doc.data() as Product),
-            id: doc.id,
-          };
-        })
-      )
-    );
-  }
-  getFotelek(): Observable<Product[]> {
-    return from(getDocs(this.fotelekCollestionRef)).pipe(
-      map((snapshot) =>
-        snapshot.docs.map((doc) => {
-          return {
-            ...(doc.data() as Product),
-            id: doc.id,
-          };
-        })
-      )
-    );
-  }
-  getRecepciosAsztalok(): Observable<Product[]> {
-    return from(getDocs(this.recepciosAsztalokCollestionRef)).pipe(
-      map((snapshot) =>
-        snapshot.docs.map((doc) => {
-          return {
-            ...(doc.data() as Product),
-            id: doc.id,
-          };
-        })
-      )
-    );
-  }
-  getBarszekek(): Observable<Product[]> {
-    return from(getDocs(this.barszekekCollestionRef)).pipe(
-      map((snapshot) =>
-        snapshot.docs.map((doc) => {
-          return {
-            ...(doc.data() as Product),
-            id: doc.id,
-          };
-        })
-      )
-    );
-  }
-  getAsztalok(): Observable<Product[]> {
-    return from(getDocs(this.asztalokCollestionRef)).pipe(
-      map((snapshot) =>
-        snapshot.docs.map((doc) => {
-          return {
-            ...(doc.data() as Product),
-            id: doc.id,
-          };
-        })
-      )
-    );
-  }
-  getTaroloButorok(): Observable<Product[]> {
-    return from(getDocs(this.taroloButorokCollestionRef)).pipe(
-      map((snapshot) =>
-        snapshot.docs.map((doc) => {
-          return {
-            ...(doc.data() as Product),
-            id: doc.id,
-          };
-        })
+        snapshot.docs.map((doc) => ({
+          ...(doc.data() as Product),
+          id: doc.id,
+        }))
       )
     );
   }
 
-  // DELETE
+  getFotelek(): Observable<Product[]> {
+    return from(getDocs(this.fotelekCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => ({
+          ...(doc.data() as Product),
+          id: doc.id,
+        }))
+      )
+    );
+  }
+
+  getRecepciosAsztalok(): Observable<Product[]> {
+    return from(getDocs(this.recepciosAsztalokCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => ({
+          ...(doc.data() as Product),
+          id: doc.id,
+        }))
+      )
+    );
+  }
+
+  getBarszekek(): Observable<Product[]> {
+    return from(getDocs(this.barszekekCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => ({
+          ...(doc.data() as Product),
+          id: doc.id,
+        }))
+      )
+    );
+  }
+
+  getAsztalok(): Observable<Product[]> {
+    return from(getDocs(this.asztalokCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => ({
+          ...(doc.data() as Product),
+          id: doc.id,
+        }))
+      )
+    );
+  }
+
+  getTaroloButorok(): Observable<Product[]> {
+    return from(getDocs(this.taroloButorokCollestionRef)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => ({
+          ...(doc.data() as Product),
+          id: doc.id,
+        }))
+      )
+    );
+  }
+
   deleteProduct(productId: string, category: string): Observable<void> {
     const collectionRef =
       category === "szekek"
@@ -180,10 +167,26 @@ export class ProductService {
     }
   }
 
-  //UPDATE
   updateProduct(product: Product): Observable<void> {
-    const path = `${product.category}/${product.id}`; //figyelni kell a helyes elérési útra!!!
+    const path = `${product.category}/${product.id}`;
     const productDoc = doc(this.firestore, path);
     return from(setDoc(productDoc, product));
+  }
+
+  searchProducts(searchQuery: string): Observable<Product[]> {
+    const collectionRef = collection(this.firestore, "products");
+    const q = query(
+      collectionRef,
+      where("name", ">=", searchQuery),
+      where("name", "<=", searchQuery + "\uf8ff")
+    );
+    return from(getDocs(q)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((doc) => ({
+          ...(doc.data() as Product),
+          id: doc.id,
+        }))
+      )
+    );
   }
 }
