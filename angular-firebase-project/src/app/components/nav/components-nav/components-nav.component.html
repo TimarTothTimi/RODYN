@@ -1,6 +1,5 @@
 <nav class="navbar fixed-top bg-secondary bg-opacity-25">
   <div class="container-fluid">
-    <!-- Navbar toggle button -->
     <button
       class="navbar-toggler"
       type="button"
@@ -12,28 +11,20 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Brand logo -->
-    <a class="navbar-brand mx-auto text-center formlab" routerLink="/">
-      <span class="formlab-white">Form</span>
-      <span class="formlab-orange">Lab</span>
-    </a>
+    <a class="navbar-brand mx-auto text-center formlab" routerLink=""
+      ><span class="formlab-white">Form</span
+      ><span class="formlab-orange">Lab</span></a
+    >
 
-    <!-- Right side icons -->
     <div class="d-flex ms-auto">
-      <a
-        href="#"
-        class="p-2 link-dark"
-        (click)="toggleSearchOverlay($event)"
-        aria-label="Keresés megnyitása"
-      >
+      <a href="#" class="p-2 link-dark" (click)="toggleSearchOverlay($event)">
         <i class="fa-solid fa-magnifying-glass fa-xl"></i>
       </a>
-      <a routerLink="/sign-in" class="p-2 link-dark" aria-label="Bejelentkezés">
+      <a routerLink="/sign-in" class="p-2 link-dark">
         <i class="fa-regular fa-user fa-xl"></i>
       </a>
     </div>
 
-    <!-- Offcanvas navigation -->
     <div
       class="offcanvas offcanvas-start"
       tabindex="-1"
@@ -43,20 +34,22 @@
     >
       <div class="offcanvas-header bg-secondary-subtle">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-          <span class="formlab-white">Form</span>
-          <span class="formlab-orange">Lab</span>
+          <span class="formlab-white">Form</span
+          ><span class="formlab-orange">Lab</span>
         </h5>
         <button
           type="button"
           class="btn-close"
           data-bs-dismiss="offcanvas"
-          aria-label="Bezárás"
+          aria-label="Close"
         ></button>
       </div>
       <div class="offcanvas-body bg-secondary-subtle">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/">Főoldal</a>
+            <a class="nav-link active" aria-current="page" routerLink=""
+              >Főoldal</a
+            >
           </li>
           <li class="nav-item" *ngIf="!(loggedInStatus$ | async)">
             <a class="nav-link" routerLink="/sign-in">Bejelentkezés</a>
@@ -67,6 +60,7 @@
           <li class="nav-item" *ngIf="loggedInStatus$ | async">
             <a class="nav-link" routerLink="/catalog">Katalógusok</a>
           </li>
+          <!-- További navigációs elemek... -->
         </ul>
       </div>
     </div>

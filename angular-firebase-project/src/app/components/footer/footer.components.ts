@@ -16,7 +16,7 @@ export class FooterComponent {
   ) {
     this.form = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
-      gdpr: [false, Validators.requiredTrue], // GDPR jelölőnégyzet
+      gdpr: [false, Validators.requiredTrue],
     });
   }
 

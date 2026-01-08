@@ -1,4 +1,8 @@
 import { SearchButtonComponent } from "./search-button/search-button.component";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CenterSectionComponent } from "./components/center-section/center-section.component";
@@ -40,7 +44,6 @@ import { AdminComponent } from "./components/admin/admin.component";
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "./enviroment";
-import { HttpClientModule } from "@angular/common/http";
 import { FloatingSectionComponent } from "./components/floating-section/floating-section";
 import { ArticlesComponent } from "./components/articles/articles.component";
 import { FooterComponent } from "./components/footer/footer.components";
@@ -65,7 +68,6 @@ import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-b
     Article7Component,
     Article8Component,
     Article9Component,
-    ArticlesComponent,
     ArticlesNavComponent,
     SignInComponent,
     CustomerRegComponent,
@@ -95,10 +97,11 @@ import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-b
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule, // Ha használod az Auth modult
-    HttpClientModule,
+    AngularFireAuthModule,
   ],
   providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+
     provideFirebaseApp(() =>
       initializeApp({
         apiKey: "AIzaSyAedo5PI4iVpLdpAAyV2OTSjhgl7pyVoIY",
