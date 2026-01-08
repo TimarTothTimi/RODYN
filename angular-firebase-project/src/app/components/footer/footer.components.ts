@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { addDoc, Firestore, collection } from "@angular/fire/firestore";
 
 @Component({
-  selector: "app-footer",
-  templateUrl: "./footer.components.html",
-  styleUrls: ["./footer.components.scss"],
+    selector: "app-footer",
+    templateUrl: "./footer.components.html",
+    styleUrls: ["./footer.components.scss"],
+    standalone: false
 })
 export class FooterComponent {
   form: FormGroup;

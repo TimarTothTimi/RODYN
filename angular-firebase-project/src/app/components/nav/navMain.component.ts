@@ -4,9 +4,10 @@ import { BehaviorSubject, Observable, Subject, takeUntil } from "rxjs";
 import { ShoppingBasketService } from "../../services/shopping-basket.service";
 
 @Component({
-  selector: "app-nav",
-  templateUrl: "./navMain.component.html",
-  styleUrls: ["./navMain.component.scss"],
+    selector: "app-nav",
+    templateUrl: "./navMain.component.html",
+    styleUrls: ["./navMain.component.scss"],
+    standalone: false
 })
 export class NavComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;

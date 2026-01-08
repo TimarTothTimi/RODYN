@@ -6,9 +6,10 @@ import { AuthService } from "../../services/auth.service";
 import { Subject, takeUntil } from "rxjs";
 
 @Component({
-  selector: "app-szekek",
-  templateUrl: "./recepcio.component.html",
-  styleUrl: "./recepcio.component.scss",
+    selector: "app-szekek",
+    templateUrl: "./recepcio.component.html",
+    styleUrl: "./recepcio.component.scss",
+    standalone: false
 })
 export class RecepcioComponent implements OnInit, OnDestroy {
   products: Product[] = [];

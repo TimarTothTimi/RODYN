@@ -3,9 +3,10 @@ import { Observable, Subject, Subscription, takeUntil } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
-  selector: "app-catalog",
-  templateUrl: "./catalog.component.html",
-  styleUrl: "./catalog.component.scss",
+    selector: "app-catalog",
+    templateUrl: "./catalog.component.html",
+    styleUrl: "./catalog.component.scss",
+    standalone: false
 })
 export class CatalogComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;

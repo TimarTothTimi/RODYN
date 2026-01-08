@@ -6,9 +6,10 @@ import { ProductService } from "../../../services/product.service";
 import { Product } from "../../../models/product";
 
 @Component({
-  selector: "app-components-nav",
-  templateUrl: "./components-nav.component.html",
-  styleUrls: ["./components-nav.component.scss"],
+    selector: "app-components-nav",
+    templateUrl: "./components-nav.component.html",
+    styleUrls: ["./components-nav.component.scss"],
+    standalone: false
 })
 export class ArticlesNavComponent implements OnInit, OnDestroy {
   logout() {

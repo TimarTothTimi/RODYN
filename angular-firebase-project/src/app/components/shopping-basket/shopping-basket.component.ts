@@ -8,9 +8,10 @@ import { ProductService } from "../../services/product.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
-  selector: "app-shopping-basket",
-  templateUrl: "./shopping-basket.component.html",
-  styleUrl: "./shopping-basket.component.scss",
+    selector: "app-shopping-basket",
+    templateUrl: "./shopping-basket.component.html",
+    styleUrl: "./shopping-basket.component.scss",
+    standalone: false
 })
 export class ShoppingBasketComponent implements OnInit, OnDestroy {
   items: BasketItem[];

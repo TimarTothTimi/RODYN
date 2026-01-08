@@ -6,9 +6,10 @@ import { ProductService } from "../../services/product.service";
 import { ShoppingBasketService } from "../../services/shopping-basket.service";
 
 @Component({
-  selector: "app-barszekek",
-  templateUrl: "./barszekek.component.html",
-  styleUrls: ["./barszekek.component.scss"],
+    selector: "app-barszekek",
+    templateUrl: "./barszekek.component.html",
+    styleUrls: ["./barszekek.component.scss"],
+    standalone: false
 })
 export class BarszekekComponent implements OnInit, OnDestroy {
   products: Product[] = [];

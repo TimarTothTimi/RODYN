@@ -6,9 +6,10 @@ import { AuthService } from "../../services/auth.service";
 import { ShoppingBasketService } from "../../services/shopping-basket.service";
 
 @Component({
-  selector: "app-szekek",
-  templateUrl: "./szekek.component.html",
-  styleUrls: ["./szekek.component.scss"],
+    selector: "app-szekek",
+    templateUrl: "./szekek.component.html",
+    styleUrls: ["./szekek.component.scss"],
+    standalone: false
 })
 export class SzekekComponent implements OnInit, OnDestroy {
   products: Product[] = [];

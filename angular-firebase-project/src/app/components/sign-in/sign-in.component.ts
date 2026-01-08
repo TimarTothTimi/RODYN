@@ -9,9 +9,10 @@ import { AuthService } from "../../services/auth.service";
 import { Subject, takeUntil } from "rxjs";
 
 @Component({
-  selector: "app-sign-in",
-  templateUrl: "./sign-in.component.html",
-  styleUrls: ["./sign-in.component.scss"],
+    selector: "app-sign-in",
+    templateUrl: "./sign-in.component.html",
+    styleUrls: ["./sign-in.component.scss"],
+    standalone: false
 })
 export class SignInComponent implements OnDestroy {
   destroy$: Subject<void> = new Subject<void>();

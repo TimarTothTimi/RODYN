@@ -8,20 +8,21 @@ import {
 } from "@angular/animations";
 
 @Component({
-  selector: "app-image-slider",
-  templateUrl: "./image-slider.component.html",
-  styleUrls: ["./image-slider.component.scss"],
-  animations: [
-    trigger("slideAnimation", [
-      state("in", style({ opacity: 1, transform: "translateX(0)" })), // Fully visible and at original position
-      state("out", style({ opacity: 0, transform: "translateX(-100%)" })), // Slide out to left
-      state("rightOut", style({ opacity: 0, transform: "translateX(100%)" })), // Slide out to right
-      transition("in => out", animate("800ms ease-in-out")), // Slower slide out left
-      transition("in => rightOut", animate("800ms ease-in-out")), // Slower slide out right
-      transition("out => in", animate("800ms ease-in-out")), // Slower slide in from left
-      transition("rightOut => in", animate("800ms ease-in-out")), // Slower slide in from right
-    ]),
-  ],
+    selector: "app-image-slider",
+    templateUrl: "./image-slider.component.html",
+    styleUrls: ["./image-slider.component.scss"],
+    animations: [
+        trigger("slideAnimation", [
+            state("in", style({ opacity: 1, transform: "translateX(0)" })), // Fully visible and at original position
+            state("out", style({ opacity: 0, transform: "translateX(-100%)" })), // Slide out to left
+            state("rightOut", style({ opacity: 0, transform: "translateX(100%)" })), // Slide out to right
+            transition("in => out", animate("800ms ease-in-out")), // Slower slide out left
+            transition("in => rightOut", animate("800ms ease-in-out")), // Slower slide out right
+            transition("out => in", animate("800ms ease-in-out")), // Slower slide in from left
+            transition("rightOut => in", animate("800ms ease-in-out")), // Slower slide in from right
+        ]),
+    ],
+    standalone: false
 })
 export class ImageSliderComponent implements OnInit {
   slides: any[] = [

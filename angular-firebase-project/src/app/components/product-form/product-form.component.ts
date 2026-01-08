@@ -11,9 +11,10 @@ import { combineLatest, first, map, Subject, takeUntil } from "rxjs";
 import { Product } from "../../models/product";
 
 @Component({
-  selector: "app-product-form",
-  templateUrl: "./product-form.component.html",
-  styleUrls: ["./product-form.component.scss"],
+    selector: "app-product-form",
+    templateUrl: "./product-form.component.html",
+    styleUrls: ["./product-form.component.scss"],
+    standalone: false
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
   productForm: FormGroup;

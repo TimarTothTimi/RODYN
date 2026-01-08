@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-articles",
-  templateUrl: "./articles.component.html",
-  styleUrl: "./articles.component.scss",
+    selector: "app-articles",
+    templateUrl: "./articles.component.html",
+    styleUrl: "./articles.component.scss",
+    standalone: false
 })
 export class ArticlesComponent {
   articles = [

@@ -11,9 +11,10 @@ import { Observable, Subject, takeUntil } from "rxjs";
 import { Product } from "../../models/product";
 
 @Component({
-  selector: "app-product-card",
-  templateUrl: "./product-card.component.html",
-  styleUrls: ["./product-card.component.scss"],
+    selector: "app-product-card",
+    templateUrl: "./product-card.component.html",
+    styleUrls: ["./product-card.component.scss"],
+    standalone: false
 })
 export class ProductCardComponent implements OnInit, OnDestroy {
   public isAdmin: boolean = false;

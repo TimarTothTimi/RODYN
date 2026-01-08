@@ -6,9 +6,10 @@ import { Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 
 @Component({
-  selector: "app-customer-reg",
-  templateUrl: "./customer-reg.component.html",
-  styleUrls: ["./customer-reg.component.scss"],
+    selector: "app-customer-reg",
+    templateUrl: "./customer-reg.component.html",
+    styleUrls: ["./customer-reg.component.scss"],
+    standalone: false
 })
 export class CustomerRegComponent implements OnDestroy {
   destroy$: Subject<void> = new Subject<void>();

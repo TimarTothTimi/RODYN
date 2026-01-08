@@ -6,9 +6,10 @@ import { AuthService } from "../../services/auth.service";
 import { Subject, takeUntil } from "rxjs";
 
 @Component({
-  selector: "app-tarolo",
-  templateUrl: "./tarolo.component.html",
-  styleUrl: "./tarolo.component.scss",
+    selector: "app-tarolo",
+    templateUrl: "./tarolo.component.html",
+    styleUrl: "./tarolo.component.scss",
+    standalone: false
 })
 export class TaroloComponent implements OnInit, OnDestroy {
   products: Product[] = [];

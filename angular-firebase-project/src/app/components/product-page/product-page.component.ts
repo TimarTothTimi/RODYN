@@ -7,9 +7,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ShoppingBasketService } from "../../services/shopping-basket.service";
 
 @Component({
-  selector: "app-product-page",
-  templateUrl: "./product-page.component.html",
-  styleUrl: "./product-page.component.scss",
+    selector: "app-product-page",
+    templateUrl: "./product-page.component.html",
+    styleUrl: "./product-page.component.scss",
+    standalone: false
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
   public loggedInStatus$?: Observable<boolean | null>;

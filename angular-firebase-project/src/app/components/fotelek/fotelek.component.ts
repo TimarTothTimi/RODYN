@@ -6,9 +6,10 @@ import { AuthService } from "../../services/auth.service";
 import { Subject, takeUntil } from "rxjs";
 
 @Component({
-  selector: "app-fotelek",
-  templateUrl: "./fotelek.component.html",
-  styleUrl: "./fotelek.component.scss",
+    selector: "app-fotelek",
+    templateUrl: "./fotelek.component.html",
+    styleUrl: "./fotelek.component.scss",
+    standalone: false
 })
 export class FotelekComponent implements OnInit, OnDestroy {
   products: Product[] = [];
