@@ -6,10 +6,10 @@ import { AuthService } from "../../services/auth.service";
 import { Subject, takeUntil } from "rxjs";
 
 @Component({
-    selector: "app-tarolo",
-    templateUrl: "./tarolo.component.html",
-    styleUrl: "./tarolo.component.scss",
-    standalone: false
+  selector: "app-tarolo",
+  templateUrl: "./tarolo.component.html",
+  styleUrls: ["./tarolo.component.scss"], // ⚡ javítva styleUrl -> styleUrls
+  standalone: false,
 })
 export class TaroloComponent implements OnInit, OnDestroy {
   products: Product[] = [];
@@ -58,6 +58,7 @@ export class TaroloComponent implements OnInit, OnDestroy {
         this.isAdmin = role === "admin";
       });
   }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

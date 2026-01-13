@@ -1,18 +1,27 @@
-// 1️⃣ Sass @use mindig az elején
+$font-family-base: "Roboto", sans-serif;
+$headings-font-family: "Monoton", cursive;
+
+// 2️⃣ Bootstrap betöltése
 @use "bootstrap/scss/bootstrap" as *;
 
-// 2️⃣ Google Fonts (nem blokkolja a Sass @use-t)
+// 3️⃣ ngx-toastr betöltése
+@use "ngx-toastr/toastr-bs5-alert";
+
+// 4️⃣ Google Fonts
 @import url("https://fonts.googleapis.com/css2?family=Monoton&family=Roboto:wght@400;700&display=swap");
-
-// 3️⃣ Saját Bootstrap változók felülírása
-$font-family-base: "Roboto", sans-serif !default;
-$headings-font-family: "Monoton", cursive !default;
-
-// 4️⃣ Toastr stílusok (Bootstrap mixinekkel kompatibilis)
-@import "ngx-toastr/toastr-bs5-alert";
 
 // 5️⃣ Saját stílusok
 body {
   background-color: #f8f9fa;
   color: #212529;
+  font-family: $font-family-base;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $headings-font-family;
 }
