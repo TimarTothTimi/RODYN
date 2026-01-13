@@ -17,18 +17,17 @@ import { CustomerRegComponent } from "./components/customer-reg/customer-reg.com
 import { FotelekComponent } from "./components/fotelek/fotelek.component";
 import { HomeComponent } from "./components/home/home.component";
 import { RecepcioComponent } from "./components/recepcio/recepcio.component";
-import { SignInComponent } from "./components/sign-in/sign-in.component";
+
 import { SzekekComponent } from "./components/szekek/szekek.component";
 import { TaroloComponent } from "./components/tarolo/tarolo.component";
 import { AdminGuard } from "./guard/admin.guard";
 import { ProductFormComponent } from "./components/product-form/product-form.component";
 import { ProductPageComponent } from "./components/product-page/product-page.component";
-import { ShoppingBasketComponent } from "./components/shopping-basket/shopping-basket.component";
+
 import { ProductCardComponent } from "./components/product-card/product-card.component";
 
 const routes: Routes = [
   { path: "registration", component: CustomerRegComponent },
-  { path: "sign-in", component: SignInComponent },
   { path: "catalog", component: CatalogComponent },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   {
@@ -91,7 +90,6 @@ const routes: Routes = [
   { path: "taroloButorok", component: TaroloComponent },
   { path: "product-page/:category/:id", component: ProductPageComponent },
   { path: "product-page", component: ProductPageComponent },
-  { path: "shooping-basket", component: ShoppingBasketComponent },
   { path: "", component: HomeComponent }, // Alapértelmezett útvonal
 ];
 
