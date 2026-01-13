@@ -1,0 +1,99 @@
+[33m0fe1f33[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtimar-toth-timea[m[33m)[m tisztítás
+[33mcf74add[m scss update
+[33m233714b[m update 2020
+[33m41a378a[m Update AngularFire to v19
+[33m2352df7[m Angular 20 migration (CLI changes)
+[33m59765b6[m repo clean
+[33mebf84c2[m[33m ([m[1;31morigin/timar-toth-timea[m[33m)[m 11.27-search funkció
+[33m35c11ac[m Merge branch 'main' of https://github.com/PROGmasters-Bootcamp-2024-Maj-Frontend/angular-firebase-project-bravo
+[33m672068c[m 11.27. Footer javítás
+[33m58b15da[m product page
+[33m468d7dc[m nav javítása (user icon)
+[33m8e74229[m favicon update
+[33mbdcfb51[m Footer - hírlevél
+[33m14199fc[m favicon
+[33mffc8a75[m Hírlevél a footerben
+[33mcfd1c87[m toastr importálásának javítása, floating section eltávolítása
+[33m3514e6a[m kosár badge
+[33m9303ad0[m kép javítása
+[33m8410b60[m kosároldal fejlesztése
+[33m1d307d3[m nav javítása
+[33m22311e5[m product card, product page javítása
+[33m70ff3b9[m leiratkozások kezelése, felesleges importok törlése
+[33ma04a961[m Merge branch 'main' of https://github.com/PROGmasters-Bootcamp-2024-Maj-Frontend/angular-firebase-project-bravo
+[33m7476be6[m Képek jav.
+[33m315aa1f[m leiratkozás javítása
+[33m3ca8cc6[m admin szerep javítás
+[33m6becd09[m Merge branch 'main' of https://github.com/PROGmasters-Bootcamp-2024-Maj-Frontend/angular-firebase-project-bravo
+[33m8894bfc[m 11.25
+[33m2442277[m 11.25. merge
+[33m7d67f5a[m app.mondule javítása
+[33m8d19e86[m Merge branch 'vas-kata' of https://github.com/PROGmasters-Bootcamp-2024-Maj-Frontend/angular-firebase-project-bravo
+[33m7c30480[m shopping basket
+[33m90746dc[m termék kártyák
+[33m06a88eb[m 11.25.
+[33md2456fc[m 11.25
+[33m597a36a[m termék kártya, kosár, product page
+[33mdb56600[m 11.25
+[33m4ada478[m 11.25. javítások
+[33md6055fc[m Product page folyamatban, nav és menüpontok javítása
+[33m5e94f1a[m termékkártya betöltése
+[33mcb2ce8c[m Merge branch 'main' of https://github.com/PROGmasters-Bootcamp-2024-Maj-Frontend/angular-firebase-project-bravo
+[33m1ad1044[m product service javítás
+[33m80ef63a[m debug
+[33m593b946[m Merge branch 'main' of https://github.com/PROGmasters-Bootcamp-2024-Maj-Frontend/angular-firebase-project-bravo
+[33m6a7f590[m utolso
+[33m3f0c74d[m pull-from-kantor-izsak
+[33m61b1d37[m debug
+[33mfc3f80b[m debug
+[33mf939d2e[m merge
+[33m9599e1c[m Merge branch 'main' of https://github.com/PROGmasters-Bootcamp-2024-Maj-Frontend/angular-firebase-project-bravo into timar-toth-timea
+[33mcc62e48[m product service szerkesztése
+[33ma853a7c[m termék szerkesztés, feltöltés, törlés
+[33m55a1b66[m termékoldal
+[33m63315da[m termékoldal
+[33md35f055[m Termékoldal
+[33mee2ac09[m admin felület
+[33m54de1ed[m utolsó bootstrap bekötés
+[33mc73776f[m debug-footer-added
+[33m4289fef[m debug
+[33mc0337fa[m admin szerepkör azonosítása, product-form( admin részére) folyamatban
+[33m1d92200[m szenvedes
+[33ma04ade8[m Merge branch 'vas-kata' of https://github.com/PROGmasters-Bootcamp-2024-Maj-Frontend/angular-firebase-project-bravo
+[33m59597ba[m címoldal
+[33m57c423e[m product service és firebase
+[33mebd9101[m admin bejelentkezés elkezdése
+[33mf1e247a[m Termék aloldalak
+[33md98a679[m carousel_főoldal
+[33me88a0c4[m címoldal slider gombok
+[33m1ac2fdf[m floating.section
+[33mea8847b[m footer
+[33md79c2d2[m Merge branch 'main' of https://github.com/PROGmasters-Bootcamp-2024-Maj-Frontend/angular-firebase-project-bravo into timar-toth-timea
+[33mb2323df[m termékek
+[33m5fd892e[m konfliktusok javítása, app.module.ts javítása
+[33mbc74256[m nav javítás
+[33mf7ce5ee[m Merge branch 'vas-kata'
+[33mc99ca5a[m cikk javítása
+[33me1b0e42[m termékek
+[33m806c58f[m catalog
+[33m7466286[m termékfajták
+[33me40f9bd[m Navbar ikonok
+[33md59f270[m header javítás
+[33m71a2a94[m authentication javítása, nav javítása
+[33m607a492[m authentication
+[33m80208ec[m article video
+[33m35d7119[m 10.08
+[33md689c9a[m articles szerkesztése (1-9)
+[33m5a4b463[m nav cím szerkesztése
+[33m0f5cc11[m main javítása
+[33m616b5f1[m products
+[33m7cf6cd6[m articles javítása
+[33m5aa7655[m articles, nav szerkesztése
+[33m34a3063[m header
+[33md0e4424[m header
+[33m92f1cbd[m header
+[33m7cbcb89[m[33m ([m[1;31morigin/vas-kata[m[33m, [m[1;32mvas-kata[m[33m)[m articles caroulse és article komponensek létrehozása
+[33m70074dd[m firebase beállítás, tesztelés
+[33m20eb7e0[m Create .gitignore
+[33md2a5024[m Add files via upload
+[33mfa6d2fd[m Initial commit
