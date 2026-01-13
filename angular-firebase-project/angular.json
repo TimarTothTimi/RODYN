@@ -5,6 +5,9 @@
   "projects": {
     "angular-firebase-project": {
       "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
@@ -12,40 +15,29 @@
         },
         "@schematics/angular:directive": {
           "standalone": false
-        },
-        "@schematics/angular:pipe": {
-          "standalone": false
         }
       },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
             "outputPath": "dist/angular-firebase-project",
             "index": "src/index.html",
-            "sourceMap": true,
-            "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "sourceMap": true,
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              },
+              { "glob": "**/*", "input": "public", "output": "/" },
               {
                 "glob": "**/*",
                 "input": "src/assets/images",
                 "output": "/assets/images"
               }
             ],
-     "styles": [
-  "src/styles.scss",
-  "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+            ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
@@ -64,7 +56,10 @@
                   "maximumError": "4kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
             },
             "development": {
               "optimization": false,
@@ -72,7 +67,7 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
@@ -87,27 +82,29 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
+          "builder": "@angular/build:extract-i18n",
+          "options": { "buildTarget": "angular-firebase-project:build" }
         },
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              },
+              { "glob": "**/*", "input": "public", "output": "/" },
               {
                 "glob": "**/*",
                 "input": "src/assets/images",
                 "output": "/assets/images"
               }
             ],
-            "styles": ["src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "src/styles.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           }
         }
       }
@@ -117,29 +114,8 @@
     "analytics": false
   },
   "schematics": {
-    "@schematics/angular:component": {
-      "type": "component"
-    },
-    "@schematics/angular:directive": {
-      "type": "directive"
-    },
-    "@schematics/angular:service": {
-      "type": "service"
-    },
-    "@schematics/angular:guard": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:interceptor": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:module": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:pipe": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:resolver": {
-      "typeSeparator": "."
-    }
+    "@schematics/angular:component": { "style": "scss", "standalone": false },
+    "@schematics/angular:directive": { "standalone": false },
+    "@schematics/angular:service": {}
   }
 }

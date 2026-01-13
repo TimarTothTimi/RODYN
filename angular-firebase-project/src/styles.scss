@@ -1,27 +1,23 @@
-$font-family-base: "Roboto", sans-serif;
-$headings-font-family: "Monoton", cursive;
+// 1. A funkciókat ÚGY kell betölteni, hogy a többi modul is lássa (globálisan)
+@use "bootstrap/scss/functions" as *;
 
-// 2️⃣ Bootstrap betöltése
-@use "bootstrap/scss/bootstrap" as *;
+// 2. A változókat konfiguráció nélkül, de a funkciók után töltsd be
+@use "bootstrap/scss/variables" as vars;
+@use "bootstrap/scss/maps" as maps;
+@use "bootstrap/scss/mixins" as mixins;
 
-// 3️⃣ ngx-toastr betöltése
-@use "ngx-toastr/toastr-bs5-alert";
+// 3. A teljes Bootstrap keretrendszer
+@use "bootstrap/scss/bootstrap";
 
-// 4️⃣ Google Fonts
+// 4. Harmadik fél (Toastr)
+@use "ngx-toastr/toastr-bs5-alert" as toastr;
+
+// 5. Google Fonts (Mindig a @use-ok után!)
 @import url("https://fonts.googleapis.com/css2?family=Monoton&family=Roboto:wght@400;700&display=swap");
 
-// 5️⃣ Saját stílusok
+// 6. Saját stílusok
 body {
-  background-color: #f8f9fa;
-  color: #212529;
-  font-family: $font-family-base;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: $headings-font-family;
+  background-color: vars.$gray-100;
+  color: vars.$gray-900;
+  font-family: "Roboto", sans-serif;
 }
