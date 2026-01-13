@@ -1,3 +1,5 @@
 export interface TestModel {
-  abra: string;
+  id?: string;
+  name?: string;
+  value?: number;
 }

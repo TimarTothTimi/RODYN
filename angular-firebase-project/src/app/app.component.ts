@@ -6,10 +6,10 @@ import { ProductService } from "./services/product.service";
 import { Szekek } from "./models/szekek.model";
 
 @Component({
-    selector: "app-root",
-    templateUrl: "./app.component.html",
-    styleUrls: ["./app.component.scss"],
-    standalone: false
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
+  standalone: false
 })
 export class AppComponent implements OnInit {
   title = "angular-firebase-project";
@@ -23,15 +23,15 @@ export class AppComponent implements OnInit {
     this.testCollectionRef = collection(this.firestore, "test");
   }
 
-  ngOnInit(): void {}
-
-  // ngOnInit(): void {
-  //   this.productService.getSzekek().subscribe((data) => {
-  //     this.products = data;
-  //   });
-  // }
+  ngOnInit(): void {
+    // Ha szeretnéd, vissza lehet kapcsolni:
+    // this.productService.getSzekek().subscribe((data) => {
+    //   this.products = data;
+    // });
+  }
 
   getTests(): Observable<TestModel[]> {
+    // Most már a TestModel tartalmaz 'id' mezőt, így nem lesz TS2322 hiba
     return collectionData<TestModel>(this.testCollectionRef, { idField: "id" });
   }
 }
