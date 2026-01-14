@@ -1,0 +1,89 @@
+<app-components-nav></app-components-nav>
+<section class="container w-75 marginTopNav mb-5">
+  <h3 class="text-center pb-2 pt-3">
+    {{ id ? "Termék frissítése" : "Új termék hozzáadása" }}
+  </h3>
+  <form [formGroup]="productForm" (ngSubmit)="createOrUpdateProduct()">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+      />
+      <small *ngIf="name?.invalid && name?.dirty" class="small text-danger"
+        >Kötelező megadni, minimum 3 karakter!</small
+      >
+      <label for="name">Termék neve</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        formControlName="price"
+      />
+      <small *ngIf="price?.invalid && price?.dirty" class="small text-danger"
+        >Kötelező megadni!</small
+      >
+      <label for="price">Termék ára (forint)</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="manufacturer"
+        formControlName="manufacturer"
+      />
+      <small
+        *ngIf="manufacturer?.invalid && manufacturer?.dirty"
+        class="small text-danger"
+        >Kötelező megadni, minimum 3 karakter!</small
+      >
+      <label for="manufacturer">Termék gyártó</label>
+    </div>
+    <div class="form-floating mb-3">
+      <select class="form-select" id="category" formControlName="category">
+        <small
+          *ngIf="category?.invalid && category?.dirty"
+          class="small text-danger"
+          >Kötelező megadni!</small
+        >
+        <option value="szekek">Székek</option>
+        <option value="fotelek">Fotelek</option>
+        <option value="recepciosAsztalok">Recepciós asztalok</option>
+        <option value="barszekek">Bárszékek</option>
+        <option value="asztalok">Asztalok</option>
+        <option value="taroloButorok">Tároló bútorok</option>
+      </select>
+      <label for="category">Termékkategória</label>
+    </div>
+    <div class="form-floating mb-3">
+      <textarea
+        class="form-control"
+        id="description"
+        formControlName="description"
+      ></textarea>
+      <small
+        *ngIf="description?.invalid && description?.dirty"
+        class="small text-danger"
+        >Kötelező megadni!</small
+      >
+      <label for="description">Termék leírása</label>
+    </div>
+    <div class="mb-3">
+      <label for="images" class="form-label">Képek feltöltése</label>
+      <input class="form-control" id="images" formControlName="images" />
+      <small *ngIf="images?.invalid && images?.dirty" class="small text-danger"
+        >Kötelező megadni!</small
+      >
+    </div>
+    <button
+      [disabled]="productForm.invalid"
+      type="submit"
+      class="btn btn-secondary text-center"
+    >
+      {{ id ? "Frissítés" : "Hozzáadás" }}
+    </button>
+  </form>
+</section>

@@ -1,0 +1,182 @@
+<app-components-nav></app-components-nav>
+<section class="container w-75 marginTopNav">
+  <h3 class="pb-4">A kosarad</h3>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <ul>
+        <li class="decorationNone mb-3" *ngFor="let item of items">
+          <div class="row align-items-center">
+            <div class="col-3 flex-grow-1">
+              <img
+                class="thumbnail w-100 h-100 object-fit-contain"
+                [src]="item.images"
+                [alt]="item.name"
+              />
+            </div>
+            <div class="col-6 flex-grow-1">
+              <h6 class="">{{ item.name }}</h6>
+              <p class="text-secondary fs-6 fw-lighter">
+                {{ item.manufacturer }}
+              </p>
+              <div class="row align-items-center">
+                <div class="col-6">
+                  <div
+                    class="row justify-content-between align-items-stretch border"
+                  >
+                    <div
+                      class="col-4 d-flex justify-content-center align-items-center ps-0 pe-0"
+                    >
+                      <button
+                        class="btn btn-light w-100 h-100"
+                        [disabled]="item.quantity === 1"
+                        (click)="decreaseQuantity(item.id)"
+                      >
+                        -
+                      </button>
+                    </div>
+                    <div
+                      class="col-4 d-flex justify-content-center align-items-center"
+                    >
+                      <span>{{ item.quantity }}</span>
+                    </div>
+                    <div
+                      class="col-4 d-flex justify-content-center align-items-center ps-0 pe-0"
+                    >
+                      <button
+                        class="btn btn-light w-100 h-100"
+                        (click)="increaseQuantity(item.id)"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <span class="d-inline deleteBadge"
+                    ><i
+                      class="fa-solid fa-trash"
+                      (click)="deleteBasketItem(item.id, item.category)"
+                    ></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-3 flex-grow-1">
+              <h6>{{ item.price }} Ft</h6>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <hr />
+      <h5 class="pt-3">Ezek is érdekelhetnek...</h5>
+      <div class="d-flex flex-column flex-sm-row">
+        <app-product-card
+          *ngFor="let product of relatedProducts"
+          [product]="product"
+          class="mb-5"
+        ></app-product-card>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+      <div class="border border-secondary-subtle p-3">
+        <h5 class="pt-1">Megrendelés összesítő</h5>
+        <p class="fst-italic">Kérlek add meg az adataid</p>
+        <form [formGroup]="basketForm" (ngSubmit)="submitForm()">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Minta Béla"
+              formControlName="name"
+            />
+            <div
+              *ngIf="name?.invalid && name?.touched"
+              class="small text-danger"
+            >
+              Név megadása kötelező.
+            </div>
+            <label for="name">Név</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="name@example.com"
+              formControlName="email"
+            />
+            <div
+              *ngIf="email?.invalid && email?.touched"
+              class="small text-danger"
+            >
+              Email megadása kötelező.
+            </div>
+            <label for="email">Email cím</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="phone"
+              placeholder="+3630345784"
+              formControlName="phone"
+            />
+            <div
+              *ngIf="phone?.invalid && phone?.touched"
+              class="small text-danger"
+            >
+              Telefonszám megadása kötelező.
+            </div>
+            <label for="phone">Telefonszám</label>
+          </div>
+          <div class="accordion" id="accordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-controls="collapseOne"
+                  aria-expanded="false"
+                >
+                  Rendelési megjegyzés hozzáadása
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordion"
+              >
+                <div>
+                  <textarea
+                    class="form-control"
+                    id="FormControlTextarea"
+                    rows="3"
+                    formControlName="FormControlTextarea"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+          <div class="row">
+            <div class="col-6"><h5>Összeg:</h5></div>
+            <div class="col-6 text-end">
+              <h5>{{ totalSum }} Ft</h5>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-dark w-100 mb-3 mt-2"
+            [disabled]="basketForm.invalid"
+          >
+            Vásárlás
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

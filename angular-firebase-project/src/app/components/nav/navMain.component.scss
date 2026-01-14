@@ -1,0 +1,51 @@
+.formlab {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.formlab-white {
+  color: white;
+  font-family: "Monoton";
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.formlab-orange {
+  color: #e3986d;
+  font-family: "Monoton";
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.icon {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+// Dropdown stílusok
+.dropdown-item {
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.badge-notification {
+  font-size: 0.5rem;
+  transform: translate(0%, -50%);
+  top: 45px;
+  right: 5px;
+}
+
+.singInOrOut {
+  list-style: none;
+}

@@ -1,0 +1,33 @@
+<app-components-nav></app-components-nav>
+
+<section class="wrapper">
+  <div class="container text-center">
+    <div class="row justify-content-end">
+      <div class="col-10 text-center mb-5">
+        <h1 class="display-4 font-weight-bolder">Fotelek</h1>
+      </div>
+      <div class="col-1 text-end mb-5">
+        <button
+          class="btn btn-secondary"
+          routerLink="/product-form"
+          *ngIf="isAdmin"
+        >
+          Új termék feltöltése
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div
+        class="col-sm-12 col-md-6 col-lg-4 mb-4"
+        *ngFor="let product of products"
+      >
+        <app-product-card
+          [product]="product"
+          (deleteProduct)="deleteProduct($event)"
+        ></app-product-card>
+      </div>
+    </div>
+  </div>
+</section>

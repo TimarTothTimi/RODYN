@@ -1,0 +1,12 @@
+<div class="image-slider">
+  <div *ngFor="let slide of slides; let index = index" class="slider-container">
+    <a [routerLink]="slide.link" class="image-button">
+      <img
+        [src]="getCurrentImage(index)"
+        [@slideAnimation]="currentAnimationState[index]"
+        alt="{{ slide.title }}"
+      />
+      <div class="image-title">{{ slide.title }}</div>
+    </a>
+  </div>
+</div>

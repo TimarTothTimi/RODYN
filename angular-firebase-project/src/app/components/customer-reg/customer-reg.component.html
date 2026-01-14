@@ -1,0 +1,227 @@
+<app-components-nav></app-components-nav>
+<main class="marginTopNav">
+  <div class="container w-75 pt-3">
+    <div class="row justify-content-center align-items-stretch mb-3">
+      <div class="col-12 col-xl-6">
+        <h4 class="text-center">Fiók létrehozása</h4>
+        <div class="mt-5">
+          <form
+            [formGroup]="customerRegForm"
+            (ngSubmit)="submitRegForm()"
+            novalidate
+          >
+            <h6 class="p-1">Keresztnév</h6>
+            <div *ngIf="firstName" class="mb-4">
+              <input
+                class="form-control"
+                id="firstName"
+                type="text"
+                formControlName="firstName"
+              />
+              <div
+                *ngIf="firstName.invalid && firstName.touched"
+                class="small text-danger"
+              >
+                <span *ngIf="firstName.errors?.['required']"
+                  >Keresztnév megadása kötelező.</span
+                >
+                <span *ngIf="firstName.errors?.['pattern']"
+                  >Nagybetűvel kell kezdődnie, maximum három nevet
+                  tartalmazhat.</span
+                >
+              </div>
+            </div>
+            <h6 class="p-1">Vezetéknév</h6>
+            <div *ngIf="lastName" class="mb-4">
+              <input
+                class="form-control"
+                id="lastName"
+                type="text"
+                formControlName="lastName"
+              />
+              <div
+                *ngIf="lastName.invalid && lastName.touched"
+                class="small text-danger"
+              >
+                <span *ngIf="lastName.errors?.['required']"
+                  >Vezetéknév megadása kötelező.</span
+                >
+                <span *ngIf="lastName.errors?.['pattern']"
+                  >Nagybetűvel kell kezdődnie, maximum három nevet
+                  tartalmazhat.</span
+                >
+              </div>
+            </div>
+            <h6 class="p-1">Utca, házszám</h6>
+            <div *ngIf="address" class="mb-4">
+              <input
+                class="form-control"
+                id="address"
+                type="text"
+                formControlName="address"
+              />
+              <div
+                *ngIf="address.invalid && address.touched"
+                class="small text-danger"
+              >
+                Utca és házszám megadása kötelező.
+              </div>
+            </div>
+            <h6 class="p-1">Város</h6>
+            <div *ngIf="city" class="mb-4">
+              <input
+                class="form-control"
+                id="city"
+                type="text"
+                formControlName="city"
+              />
+              <div
+                *ngIf="city.invalid && city.touched"
+                class="small text-danger"
+              >
+                <span *ngIf="city.errors?.['required']"
+                  >Város megadása kötelező.</span
+                >
+                <span *ngIf="city.errors?.['pattern']"
+                  >Nagybetűvel kell kezdődnie.</span
+                >
+              </div>
+            </div>
+            <h6 class="p-1">Ország</h6>
+            <div *ngIf="country" class="mb-4">
+              <input
+                class="form-control"
+                id="country"
+                type="text"
+                formControlName="country"
+              />
+              <div
+                *ngIf="country.invalid && country.touched"
+                class="small text-danger"
+              >
+                <span *ngIf="country.errors?.['required']"
+                  >Város megadása kötelező.</span
+                >
+                <span *ngIf="country.errors?.['pattern']"
+                  >Nagybetűvel kell kezdődnie.</span
+                >
+              </div>
+            </div>
+            <h6 class="ps-1 pt-1">
+              Telefonszám
+              <p class="p-0 fw-light d-inline">(Opcionális)</p>
+            </h6>
+
+            <div *ngIf="mobile" class="mb-4">
+              <input
+                class="form-control"
+                type="text"
+                id="mobile"
+                formControlName="mobile"
+              />
+            </div>
+            <h6 class="p-1">Email</h6>
+            <div *ngIf="email" class="mb-4">
+              <input
+                class="form-control"
+                type="text"
+                id="email"
+                formControlName="email"
+              />
+              <div
+                *ngIf="email.invalid && email.touched"
+                class="small text-danger"
+              >
+                Email megadása kötelező.
+              </div>
+            </div>
+            <h6 class="p-1">Jelszó</h6>
+            <div *ngIf="password" class="mb-4">
+              <input
+                class="form-control"
+                type="password"
+                id="password"
+                formControlName="password"
+              />
+              <div
+                *ngIf="password.invalid && password.touched"
+                class="small text-danger"
+              >
+                Jelszó megadása kötelező, minimum 6 karakter.
+              </div>
+            </div>
+
+            <!-- Submit Button-->
+            <button
+              class="btn mt-4 w-100 text-white"
+              id="submitButton"
+              type="submit"
+              [disabled]="!customerRegForm.valid"
+              style="background-color: #e3986d"
+            >
+              Regisztráció
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="col-12 col-xl-4 bg-secondary bg-gradient">
+        <h1 class="formlab text-center pt-5" id="offcanvasNavbarLabel">
+          <span class="formlab-white">Form</span
+          ><span class="formlab-orange">Lab</span>
+        </h1>
+        <section class="text-white">
+          <h5 class="text-white text-center pt-3 pb-2">
+            Miért éri meg regisztrálni?
+          </h5>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fa-solid fa-check p-3" style="color: #e3986d"></i
+              >Rendeléseinek áttekintése
+            </li>
+            <li>
+              <i class="fa-solid fa-check p-3" style="color: #e3986d"></i
+              >Katológusok elérése
+            </li>
+          </ul>
+          <h5 class="text-white text-center pt-3 pb-3">
+            Felhasználóink véleménye
+          </h5>
+          <p class="fw-light lh-sm mb-0">
+            A FormLab bútorai nemcsak szépek, de tartósak is. Az ergonomikus
+            székek és praktikus tárolók rengeteget segítettek az iroda
+            hatékonyságának növelésében.
+          </p>
+          <p class="text-end fst-italic nameColor">- Kovács Kíra</p>
+          <hr class="border border-1 bg-light" />
+          <p class="fw-light lh-sm mb-0">
+            Nagyon elégedettek vagyunk a FormLab termékeivel, a bútorok
+            elegánsak és kiváló minőségűek. Mindenki dicséri, mennyire
+            megváltozott az iroda hangulata.
+          </p>
+          <p class="text-end fst-italic nameColor">- Takáts Balázs</p>
+          <hr class="border border-1 bg-light" />
+          <p class="fw-light lh-sm mb-0">
+            A FormLab bútorai remekül ötvözik a funkcionalitást a dizájnnal. Az
+            új íróasztalaink és székek nemcsak kényelmesek, hanem stílusosak is
+            - tökéletes választás volt.
+          </p>
+          <p class="text-end fst-italic nameColor">- Bende Annamária</p>
+          <hr class="border border-1 bg-light" />
+          <p class="fw-light lh-sm mb-0">
+            Kiváló ügyfélszolgálat és gyors szállítás! A FormLab bútorai nemcsak
+            praktikusak, hanem tökéletesen illenek bármilyen munkahelyi
+            környezetbe.
+          </p>
+          <p class="text-end fst-italic nameColor">- Vébere István</p>
+          <hr class="border border-1 bg-light" />
+          <p class="fw-light lh-sm mb-0">
+            A FormLab kínálata modern és stílusos, a bútorok pedig nemcsak jól
+            néznek ki, hanem kiváló minőségűek is. Az iroda most sokkal
+            kényelmesebb és rendezettebb lett!
+          </p>
+          <p class="text-end fst-italic nameColor">- Daras Dóra</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>

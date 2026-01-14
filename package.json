@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "rodyn",
   "version": "0.0.0",
   "scripts": {
@@ -41,3 +42,10 @@
     "vitest": "^4.0.8"
   }
 }
+=======
+  "dependencies": {
+    "@angular/fire": "^18.0.1",
+    "bootstrap": "^5.3.3"
+  }
+}
+>>>>>>> 1608465aa6dcc41e95be57129af1a86e3ba2f53c
