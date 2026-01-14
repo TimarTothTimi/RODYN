@@ -1,23 +1,12 @@
-// 1. A funkciókat ÚGY kell betölteni, hogy a többi modul is lássa (globálisan)
-@use "bootstrap/scss/functions" as *;
+$primary: #6f42c1;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
 
-// 2. A változókat konfiguráció nélkül, de a funkciók után töltsd be
-@use "bootstrap/scss/variables" as vars;
-@use "bootstrap/scss/maps" as maps;
-@use "bootstrap/scss/mixins" as mixins;
-
-// 3. A teljes Bootstrap keretrendszer
+// majd Bootstrap
 @use "bootstrap/scss/bootstrap";
-
-// 4. Harmadik fél (Toastr)
-@use "ngx-toastr/toastr-bs5-alert" as toastr;
-
-// 5. Google Fonts (Mindig a @use-ok után!)
-@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Roboto:wght@400;700&display=swap");
-
-// 6. Saját stílusok
-body {
-  background-color: vars.$gray-100;
-  color: vars.$gray-900;
-  font-family: "Roboto", sans-serif;
-}

@@ -1,20 +1,32 @@
-import { Component, Inject } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { addDoc, Firestore, collection } from "@angular/fire/firestore";
+import { Component, inject } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from "@angular/forms";
+import {
+  addDoc,
+  Firestore,
+  collection,
+  provideFirestore,
+  getFirestore,
+} from "@angular/fire/firestore";
+import { CommonModule } from "@angular/common";
 
 @Component({
-    selector: "app-footer",
-    templateUrl: "./footer.components.html",
-    styleUrls: ["./footer.components.scss"],
-    standalone: false
+  selector: "app-footer",
+  templateUrl: "./footer.components.html",
+  styleUrls: ["./footer.components.scss"],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class FooterComponent {
   form: FormGroup;
+  private firestore = inject(Firestore); // standalone inject pattern
+  private fb = inject(FormBuilder);
 
-  constructor(
-    private fb: FormBuilder,
-    @Inject(Firestore) private firestore: Firestore
-  ) {
+  constructor() {
     this.form = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       gdpr: [false, Validators.requiredTrue],
@@ -41,8 +53,4 @@ export class FooterComponent {
       );
     }
   }
-}
-
-function subscribe() {
-  throw new Error("Function not implemented.");
 }
