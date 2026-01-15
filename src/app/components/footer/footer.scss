@@ -1,0 +1,40 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #103545;
+}
+
+footer {
+  margin: 0;
+  padding: 0;
+  background-color: #103545;
+}
+
+.footer .row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 60px;
+}
+
+.footer .col-md-4,
+.footer .col-md-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-link {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.footer-bottom {
+  font-size: 0.875rem;
+  background-color: #103545;
+  /* Fekete háttér az alján */
+  padding: 10px 0;
+  margin: 0;
+}
