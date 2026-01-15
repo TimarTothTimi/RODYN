@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from '../../components/header/header';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  standalone: true,
+  imports: [
+    HeaderComponent,
+    // RouterModule kell, ha routerLink vagy router-outlet is van
+  ],
   templateUrl: './home.html',
-  styleUrl: './home.scss',
 })
-export class Home {
-
-}
+export class Home {}
