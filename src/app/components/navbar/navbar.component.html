@@ -1,8 +1,13 @@
 <nav class="navbar">
   <div class="logo">RODYN</div>
 
-  <button class="hamburger" (click)="toggleMenu()">☰</button>
+  <!-- Hamburger gomb -->
+  <button class="hamburger" type="button" (click)="toggleMenu()">
+    &#9776;
+    <!-- ☰ karakter -->
+  </button>
 
+  <!-- Menüpontok -->
   <ul [class.open]="menuOpen">
     <li *ngFor="let item of menu">
       <a
