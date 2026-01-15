@@ -1,1 +1,161 @@
 /* You can add global styles to this file, and also import other style files */
+/*--------------------------------------------------------------
+# Globális betűtípus és tipográfia
+--------------------------------------------------------------*/
+
+/* Betűtípus import Google Fonts-ból */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Poppins:wght@700&display=swap');
+
+/* Alapértelmezett stílus az egész projekthez */
+html,
+body {
+  font-family: 'Inter', Arial, sans-serif; /* Body szöveg Inter Light */
+  font-weight: 300; /* Light */
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #fff;
+}
+
+/* Globális link stílus */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Globális gomb stílus */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/*--------------------------------------------------------------
+# Navbar stílus
+--------------------------------------------------------------*/
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #222;
+  color: #fff;
+  font-family: 'Poppins', sans-serif; /* Navbar Poppins */
+  font-weight: 700; /* Bold */
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li a {
+  color: #fff;
+  position: relative;
+}
+
+.navbar ul li a.active::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  bottom: -4px;
+  left: 0;
+  transition: width 0.3s;
+}
+
+/* Hamburger menü (mobil) */
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    background-color: #222;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+  }
+
+  .navbar ul.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+/*--------------------------------------------------------------
+# Footer stílus
+--------------------------------------------------------------*/
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #222;
+  color: #fff;
+  font-family: 'Inter', Arial, sans-serif; /* Footer Inter Regular / Light */
+  font-weight: 400; /* Regular */
+  font-size: 0.9rem;
+}
+
+.footer .socials {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer .socials a {
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.footer .socials a:hover {
+  color: #f39c12;
+}
+
+/*--------------------------------------------------------------
+# Alap tipográfia a komponensekhez
+--------------------------------------------------------------*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
