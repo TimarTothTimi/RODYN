@@ -1,21 +1,34 @@
 <nav class="navbar">
-  <div class="logo">RODYN</div>
+  <div class="container">
+    <!-- Bal oldali felirat -->
+    <div class="navbar-brand">
+      <a routerLink="/" class="brand-text">RODYN</a>
+    </div>
 
-  <!-- Hamburger gomb -->
-  <button class="hamburger" type="button" [class.open]="menuOpen" (click)="toggleMenu()">
-    <span></span>
-  </button>
+    <!-- Jobb oldali menü + hamburger -->
+    <div class="menu-wrapper">
+      <button class="navbar-toggler" (click)="toggleNavbar()">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-  <!-- Menü -->
-  <ul [class.open]="menuOpen">
-    <li *ngFor="let item of menu">
-      <a
-        [routerLink]="item.path"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        {{ item.label }}
-      </a>
-    </li>
-  </ul>
+      <div class="navbar-collapse" [ngClass]="{ show: navbarOpen }">
+        <ul class="navbar-nav">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/home">Főoldal</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/about">Rólunk</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/services">Szolgáltatások</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/contact">Kapcsolat</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </nav>

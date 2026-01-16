@@ -4,6 +4,8 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-video {

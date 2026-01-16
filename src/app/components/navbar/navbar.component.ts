@@ -5,22 +5,14 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule], // 👈 EZ KELL
+  imports: [CommonModule, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  menuOpen = false;
+  navbarOpen = false;
 
-  menu = [
-    { label: 'Főoldal', path: '/' },
-    { label: 'Termékek', path: '/termekek' },
-    { label: 'Rólunk', path: '/rolunk' },
-    { label: 'Inspiráció', path: '/inspiracio' },
-    { label: 'Kapcsolat', path: '/kapcsolat' },
-  ];
-
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
 }

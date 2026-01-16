@@ -1,123 +1,105 @@
 .navbar {
+  background-color: #f8f8f8;
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+/* Bal oldali felirat */
+.brand-text {
+  font-weight: bold;
+  font-size: 24px;
+  color: #000;
+  text-decoration: none;
+}
+.menu-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.5rem;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  position: relative;
-
-  .logo {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #000;
-  }
-
-  /* Hamburger gomb */
-  .hamburger {
-    display: none;
-    width: 30px;
-    height: 22px;
-    position: relative;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1000;
-
-    span,
-    span::before,
-    span::after {
-      display: block;
-      position: absolute;
-      height: 3px;
-      width: 100%;
-      background-color: #333;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    span {
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    span::before {
-      content: '';
-      top: -8px;
-    }
-
-    span::after {
-      content: '';
-      top: 8px;
-    }
-
-    &.open span {
-      background-color: transparent; // középső vonal eltűnik
-    }
-
-    &.open span::before {
-      top: 0;
-      transform: rotate(45deg);
-    }
-
-    &.open span::after {
-      top: 0;
-      transform: rotate(-45deg);
-    }
-  }
-
-  ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    transition: max-height 0.3s ease;
-
-    li a {
-      position: relative;
-      text-decoration: none;
-      color: #333;
-      padding-bottom: 4px;
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        height: 2px;
-        background: #000;
-        transition: width 0.3s ease;
-      }
-
-      &.active::after {
-        width: 100%;
-      }
-    }
-  }
 }
 
-/* Mobil / kisebb képernyő */
-@media (max-width: 1024px) {
-  .hamburger {
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.navbar-toggler {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: none;
+}
+
+.navbar-toggler .icon-bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #000;
+  margin: 5px 0;
+}
+
+.navbar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-item {
+  margin-right: 15px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+/* 📱 MOBIL */
+@media (max-width: 768px) {
+  .navbar-toggler {
     display: block;
+    position: absolute;
+    top: 10px;
+    right: 15px;
   }
 
-  ul {
+  .navbar-collapse {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar-collapse.show {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    max-height: 0;
-    width: 100%;
-    background: #fff;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    border-bottom: 1px solid #000000;
-    gap: 1rem;
-    padding: 0 1.5rem;
+    align-items: center; /* középre igazítás */
+    background-color: #fff; /* minden menü fehér hátterű */
+    padding-top: 10px;
+  }
 
-    &.open {
-      max-height: 500px;
-    }
+  .navbar-nav {
+    flex-direction: column;
+    margin: 0;
+    width: 100%; /* így a menüpontok teljes szélességben fehér hátterűek lesznek */
+  }
+
+  .nav-item {
+    margin: 2px 0;
+    width: 100%; /* minden nav-item teljes szélesség */
+  }
+
+  .nav-link {
+    padding: 10px 15px;
+    color: #000;
+    text-align: center;
+    display: block;
+    background-color: #fff; /* minden link fehér */
   }
 }
