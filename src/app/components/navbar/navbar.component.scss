@@ -7,6 +7,7 @@
   width: 100%;
   z-index: 1000;
 }
+
 /* Bal oldali felirat */
 .brand-text {
   font-weight: bold;
@@ -14,9 +15,11 @@
   color: #000;
   text-decoration: none;
 }
+
 .menu-wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Igazítás: bal és jobb szélen */
 }
 
 .navbar .container {
@@ -50,16 +53,22 @@
   margin: 0;
   padding: 0;
   display: flex;
+  justify-content: flex-end; /* Jobb szélen igazítás */
 }
 
 .nav-item {
-  margin-right: 15px;
+  margin-right: 5px; /* Csökkentett margó a gombok között */
 }
 
 .nav-link {
   text-decoration: none;
   color: #000;
   font-weight: bold;
+}
+
+/* Aktív gomb aláhúzás */
+.nav-link.active {
+  text-decoration: underline; /* Aláhúzás az aktív gombnál */
 }
 
 /* 📱 MOBIL */
@@ -79,20 +88,20 @@
   .navbar-collapse.show {
     display: flex;
     flex-direction: column;
-    align-items: center; /* középre igazítás */
-    background-color: #fff; /* minden menü fehér hátterű */
+    align-items: center; /* Középre igazítás */
+    background-color: #fff; /* Minden menü fehér hátterű */
     padding-top: 10px;
   }
 
   .navbar-nav {
     flex-direction: column;
     margin: 0;
-    width: 100%; /* így a menüpontok teljes szélességben fehér hátterűek lesznek */
+    width: 100%; /* Teljes szélesség */
   }
 
   .nav-item {
-    margin: 2px 0;
-    width: 100%; /* minden nav-item teljes szélesség */
+    margin: 2px 0; /* Kisebb margó a gombok között */
+    width: 100%; /* Teljes szélesség */
   }
 
   .nav-link {
@@ -100,6 +109,6 @@
     color: #000;
     text-align: center;
     display: block;
-    background-color: #fff; /* minden link fehér */
+    background-color: #fff; /* Minden link fehér */
   }
 }
