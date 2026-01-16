@@ -5,6 +5,7 @@
   padding: 1rem 1.5rem;
   background: #fff;
   border-bottom: 1px solid #eee;
+  position: relative;
 
   .logo {
     font-weight: 700;
@@ -12,19 +13,64 @@
     color: #000;
   }
 
+  /* Hamburger gomb */
   .hamburger {
-    display: none; // alapból rejtve nagy képernyőn
-    font-size: 1.5rem;
+    display: none;
+    width: 30px;
+    height: 22px;
+    position: relative;
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 1000; // biztos, hogy felül van a menü felett
+    z-index: 1000;
+
+    span,
+    span::before,
+    span::after {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background-color: #333;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    span {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    span::before {
+      content: '';
+      top: -8px;
+    }
+
+    span::after {
+      content: '';
+      top: 8px;
+    }
+
+    &.open span {
+      background-color: transparent; // középső vonal eltűnik
+    }
+
+    &.open span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    &.open span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
   }
 
   ul {
     list-style: none;
     display: flex;
     gap: 1.5rem;
+    transition: max-height 0.3s ease;
 
     li a {
       position: relative;
@@ -50,17 +96,28 @@
   }
 }
 
-//* Kisebb képernyőn (mobil + kisebb PC) */
+/* Mobil / kisebb képernyő */
 @media (max-width: 1024px) {
   .hamburger {
-    display: block; // hamburger ikon látszik
+    display: block;
   }
 
   ul {
-    display: none; // menü alapból rejtve
+    display: flex;
     flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
     width: 100%;
-    margin-top: 1rem;
-      gap: 1rem;
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-bottom: 1px solid #000000;
+    gap: 1rem;
+    padding: 0 1.5rem;
+
+    &.open {
+      max-height: 500px;
     }
   }
+}
