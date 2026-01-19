@@ -36,44 +36,86 @@ button {
 /*--------------------------------------------------------------
 # Navbar stílus
 --------------------------------------------------------------*/
+/* Navbar globális beállítások (összhang a komponenssel) */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* a .container kezeli a belső elrendezést */
   padding: 1rem 2rem;
   background-color: #222;
   color: #fff;
-  font-family: 'Poppins', sans-serif; /* Navbar Poppins */
-  font-weight: 700; /* Bold */
-}
-
-.navbar .logo {
-  font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
 }
 
-.navbar ul {
-  list-style: none;
+/* A container belső tartalom igazítása */
+.navbar .container {
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+/* Brand balra, menü jobbra */
+.navbar .logo,
+.brand-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: inherit;
+  margin-right: 0;
+}
+
+.navbar .menu-wrapper {
+  margin-left: auto; /* a fontos rész: tolja a menüt jobbra */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* A korábbi !important és ütköző display felülírások eltávolítása */
+/* Biztosítsd, hogy .navbar-collapse alapból ne legyen fontos! */
+.navbar .navbar-collapse {
+  display: flex;
+  align-items: center;
+}
+
+/* Desktop menü */
+.navbar .navbar-nav,
+.navbar ul {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  align-items: center;
   margin: 0;
   padding: 0;
 }
 
-.navbar ul li a {
-  color: #fff;
-  position: relative;
-}
+/* Mobil viselkedés */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
 
-.navbar ul li a.active::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: #fff;
-  bottom: -4px;
-  left: 0;
-  transition: width 0.3s;
+  .navbar .navbar-collapse {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar .navbar-collapse.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar .menu-wrapper {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .navbar .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 /* Hamburger menü (mobil) */
