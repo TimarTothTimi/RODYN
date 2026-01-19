@@ -1,11 +1,11 @@
+import { FooterComponent } from './../../components/footer/footer';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-kapcsolat',
-  imports: [],
+  standalone: true,
+  imports: [FooterComponent],
   templateUrl: './kapcsolat.html',
-  styleUrl: './kapcsolat.scss',
+  styleUrls: ['./kapcsolat.scss'],
 })
-export class Kapcsolat {
-
-}
+export class KapcsolatComponent {}

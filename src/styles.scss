@@ -2,6 +2,10 @@
 /*--------------------------------------------------------------
 # Globális betűtípus és tipográfia
 --------------------------------------------------------------*/
+html,
+body {
+  height: 100%;
+}
 
 /* Betűtípus import Google Fonts-ból */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Poppins:wght@700&display=swap');
@@ -17,6 +21,7 @@ body {
   padding: 0;
   color: #333;
   background-color: #fff;
+  flex-direction: column;
 }
 
 /* Globális link stílus */
@@ -31,6 +36,11 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+}
+
+router-outlet {
+  flex: 1;
+  display: block;
 }
 
 /*--------------------------------------------------------------
@@ -152,11 +162,11 @@ button {
 --------------------------------------------------------------*/
 .footer {
   text-align: center;
-  padding: 2rem;
-  background-color: #222;
+  padding: 2rem 1rem;
+  background-color: #222; /* sötét háttér, nem fehér */
   color: #fff;
-  font-family: 'Inter', Arial, sans-serif; /* Footer Inter Regular / Light */
-  font-weight: 400; /* Regular */
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
   font-size: 0.9rem;
 }
 
@@ -174,6 +184,11 @@ button {
 
 .footer .socials a:hover {
   color: #f39c12;
+}
+
+/* Üres sáv eltüntetése a footer alatt */
+body > :last-child {
+  margin-bottom: 0;
 }
 
 /*--------------------------------------------------------------
